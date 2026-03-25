@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
@@ -24,47 +24,87 @@
       margin: auto;
     }
 
-    /* MENÜ */
+    /* MENÜ KAPSAYICI */
     .topbar {
       background: #1a237e;
       padding: 1rem 0;
       box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
-    .menu {
-      list-style: none;
-      margin: 0 auto;
-      padding: 0;
+
+    .menu-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
       max-width: 1100px;
-      text-align: center;
-    }
-    .menu li {
-      display: inline-block;
-      margin: 0 1.2rem;
-    }
-    .menu a {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1rem;
-      padding: 0.6rem 1rem;
-      display: inline-block;
-      transition: all 0.3s ease;
-    }
-    .menu a:hover {
-      background: rgba(255,255,255,0.15);
-      border-radius: 6px;
-      color: #e0f2fe;
+      margin: 0 auto;
+      padding: 0 10px;
     }
 
-    /* Responsive */
+    .fixed-buttons a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropbtn {
+      background: #005b96;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: #1a237e;
+      min-width: 160px;
+      z-index: 1;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+    }
+
+    .dropdown-content a:hover {
+      background: #003c6c;
+      border-radius: 8px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Mobil Uyum */
     @media (max-width: 768px) {
-      .menu li {
-        display: block;
-        margin: 0.8rem 0;
+      .menu-container {
+        flex-direction: column;
+        align-items: center;
       }
-      .menu a {
-        font-size: 1.2rem;
-        padding: 0.8rem;
+      .fixed-buttons a {
+        font-size: 16px;
+        padding: 10px 15px;
+      }
+      .dropbtn {
+        font-size: 16px;
+        width: 100%;
+        max-width: 200px;
       }
     }
 
@@ -75,6 +115,13 @@
       padding: 30px;
     }
 
+    .container img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
+
     /* FOOTER */
     .footer {
       background: #111;
@@ -82,14 +129,6 @@
       text-align: center;
       padding: 20px;
       margin-top: 40px;
-    }
-
-    /* Görseller */
-    .container img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 20px auto;
     }
   </style>
 </head>
@@ -100,18 +139,25 @@
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj9i9oouhCnqE7ls1Na2CQZGTbxIVMrXG6qAbmjT6D_-ZTkJKq9H7x0gkp561y_BiR1K3c1dTfvBJgjhjlxFm6UGji2S2orXez1jkuTA_2HGzpuYB0-5JRj0-r0Kpbb6q4Hxd6sm6ggDmV2ZO_doFTGx7ZLCRxq9g2c9BILdQgS_JSw549bUZynrB6s8APl/s1536/THE%20END%202.png" alt="Banner" />
   </div>
 
-  <!-- MENÜ -->
+  <!-- MENÜ (3 Sabit + Açılır Menü) -->
   <div class="topbar">
-    <ul class="menu">
-      <li><a href="https://eserkon.com.tr" target="_blank">Ana Sayfa</a></li>
-     <a href="duyuru-etkinlikler.html" target="_blank">Duyuru / Etkinlikler</a>
-      <li><a href="https://eserkon.com.tr" target="_blank">Başvurular</a></li>
-      <li><a href="https://eserkon.com.tr" target="_blank">Sponsorlarımız</a></li>
-      <li><a href="https://eserkon.com.tr" target="_blank">Hakkımızda</a></li>
-      <li><a href="https://eserkon.com.tr" target="_blank">İletişim</a></li>
-      <li><a href="https://eserkon.com.tr" target="_blank">Destek ol</a></li>
-      <li><a href="https://eserkon.com.tr" target="_blank">Bize Ulaşın</a></li>
-    </ul>
+    <div class="menu-container">
+      <div class="fixed-buttons">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="basvurular.html">Başvurular</a>
+        <a href="sponsorlar.html">Sponsorlarımız</a>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">☰ Diğer</button>
+        <div class="dropdown-content">
+          <a href="duyuru-etkinlikler.html">Duyurular</a>
+          <a href="hakkimizda.html">Hakkımızda</a>
+          <a href="iletisim.html">İletişim</a>
+          <a href="destek.html">Destek Ol</a>
+          <a href="bize-ulasin.html">Bize Ulaşın</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- İÇERİK VE GÖRSELLER -->
