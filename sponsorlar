@@ -1,0 +1,150 @@
+ <!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sponsorlarımız - ESERKON</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1a3d7c;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    p.description {
+      text-align: center;
+      color: #333;
+      font-size: 16px;
+      margin-bottom: 50px;
+    }
+
+    .sponsor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .sponsor-card {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .sponsor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .sponsor-card img {
+      max-width: 120px;
+      max-height: 80px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+
+    .sponsor-card h3 {
+      margin: 10px 0 5px 0;
+      color: #1a3d7c;
+      font-size: 18px;
+    }
+
+    .sponsor-card p {
+      margin: 5px 0;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .sponsor-card .promo {
+      margin-top: 10px;
+      font-style: italic;
+      color: #27ae60;
+      font-size: 13px;
+    }
+
+    /* ANA SAYFAYA DÖN */
+    .home-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #00b4d8, #0077b6);
+      color: white;
+      padding: 12px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      z-index: 9999;
+      transition: 0.3s;
+    }
+
+    .home-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      background: linear-gradient(135deg, #0096c7, #023e8a);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANA SAYFAYA DÖN -->
+  <a class="home-btn" href="index.html">🏠 Ana Sayfaya Dön</a>
+
+  <!-- İÇERİK -->
+  <div class="container">
+    <h1>🌟 Sponsorlarımız</h1>
+    <p class="description">
+      ESERKON olarak değerli sponsorlarımızın desteğiyle eğitim, sosyal ve kültürel projelerimizi hayata geçiriyoruz.
+      Onların katkılarıyla gençlerimizin geleceğine yatırım yapıyoruz.
+    </p>
+
+    <div class="sponsor-grid">
+      <div class="sponsor-card">
+        <img alt="Firma 1" src="https://via.placeholder.com/120x80?text=Firma+1" />
+        <h3>Firma 1</h3>
+        <p>Faaliyet Alanı: Eğitim Teknolojileri</p>
+        <p class="promo">“Gençlerin eğitimine katkı sağlıyoruz!”</p>
+      </div>
+
+      <div class="sponsor-card">
+        <img alt="Firma 2" src="https://via.placeholder.com/120x80?text=Firma+2" />
+        <h3>Firma 2</h3>
+        <p>Faaliyet Alanı: Gıda ve İçecek</p>
+        <p class="promo">“Sağlıklı beslenme ve destek!”</p>
+      </div>
+
+      <div class="sponsor-card">
+        <img alt="Firma 3" src="https://via.placeholder.com/120x80?text=Firma+3" />
+        <h3>Firma 3</h3>
+        <p>Faaliyet Alanı: Yazılım & Teknoloji</p>
+        <p class="promo">“Geleceğin teknoloji liderlerine destek!”</p>
+      </div>
+
+      <div class="sponsor-card">
+        <img alt="Firma 4" src="https://via.placeholder.com/120x80?text=Firma+4" />
+        <h3>Firma 4</h3>
+        <p>Faaliyet Alanı: Spor ve Sağlık</p>
+        <p class="promo">“Gençlerin sağlıklı gelişimi için yanınızdayız!”</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
