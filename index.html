@@ -132,27 +132,22 @@
       box-shadow: 0 6px 15px rgba(0,0,0,0.2);
     }
 
-    /* 🔥 YENİ: SABİT BUTON */
-    .home-btn-fixed {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background: #0077b6;
-      color: white;
-      font-size: 20px;
-      text-decoration: none;
-      padding: 14px 18px;
-      border-radius: 50px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      z-index: 9999;
-      animation: floatBtn 2s ease-in-out infinite;
-      transition: 0.3s;
-    }
-
-    .home-btn-fixed:hover {
-      background: #00b4d8;
-      transform: scale(1.15);
-    }
+   <!-- ANA SAYFAYA DÖN BUTONU -->
+<a href="anasayfa.html" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #00b4d8, #0077b6);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  z-index: 9999;
+  font-family: 'Poppins', sans-serif;
+">📋 Ana Sayfaya Dön</a>
 
     @keyframes floatBtn {
       0%,100% { transform: translateY(0); }
