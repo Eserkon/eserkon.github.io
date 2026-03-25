@@ -1,0 +1,201 @@
+  <!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ESERKON - Ana Sayfa</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+    }
+
+    /* ÜST BANNER */
+    .top-banner {
+      background: #FFFFFF;
+      text-align: center;
+      padding: 15px 0;
+    }
+    .top-banner img {
+      max-width: 100%;
+      height: 300px;
+      display: block;
+      margin: auto;
+    }
+
+    /* MENÜ KAPSAYICI */
+    .topbar {
+      background: #1a237e;
+      padding: 1rem 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .menu-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+
+    .fixed-buttons a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropbtn {
+      background: #005b96;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: #1a237e;
+      min-width: 160px;
+      z-index: 1;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+    }
+
+    .dropdown-content a:hover {
+      background: #003c6c;
+      border-radius: 8px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Mobil Uyum */
+    @media (max-width: 768px) {
+      .menu-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .fixed-buttons a {
+        font-size: 16px;
+        padding: 10px 15px;
+      }
+      .dropbtn {
+        font-size: 16px;
+        width: 100%;
+        max-width: 200px;
+      }
+    }
+
+    /* İÇERİK */
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    .container img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ÜST BANNER -->
+  <div class="top-banner">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj9i9oouhCnqE7ls1Na2CQZGTbxIVMrXG6qAbmjT6D_-ZTkJKq9H7x0gkp561y_BiR1K3c1dTfvBJgjhjlxFm6UGji2S2orXez1jkuTA_2HGzpuYB0-5JRj0-r0Kpbb6q4Hxd6sm6ggDmV2ZO_doFTGx7ZLCRxq9g2c9BILdQgS_JSw549bUZynrB6s8APl/s1536/THE%20END%202.png" alt="Banner" />
+  </div>
+
+  <!-- MENÜ (3 Sabit + Açılır Menü) -->
+  <div class="topbar">
+    <div class="menu-container">
+      <div class="fixed-buttons">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="basvurular.html">Başvurular</a>
+        <a href="sponsorlar.html" target="_blank">Sponsorlar</a>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">☰ Diğer</button>
+        <div class="dropdown-content">
+          <a href="duyuru-etkinlikler.html">Duyurular</a>
+          <a href="hakkimizda.html">Hakkımızda</a>
+          <a href="iletisim.html">İletişim</a>
+          <a href="destek.html">Destek Ol</a>
+          <a href="bize-ulasin.html">Bize Ulaşın</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- İÇERİK VE GÖRSELLER -->
+  <div class="container">
+    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiOSHxOzFyBW46QsJ4nAed-CGr_mHMqOitmZ_XlV3y8VjupfNis4ZEAvFpBaH77a_OarBAMa0APr5DgoJ19yuCkxTWvTUxK0WpQ_aS8WNNeKVxGAFe0bIHsRv5xXoBcspGl2wZzsR-fgHyAw8dvbnOdLnUKDWhawovFzpzEa19lE4qPwnq8nQQXFzaA2Z83=s1076" alt="Görsel 1" />
+    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjaqwjNE714rmr-wlGv1FnbM_7aInNtbfosXXJNlsO4feuv2Nq2N-6FRG2vJKbdtTv2kE-WUTANjDXGX30v1s7mxo1UKIKLtXJzpmQ_b86fISFwGuQLRx7wdHascgaFRJvOZ3QmgrNQtzF19sN9JRZZm7yXMLYptgPWDD8rG5rUybDx6F7xdxmHshJk-FhT=s1076" alt="Görsel 2" />
+    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEg5rcoTAmpFXTsYT4aOGsHCzD77fQ8DSwScWg1xdNGYOTHwHKK4NxkvvfEF7W8R7BRA-DQ9_ayyf-LWWg9fDQzJXi1C7HVQUzR8UAAnYhVn2_dAGVEaM-m3VIz-dh0yw7avr51Yw5FwPYUd-lMQ4IBfOcBEHfoiSC8YquHa8RhRjtnen_EdK4rVQPBhXjL9=s1076" alt="Görsel 3" />
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>
+      <strong>Yasal Uyarı:</strong> Bu web sitesi, <strong>ESERKON (Eğitim, Sosyal, Etkinlik ve Rehberlik Konseyi)</strong> tarafından hazırlanmıştır ve tüm içerik yalnızca bilgilendirme amaçlıdır.
+      Sitede yer alan metin, görsel, logo ve diğer materyallerin tüm hakları saklıdır. İzinsiz kopyalanamaz, çoğaltılamaz veya dağıtılamaz.
+    </p>
+    <p>&copy; 2026 ESERKON - Tüm Hakları Saklıdır.</p>
+  </footer>
+
+  <!-- SES -->
+  <audio id="kadinAnons" preload="auto">
+    <source src="https://drive.google.com/uc?export=download&id=1D4hJpO1LD4he4dTh3bclQvxXrKeA1UXu" type="audio/mpeg" />
+    Tarayıcınız ses dosyasını desteklemiyor.
+  </audio>
+
+  <script>
+    var anonsSes = document.getElementById("kadinAnons");
+    var oynatildi = false;
+
+    document.addEventListener("click", function () {
+      if (!oynatildi) {
+        anonsSes.play().then(function () {
+          oynatildi = true;
+        }).catch(function (error) {
+          console.log("Ses oynatma hatası:", error);
+        });
+      }
+    }, { once: true });
+  </script>
+
+</body>
+</html>
