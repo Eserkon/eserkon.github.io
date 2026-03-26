@@ -2,263 +2,222 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Başvurular - ESERKON</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ESERKON Katılım Formları</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f0f8ff;
+      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
+      background: #0d1b2a;
+      color: white;
+      min-height: 100vh;
     }
 
-    .container {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      background: #f0f8ff;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-
-    h1 {
+    .hero {
       text-align: center;
-      color: #1a3d7c;
-      font-size: 32px;
-    }
-
-    p {
-      text-align: center;
-      color: #555;
-      margin-bottom: 20px;
-    }
-
-    /* Sekme Butonları */
-    .tab-btn-container {
+      padding: 60px 20px;
+      min-height: 70vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
+      align-items: center;
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
     }
 
-    .tab-btn {
-      padding: 10px 16px;
-      background: #e0e0e0;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      color: #333;
-      transition: all 0.3s;
+    .hero img.big-logo {
+      max-width: 240px;
+      margin-bottom: 30px;
     }
 
-    .tab-btn.active {
-      background: #006d77;
-      color: white;
+    .hero img.inline-logo {
+      background: transparent !important;
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      width: 1.15em;
+      height: 1.15em;
+      vertical-align: middle;
+      margin: 0 0.06em;
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(0, 198, 255, 0.7);
+      object-fit: contain;
     }
 
-    .tab-btn:hover {
-      background: #ccc;
+    .hero-text h1 {
+      font-size: 5.5rem;
+      margin: 10px 0;
+      font-weight: 700;
+      animation: eskon-heartbeat 1.6s ease-in-out infinite alternate;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.05em;
     }
 
-    /* Form Sekmeleri */
-    .tab-content {
-      display: none;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.05);
-    }
-
-    .tab-content h2 {
-      color: #006d77;
-      text-align: center;
-      margin-top: 0;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-family: Arial, sans-serif;
-    }
-
-    button[type="submit"] {
-      background: #006d77;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      width: 100%;
-      font-size: 16px;
-    }
-
-    /* Ana Sayfaya Dön */
-    .home-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: linear-gradient(135deg, #00b4d8, #0077b6);
-      color: white;
-      padding: 12px 18px;
-      border-radius: 30px;
-      text-decoration: none;
+    .hero-text p {
+      font-size: 1.6rem; /* DÜZELTİLDİ: Mobilde taşmaması için küçültüldü */
+      letter-spacing: 2px;
+      margin: 15px 0 60px;
       font-weight: 600;
-      font-size: 14px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-      z-index: 9999;
+      animation: slogan-pulse 3s ease-in-out infinite;
     }
 
-    .home-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    @keyframes eskon-heartbeat {
+      from {
+        transform: scale(1);
+        text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff, 0 0 50px #00c6ff, 0 0 80px #0095ff;
+      }
+      to {
+        transform: scale(1.18);
+        text-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff, 0 0 80px #00c6ff, 0 0 140px #0095ff;
+      }
     }
+
+    @keyframes slogan-pulse {
+      0%, 100% { transform: scale(1); text-shadow: 0 0 12px rgba(255,255,255,0.6); }
+      50% { transform: scale(1.14); text-shadow: 0 0 20px #00ff9d, 0 0 35px #ffdd00, 0 0 55px #ff6b6b, 0 0 70px #c084fc; }
+    }
+
+    .eskon-blue { color: #00eaff; }
+    .green      { color: #00ff9d; }
+    .orange     { color: #ffaa00; }
+    .purple     { color: #c084fc; }
+    .darkred    { color: #e63946; }
+    .eskon-white { color: white; }
+
+    .qr-box {
+      max-width: 320px;
+      margin: -40px auto 20px;
+      padding: 25px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      text-align: center;
+      color: #0d1b2a;
+    }
+
+    .qr-box .title, .qr-box .subtitle {
+      font-weight: 600;
+      animation: heartbeat-text 1.8s ease-in-out infinite alternate;
+      text-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+
+    .qr-box .title {
+      font-size: 1.2rem;
+      color: #0077b6;
+      margin: 8px 0;
+    }
+
+    .qr-box .subtitle {
+      font-size: 1rem;
+      color: #1b263b;
+      margin: 8px 0 20px;
+    }
+
+    @keyframes heartbeat-text {
+      from {
+        transform: scale(1);
+        text-shadow: 0 0 8px rgba(0,0,0,0.2), 0 0 12px rgba(0,119,182,0.5);
+      }
+      to {
+        transform: scale(1.08);
+        text-shadow: 0 0 10px rgba(0,0,0,0.3), 0 0 20px rgba(0,119,182,0.8), 0 0 30px rgba(0,119,182,0.6);
+      }
+    }
+
+    .qr-box img {
+      width: 220px;
+      border-radius: 8px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .popup { display: none; position: fixed; inset: 0; background: rgba(13,27,42,0.92); z-index: 1000; align-items: center; justify-content: center; }
+    .popup.active { display: flex; }
+    .popup-content { background: #1b263b; padding: 40px; border-radius: 16px; max-width: 500px; width: 100%; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+    .close-btn { position: absolute; top: 12px; right: 20px; font-size: 2.2rem; cursor: pointer; color: #aaa; }
+    .close-btn:hover { color: white; }
+    h2 { margin-bottom: 1.2rem; font-size: 1.8rem; }
   </style>
 </head>
 <body>
 
-  <!-- ANA SAYFAYA DÖN -->
-  <a class="home-btn" href="anasayfa.html">🏠 Ana Sayfaya Dön</a>
+<div class="hero">
+  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgEuqMyi9iTUz8Mtp8GN85InHVgANQHOXEAQhjhZHJsilqa9FrWXikcX1pAa7Xi2nQfFDblyewwpkRGiWTxlKOmXWJluZwqaPy5yRodC2AXEuvp5XwV5qLDbhAFJifc7ntFnD8WJ-IkFTfPFrWkZzPV7yiYVyL-HIsr-NVnKpnocHvknEixxC0UhSkMw5BX/s320/TRANSPARAN%20LOGO.png"
+       alt="ESERKON Logo" class="big-logo">
 
-  <!-- İÇERİK -->
-  <div class="container">
-    <h1>Bize Katıl</h1>
-    <p>Aşağıdan ilgini çeken alanı seçerek başvuru yapabilirsiniz.</p>
-
-    <!-- Sekmeler -->
-    <div class="tab-btn-container">
-      <button class="tab-btn active" onclick="openTab('ogretmen')">Gönüllü Öğretmen</button>
-      <button class="tab-btn" onclick="openTab('ogrenci')">Öğrenci Üye</button>
-      <button class="tab-btn" onclick="openTab('gonullu')">Gönüllü Üye</button>
-      <button class="tab-btn" onclick="openTab('destek')">Destek Ol</button>
-    </div>
-
-    <!-- Gönüllü Öğretmen -->
-    <div id="ogretmen" class="tab-content" style="display:block;">
-      <h2>Gönüllü Öğretmen Başvuru</h2>
-      <form action="https://formspree.io/f/mgvglwbz" method="POST">
-        <input type="hidden" name="form_type" value="gönetmen">
-        <input type="text" name="adsoyad" placeholder="Ad Soyad" required>
-        <input type="tel" name="telefon" placeholder="Telefon" required>
-        <input type="email" name="email" placeholder="E-posta" required>
-        <input type="text" name="sehir" placeholder="Şehir / İl" required>
-        <select name="brans" required>
-          <option value="">Branş Seçiniz</option>
-          <option>Matematik</option>
-          <option>Türkçe</option>
-          <option>İngilizce</option>
-          <option>Fen Bilimleri</option>
-          <option>Sosyal Bilgiler</option>
-          <option>Din Kültürü</option>
-          <option>Diğer</option>
-        </select>
-        <select name="seviye" required>
-          <option value="">Ders Seviyesi</option>
-          <option>İlkokul</option>
-          <option>Ortaokul</option>
-          <option>Lise</option>
-          <option>Üniversite Hazırlık</option>
-        </select>
-        <textarea name="mesaj" placeholder="Kendiniz hakkında kısa bilgi / tecrübe" required></textarea>
-        <button type="submit">Gönder</button>
-      </form>
-    </div>
-
-    <!-- Öğrenci Üye -->
-    <div id="ogrenci" class="tab-content">
-      <h2>Öğrenci Üye Ol</h2>
-      <form action="https://formspree.io/f/mgvglwbz" method="POST">
-        <input type="hidden" name="form_type" value="öğrenci">
-        <input type="text" name="adsoyad" placeholder="Ad Soyad" required>
-        <input type="tel" name="telefon" placeholder="Telefon" required>
-        <input type="email" name="email" placeholder="E-posta" required>
-        <input type="text" name="okul" placeholder="Okulunuz" required>
-        <input type="text" name="bolum" placeholder="Bölümünüz" required>
-        <select name="talep" required>
-          <option value="">Talebiniz</option>
-          <option>Etüt</option>
-          <option>Sosyal Etkinlikler</option>
-          <option>Barınma</option>
-          <option>Ulaşım</option>
-          <option>Yemek</option>
-          <option>Burs</option>
-          <option>Diğer</option>
-        </select>
-        <button type="submit">Gönder</button>
-      </form>
-    </div>
-
-    <!-- Gönüllü Üye -->
-    <div id="gonullu" class="tab-content">
-      <h2>Gönüllü Üye Ol</h2>
-      <form action="https://formspree.io/f/mgvglwbz" method="POST">
-        <input type="hidden" name="form_type" value="gönüllü">
-        <input type="text" name="adsoyad" placeholder="Ad Soyad" required>
-        <input type="tel" name="telefon" placeholder="Telefon" required>
-        <input type="email" name="email" placeholder="E-posta" required>
-        <input type="text" name="yas" placeholder="Yaşınız" required>
-        <input type="text" name="meslek" placeholder="Mesleğiniz / Eğitim Durumu" required>
-        <select name="ilgi_alani" required>
-          <option value="">İlgi Alanınız</option>
-          <option>Eğitim</option>
-          <option>Sosyal Yardım</option>
-          <option>Çevre</option>
-          <option>Kültür Sanat</option>
-          <option>Sağlık</option>
-          <option>Diğer</option>
-        </select>
-        <textarea name="mesaj" placeholder="Neden gönüllü olmak istiyorsunuz?" required></textarea>
-        <button type="submit">Üye Ol</button>
-      </form>
-    </div>
-
-    <!-- Destek Ol -->
-    <div id="destek" class="tab-content">
-      <h2>Destek Ol</h2>
-      <form action="https://formspree.io/f/mgvglwbz" method="POST">
-        <input type="hidden" name="form_type" value="destek">
-        <input type="text" name="adsoyad" placeholder="Ad Soyad" required>
-        <input type="email" name="email" placeholder="E-posta" required>
-        <input type="tel" name="telefon" placeholder="Telefon">
-        <select name="destek_turu" required>
-          <option value="">Destek Türü</option>
-          <option>Finansal Destek</option>
-          <option>Malzeme Bağışı</option>
-          <option>Zaman / Gönüllülük</option>
-          <option>Eğitim Desteği</option>
-          <option>Ulaşım Desteği</option>
-          <option>Konaklama Desteği</option>
-          <option>Kahvaltı / Yemek Desteği</option>
-          <option>Burs Desteği</option>
-          <option>Diğer</option>
-        </select>
-        <textarea name="mesaj" placeholder="Nasıl destek olmak istersiniz? (Detay yazın)"></textarea>
-        <button type="submit">Gönder</button>
-      </form>
-    </div>
-
+  <div class="hero-text">
+    <h1>
+      <span class="eserkon-white">E S E R K</span>
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgEuqMyi9iTUz8Mtp8GN85InHVgANQHOXEAQhjhZHJsilqa9FrWXikcX1pAa7Xi2nQfFDblyewwpkRGiWTxlKOmXWJluZwqaPy5yRodC2AXEuvp5XwV5qLDbhAFJifc7ntFnD8WJ-IkFTfPFrWkZzPV7yiYVyL-HIsr-NVnKpnocHvknEixxC0UhSkMw5BX/s320/TRANSPARAN%20LOGO.png"
+           alt="ESERKON" class="inline-logo">
+      <span class="eskon-white">N</span>
+    </h1>
+    <p>
+      <span class="green">EĞİTİM</span>
+      <span class="orange">SOSYAL ETKİNLİK</span>
+      <span class="darkred">VE</span>
+      <span class="white">REHBERLİK</span>
+      <span class="purple">KONSEYİ</span>
+    </p>
   </div>
+</div>
 
-  <!-- Sekmeler için JS -->
-  <script>
-    function openTab(tabName) {
-      const tabs = document.getElementsByClassName("tab-content");
-      for (let i = 0; i < tabs.length; i++) {
-        tabs[i].style.display = "none";
-      }
-      document.getElementById(tabName).style.display = "block";
+<!-- 1. QR KUTUSU: Dijital Kartvizit -->
+<div class="qr-box">
+  <div class="title">📲 QR Kodu Tarat</div>
+  <div class="subtitle">💼 Dijital Kartvizite Anında Ulaş</div>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://www.eserkon.com.tr/" alt="Dijital Kartvizit QR">
+</div>
 
-      const buttons = document.getElementsByClassName("tab-btn");
-      for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("active");
+<!-- 2. QR KUTUSU: İletişim Bilgileri ve Form -->
+<div class="qr-box">
+  <div class="title">📞 İletişim QR’sı</div>
+  <div class="subtitle">📝 Form & Bilgiler</div>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://www.eserkon.com.tr/bizeulasin" alt="Bize Ulaşın Form QR">
+</div>
+
+<div id="gonulluForm" class="popup"><div class="popup-content"><span class="close-btn">×</span></div></div>
+<div id="ogrenciForm" class="popup"><div class="popup-content"><span class="close-btn">×</span></div></div>
+<div id="uyeForm" class="popup"><div class="popup-content"><span class="close-btn">×</span></div></div>
+<div id="destekForm" class="popup"><div class="popup-content"><span class="close-btn">×</span></div></div>
+
+<script>
+  document.querySelectorAll('.fancy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-target');
+      const popup = document.getElementById(target);
+      if (popup) popup.classList.add('active');
+    });
+  });
+
+  document.querySelectorAll('.close-btn, .popup').forEach(el => {
+    el.addEventListener('click', e => {
+      if (e.target.classList.contains('close-btn') || e.target.classList.contains('popup')) {
+        document.querySelectorAll('.popup').forEach(p => p.classList.remove('active'));
       }
-      event.currentTarget.classList.add("active");
-    }
-  </script>
+    });
+  });
+</script>
+
+<!-- ANA SAYFAYA DÖN BUTONU -->
+<a href="anasayfa.html" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #0077b6;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  z-index: 9999;
+  font-family: 'Poppins', sans-serif;
+">🏠 Ana Sayfaya Dön</a>
 
 </body>
 </html>
