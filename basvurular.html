@@ -1,220 +1,320 @@
-<div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 900px; margin: 30px auto; padding: 25px; background: #ffffff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: 8px solid #006d77;">
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Burs Başvurusu - Eserkon</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+    }
+    .form-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #006d77;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    p.info {
+      color: #555;
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #333;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+    textarea {
+      height: 100px;
+      resize: vertical;
+    }
+    .btn {
+      background: #006d77;
+      color: white;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background: #005f66;
+    }
+    .note {
+      background: #fff3cd;
+      color: #856404;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin: 20px 0;
+      border: 1px solid #ffeaa7;
+    }
+  </style>
+</head>
+<body>
 
-    <div style="text-align: center; margin-bottom: 30px;">
-        <h1 style="color: #006d77; margin-bottom: 5px;">Başvuru ve Kayıt Formu</h1>
-        <p style="color: #666; font-size: 14px;">Lütfen bilgileri eksiksiz ve doğru bir şekilde doldurunuz.</p>
+<div class="form-container">
+  <h2>🎓 Burs Başvuru Formu</h2>
+  <p class="info">Lütfen bilgilerinizi eksiksiz ve doğru şekilde doldurunuz. Başvurunuz değerlendirildikten sonra belgeler istenecektir.</p>
+
+  <form action="https://formspree.io/f/xpqowknj" method="POST">
+
+    <!-- 1. KİMLİK BİLGİLERİ -->
+    <h3 style="color:#006d77; border-bottom:1px solid #ddd; padding-bottom:8px;">1. Kimlik ve İletişim Bilgileri</h3>
+    
+    <div class="form-group">
+      <label>T.C. Kimlik Numarası</label>
+      <input type="text" name="tc_kimlik" placeholder="11 haneli kimlik numarası" maxlength="11" required>
     </div>
 
-    <div id="successMessage" style="display:none; background:#27ae60; color:white; padding:15px; border-radius:8px; text-align:center; margin-bottom:20px; font-weight:bold; animation: fadeIn 0.5s;">
-        ✅ Başvurunuz başarıyla alınmıştır. En kısa sürede tarafınıza dönüş yapılacaktır.
+    <div class="form-group">
+      <label>Ad Soyad</label>
+      <input type="text" name="adsoyad" placeholder="Adınız Soyadınız" required>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1-fr)); gap: 10px; margin-bottom: 30px;">
-        <button onclick="openTab('ogrenci')" style="background:#2ecc71; color:white; padding:12px; border:none; border-radius:8px; cursor:pointer; font-weight:bold; transition: 0.3s;">🎓 Öğrenci & Burs</button>
-        <button onclick="openTab('ogretmen')" style="background:#00b4d8; color:white; padding:12px; border:none; border-radius:8px; cursor:pointer; font-weight:bold; transition: 0.3s;">👨‍🏫 Gönüllü Öğretmen</button>
-        <button onclick="openTab('gonullu')" style="background:#9b59b6; color:white; padding:12px; border:none; border-radius:8px; cursor:pointer; font-weight:bold; transition: 0.3s;">🤝 Üye / Gönüllü</button>
-        <button onclick="openTab('destek')" style="background:#e67e22; color:white; padding:12px; border:none; border-radius:8px; cursor:pointer; font-weight:bold; transition: 0.3s;">💖 Destek Ol</button>
+    <div class="form-group">
+      <label>Doğum Tarihi ve Yeri</label>
+      <input type="date" name="dogum_tarihi" required>
+      <input type="text" name="dogum_yeri" placeholder="Doğum Yeri" style="margin-top:8px;" required>
     </div>
 
-    <div id="ogrenci" class="tab-content" style="display:block; animation: slideUp 0.4s;">
-        <form action="https://formspree.io/f/mgvglwbz" method="POST" onsubmit="sendForm(event)">
-            <h2 style="color:#006d77; border-bottom: 2px solid #eee; padding-bottom: 10px;">Öğrenci Başvuru ve Burs Formu</h2>
-            <input type="hidden" name="form_tipi" value="Öğrenci/Burs Başvurusu">
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <input type="text" name="adsoyad" placeholder="Ad Soyad *" required style="width:100%; padding:12px; border:1px solid #ddd; border-radius:6px; box-sizing:border-box;">
-                <input type="text" name="tc_no" placeholder="T.C. Kimlik No" maxlength="11" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:6px; box-sizing:border-box;">
-                <input type="tel" name="telefon" placeholder="Cep Telefonu *" required style="width:100%; padding:12px; border:1px solid #ddd; border-radius:6px; box-sizing:border-box;">
-                <input type="email" name="email" placeholder="E-posta *" required style="width:100%; padding:12px; border:1px solid #ddd; border-radius:6px; box-sizing:border-box;">
-            </div>
-
-            <h3 style="font-size:16px; color:#444; margin-top:20px;">Eğitim Bilgileri</h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <select name="okul_turu" required style="width:100%; padding:12px; border:1px solid #ddd; border-radius:6px;">
-                    <option value="">Eğitim Kademesi *</option>
-                    <option>İlkokul</option><option>Ortaokul</option><option>Lise</option>
-                    <option>Ön Lisans</option><option>Lisans</option><option>Yüksek Lisans</option>
-                </select>
-                <input type="text" name="universite_fakulte" placeholder="Okul / Fakülte Adı *" required style="width:100%; padding:12px; border:1px solid #ddd; border-radius:6px; box-sizing:border-box;">
-                <input type="text" name="bolum" placeholder="Bölüm / Sınıf *" required style="width:100%; padding:12px; border:1px solid #ddd; border-radius:6px; box-sizing:border-box;">
-                <input type="text" name="gno" placeholder="Not Ortalaması (Örn: 3.20 veya 85)" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:6px; box-sizing:border-box;">
-            </div>
-
-            <div style="margin: 20px 0; padding: 15px; background: #fffde7; border-left: 5px solid #fbc02d; border-radius: 4px;">
-                <label style="cursor:pointer; font-weight:bold; color:#856404;">
-                    <input type="checkbox" id="bursIste" onchange="toggleBurs(this)" style="transform: scale(1.3); margin-right: 10px;"> Maddi Burs başvurusunda bulunmak istiyorum.
-                </label>
-            </div>
-
-            <div id="bursForm" style="display:none; padding:20px; background:#f9f9f9; border:1px solid #e0e0e0; border-radius:10px;">
-                <h3 style="color:#d35400; font-size:18px; margin-bottom:15px;">Mali Durum ve Aile Bilgileri</h3>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <select name="anne_durum" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc;">
-                        <option value="">Anne Hayatta mı? *</option>
-                        <option>Evet / Öz</option><option>Evet / Üvey</option><option>Hayır</option>
-                    </select>
-                    <select name="baba_durum" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc;">
-                        <option value="">Baba Hayatta mı? *</option>
-                        <option>Evet / Öz</option><option>Evet / Üvey</option><option>Hayır</option>
-                    </select>
-                    <select name="aylik_gelir" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc;">
-                        <option value="">Hane Toplam Aylık Gelir *</option>
-                        <option>0 - 17.002 TL (Asgari Ücret Altı)</option>
-                        <option>17.003 - 35.000 TL</option>
-                        <option>35.001 - 60.000 TL</option>
-                        <option>60.001 TL ve Üzeri</option>
-                    </select>
-                    <select name="kardes_sayisi" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc;">
-                        <option value="">Okuyan Kardeş Sayısı *</option>
-                        <option>0 (Tek Çocuğum)</option><option>1</option><option>2</option><option>3</option><option>4 ve üzeri</option>
-                    </select>
-                    <select name="konaklama_durumu" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc;">
-                        <option value="">Eğitim Süresince Konaklama *</option>
-                        <option>Aile Yanında</option><option>KYK Yurdu</option><option>Özel Yurt</option><option>Öğrenci Evi (Kira)</option>
-                    </select>
-                    <select name="mulkiyet_durumu" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc;">
-                        <option value="">Ailenin İkamet Ettiği Ev *</option>
-                        <option>Mülk (Kendimize Ait)</option><option>Kira</option><option>Lojman</option>
-                    </select>
-                </div>
-
-                <div style="margin-top:15px;">
-                    <p style="font-weight:bold; font-size:14px; margin-bottom:5px;">Özel Durumunuz Var mı?</p>
-                    <select name="ozel_durum" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc;">
-                        <option value="Yok">Yok</option>
-                        <option value="Engel">Engellilik Durumu (%40 ve üzeri)</option>
-                        <option value="SehitGazi">Şehit / Gazi Yakını</option>
-                        <option value="KorunmayaMuhtac">Devlet Koruması Altında (Yetiştirme Yurdu)</option>
-                    </select>
-                </div>
-
-                <textarea name="ek_talep" placeholder="Maddi durumunuzla ilgili belirtmek istediğiniz diğer hususlar..." style="width:100%; height:80px; margin-top:15px; padding:10px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box;"></textarea>
-            </div>
-
-            <button type="submit" style="width:100%; padding:15px; background:#2ecc71; color:white; font-size:18px; font-weight:bold; border:none; border-radius:8px; cursor:pointer; margin-top:20px; box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);">Başvuruyu Tamamla</button>
-        </form>
+    <div class="form-group">
+      <label>Cinsiyet</label>
+      <select name="cinsiyet" required>
+        <option value="">Seçiniz</option>
+        <option>Erkek</option>
+        <option>Kadın</option>
+        <option>Belirtmek İstemiyorum</option>
+      </select>
     </div>
 
-    <div id="ogretmen" class="tab-content" style="display:none; animation: slideUp 0.4s;">
-        <form action="https://formspree.io/f/xpqowknj" method="POST" onsubmit="sendForm(event)">
-            <h2 style="color:#006d77;">Gönüllü Öğretmen Başvurusu</h2>
-            <input type="text" name="adsoyad" placeholder="Ad Soyad *" required style="width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:6px; box-sizing:border-box;">
-            <input type="text" name="brans" placeholder="Uzmanlık Alanı / Branş *" required style="width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:6px; box-sizing:border-box;">
-            <textarea name="mesaj" placeholder="Ders verebileceğiniz saatler ve kendinizden kısaca bahsedin..." style="width:100%; height:120px; padding:10px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box;"></textarea>
-            <button type="submit" style="width:100%; padding:15px; background:#00b4d8; color:white; font-weight:bold; border:none; border-radius:8px; cursor:pointer; margin-top:10px;">Öğretmen Başvurusu Yap</button>
-        </form>
+    <div class="form-group">
+      <label>Telefon</label>
+      <input type="tel" name="telefon" placeholder="555 123 45 67" required>
     </div>
 
-    <div id="gonullu" class="tab-content" style="display:none; animation: slideUp 0.4s;">
-        <form action="https://formspree.io/f/xpqowknj" method="POST" onsubmit="sendForm(event)">
-            <h2 style="color:#006d77;">Gönüllü / Üye Kaydı</h2>
-            <input type="text" name="adsoyad" placeholder="Ad Soyad *" required style="width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:6px; box-sizing:border-box;">
-            <input type="text" name="meslek" placeholder="Mesleğiniz" style="width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:6px; box-sizing:border-box;">
-            <select name="yardim_turu" style="width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:6px;">
-                <option value="">Nasıl Gönüllü Olabilirsiniz?</option>
-                <option>Saha Faaliyetleri</option><option>Sosyal Medya Yönetimi</option><option>Organizasyon</option><option>Çeviri / Editörlük</option>
-            </select>
-            <button type="submit" style="width:100%; padding:15px; background:#9b59b6; color:white; font-weight:bold; border:none; border-radius:8px; cursor:pointer;">Gönüllü Ol</button>
-        </form>
+    <div class="form-group">
+      <label>E-posta</label>
+      <input type="email" name="email" placeholder="ornek@posta.com" required>
     </div>
 
-    <div id="destek" class="tab-content" style="display:none; animation: slideUp 0.4s;">
-        <form action="https://formspree.io/f/xpqowknj" method="POST" onsubmit="sendForm(event)">
-            <h2 style="color:#006d77;">Destek ve Bağış Talebi</h2>
-            <input type="text" name="adsoyad" placeholder="Ad Soyad / Kurum Adı" style="width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:6px; box-sizing:border-box;">
-            <select name="destek_turu" onchange="toggleIban(this.value)" style="width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:6px;">
-                <option value="">Destek Türü Seçiniz</option>
-                <option value="Banka">Banka Havalesi (Burs/Bağış)</option>
-                <option value="Ayni">Eşya / Kırtasiye Yardımı</option>
-                <option value="Diger">Diğer</option>
-            </select>
-            
-            <div id="ibanBox" style="display:none; background:#e3f2fd; padding:15px; border-radius:8px; border:1px solid #2196f3; margin:10px 0;">
-                <strong style="color:#1565c0;">Banka Hesap Bilgileri:</strong><br>
-                <code style="font-size:16px; background:#fff; padding:5px; display:block; margin-top:5px; border:1px solid #bbb;">TR00 0000 0000 0000 0000 0000 00</code>
-                <small style="color:#666;">Açıklama kısmına "BURS BAĞIŞI - AD SOYAD" yazınız.</small>
-            </div>
+    <!-- 2. EĞİTİM BİLGİLERİ -->
+    <h3 style="color:#006d77; margin-top:25px; border-bottom:1px solid #ddd; padding-bottom:8px;">2. Eğitim Bilgileri</h3>
 
-            <button type="submit" style="width:100%; padding:15px; background:#e67e22; color:white; font-weight:bold; border:none; border-radius:8px; cursor:pointer;">Destek Bildirimi Gönder</button>
-        </form>
+    <div class="form-group">
+      <label>Okul / Üniversite</label>
+      <input type="text" name="okul" placeholder="Okulunuzun adı" required>
     </div>
 
+    <div class="form-group">
+      <label>Fakülte / Bölüm</label>
+      <input type="text" name="bolum" placeholder="Bölümünüz" required>
+    </div>
+
+    <div class="form-group">
+      <label>Öğrenim Türü</label>
+      <select name="ogrenim_turu" required>
+        <option value="">Seçiniz</option>
+        <option>Örgün Öğretim</option>
+        <option>İkinci Öğretim</option>
+        <option>Açıköğretim</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Sınıf</label>
+      <select name="sinif" required>
+        <option value="">Seçiniz</option>
+        <option>Hazırlık</option>
+        <option>1. Sınıf</option>
+        <option>2. Sınıf</option>
+        <option>3. Sınıf</option>
+        <option>4. Sınıf</option>
+        <option>Uzatma</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Genel Not Ortalaması (GNO)</label>
+      <input type="number" name="gno" placeholder="3.45" step="0.01" min="0" max="4" required>
+    </div>
+
+    <div class="form-group">
+      <label>Giriş Yılı ve Sınav Puanı</label>
+      <input type="number" name="giris_yili" placeholder="2023" min="2000" max="2025" required>
+      <input type="number" name="giris_puani" placeholder="YKS Puanı" style="margin-top:8px;" required>
+    </div>
+
+    <!-- 3. AİLE DURUMU -->
+    <h3 style="color:#006d77; margin-top:25px; border-bottom:1px solid #ddd; padding-bottom:8px;">3. Aile Durumu</h3>
+
+    <div class="form-group">
+      <label>Anne Hayatta mı?</label>
+      <select name="anne_durum" required>
+        <option value="">Seçiniz</option>
+        <option>Evet</option>
+        <option>Hayır</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Baba Hayatta mı?</label>
+      <select name="baba_durum" required>
+        <option value="">Seçiniz</option>
+        <option>Evet</option>
+        <option>Hayır</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Aile Durumu</label>
+      <select name="aile_durum" required>
+        <option value="">Seçiniz</option>
+        <option>Evli</option>
+        <option>Boşanmış</option>
+        <option>Ayrı Yaşıyor</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Hanede Toplam Kişi Sayısı</label>
+      <input type="number" name="kisi_sayisi" min="1" max="20" required>
+    </div>
+
+    <div class="form-group">
+      <label>Okuyan Kardeş Sayısı</label>
+      <select name="kardes_sayisi" required>
+        <option value="">Seçiniz</option>
+        <option>Yok (Tek çocuk)</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3 ve üzeri</option>
+      </select>
+    </div>
+
+    <!-- 4. GELİR VE KONAKLAMA -->
+    <h3 style="color:#006d77; margin-top:25px; border-bottom:1px solid #ddd; padding-bottom:8px;">4. Gelir ve Konaklama</h3>
+
+    <div class="form-group">
+      <label>Hane Aylık Toplam Geliri</label>
+      <select name="aylik_gelir" required>
+        <option value="">Seçiniz</option>
+        <option>0 - 10.000 TL</option>
+        <option>10.001 - 20.000 TL</option>
+        <option>20.001 - 35.000 TL</option>
+        <option>35.001 TL ve üzeri</option>
+        <option>Bilinmiyor</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Anne Mesleği</label>
+      <input type="text" name="anne_meslek" placeholder="Anne mesleği">
+    </div>
+
+    <div class="form-group">
+      <label>Baba Mesleği</label>
+      <input type="text" name="baba_meslek" placeholder="Baba mesleği">
+    </div>
+
+    <div class="form-group">
+      <label>İkamet Durumu</label>
+      <select name="ikamet" required>
+        <option value="">Seçiniz</option>
+        <option>Kira</option>
+        <option>Kendi Evi</option>
+        <option>Lojman</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Eğitim Sırasında Nerede Kalıyorsunuz?</label>
+      <select name="konaklama" required>
+        <option value="">Seçiniz</option>
+        <option>Aile Yanında</option>
+        <option>KYK Yurdu</option>
+        <option>Özel Yurt</option>
+        <option>Öğrenci Evi (Kira)</option>
+      </select>
+    </div>
+
+    <!-- 5. ÖZEL DURUMLAR -->
+    <h3 style="color:#006d77; margin-top:25px; border-bottom:1px solid #ddd; padding-bottom:8px;">5. Özel Durumlar</h3>
+
+    <div class="form-group">
+      <label>Engel Durumunuz Var mı?</label>
+      <select name="engel" required>
+        <option value="">Seçiniz</option>
+        <option>Yok</option>
+        <option>Var (% kaç?)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Şehit veya Gazi Yakını mısınız?</label>
+      <select name="sehit_gazi" required>
+        <option value="">Seçiniz</option>
+        <option>Hayır</option>
+        <option>Evet</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Devlet Koruması Altında mıydınız?</label>
+      <select name="korumali" required>
+        <option value="">Seçiniz</option>
+        <option>Hayır</option>
+        <option>Evet (Yurt geçmişi var)</option>
+      </select>
+    </div>
+
+    <!-- AÇIKLAMA -->
+    <div class="form-group">
+      <label>Eklemek İstedikleriniz</label>
+      <textarea name="aciklama" placeholder="İsterseniz ek bilgi verin..."></textarea>
+    </div>
+
+    <!-- BELGE UYARISI -->
+    <div class="note">
+      ⚠️ Ön başvurunuz olumlu değerlendirilirse, size e-posta ile öğrenci belgesi, gelir belgesi, adli sicil kaydı gibi belgeler istenecektir.
+    </div>
+
+    <!-- GÖNDER -->
+    <button type="submit" class="btn">Burs Başvurusunu Gönder</button>
+  </form>
 </div>
 
-<script>
-// Tab (Sekme) Sistemi
-function openTab(tabName) {
-    const contents = document.getElementsByClassName("tab-content");
-    for (let content of contents) {
-        content.style.display = "none";
-    }
-    document.getElementById(tabName).style.display = "block";
-}
-
-// Burs Formu Göster/Gizle
-function toggleBurs(checkbox) {
-    const bursSection = document.getElementById("bursForm");
-    bursSection.style.display = checkbox.checked ? "block" : "none";
-}
-
-// IBAN Alanı Göster/Gizle
-function toggleIban(val) {
-    const ibanBox = document.getElementById("ibanBox");
-    ibanBox.style.display = (val === "Banka") ? "block" : "none";
-}
-
-// Modern AJAX Form Gönderimi
-function sendForm(e) {
-    e.preventDefault();
-    const form = e.target;
-    const btn = form.querySelector('button[type="submit"]');
-    const successMsg = document.getElementById("successMessage");
-
-    btn.disabled = true;
-    btn.innerHTML = "⌛ İşleniyor...";
-
-    fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-    }).then(response => {
-        if (response.ok) {
-            successMsg.style.display = "block";
-            form.reset();
-            // Gizli alanları kapat
-            if(document.getElementById("bursForm")) document.getElementById("bursForm").style.display = "none";
-            if(document.getElementById("ibanBox")) document.getElementById("ibanBox").style.display = "none";
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setTimeout(() => { successMsg.style.display = "none"; }, 6000);
-        } else {
-            alert("Bir sorun oluştu. Lütfen bilgileri kontrol edip tekrar deneyin.");
-        }
-    }).catch(error => {
-        alert("Bağlantı hatası oluştu.");
-    }).finally(() => {
-        btn.disabled = false;
-        btn.innerHTML = "Gönderildi ✅";
-        setTimeout(() => { btn.innerHTML = "Yeni Başvuru Gönder"; }, 2000);
-    });
-}
-</script>
-
-<style>
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-.tab-btn:hover { filter: brightness(0.9); }
-input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: #006d77 !important;
-    box-shadow: 0 0 5px rgba(0,109,119,0.2);
-}
-</style>
-
-<a href="./index.html" style="position:fixed; bottom:20px; right:20px; background:#006d77; color:white; padding:12px 20px; border-radius:50px; text-decoration:none; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.3); z-index:9999;">🏠 Ana Sayfaya Dön</a>
+</body>
+</html>
