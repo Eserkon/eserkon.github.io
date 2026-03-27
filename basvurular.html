@@ -1,4 +1,13 @@
-tt <div style="font-family:Arial, sans-serif; max-width:850px; margin:0 auto; padding:20px; background:#f0f8ff; border-radius:12px; box-shadow:0 0 15px rgba(0,0,0,0.1);">
+ <!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bize Katıl - Eserkon</title>
+</head>
+<body>
+
+<div style="font-family:Arial, sans-serif; max-width:850px; margin:0 auto; padding:20px; background:#f0f8ff; border-radius:12px; box-shadow:0 0 15px rgba(0,0,0,0.1);">
 
 <h1 style="text-align:center; color:#006d77;">Bize Katıl</h1>
 <p style="text-align:center; color:#555;">Aşağıdan başvuru türünü seçiniz.</p>
@@ -58,6 +67,8 @@ tt <div style="font-family:Arial, sans-serif; max-width:850px; margin:0 auto; pa
     </button>
 </form>
 </div>
+
+<!-- ÖĞRENCİ -->
 <div id="ogrenci" class="tab-content" style="display:none; padding:20px; background:white; border-radius:10px; box-shadow:0 0 8px rgba(0,0,0,0.05);">
   <h2 style="color:#006d77; text-align:center;">Öğrenci Üye Ol</h2>
   <form action="https://formspree.io/f/xpqowknj" method="POST">
@@ -177,17 +188,6 @@ tt <div style="font-family:Arial, sans-serif; max-width:850px; margin:0 auto; pa
   </form>
 </div>
 
-<script>
-  document.getElementById("bursIste")?.addEventListener("change", function() {
-    document.getElementById("bursForm").style.display = this.checked ? "block" : "none";
-  });
-</script>
-
-     
-    </button>
-</form>
-</div>
-
 <!-- GÖNÜLLÜ -->
 <div id="gonullu" class="tab-content" style="display:none; padding:20px; background:white; border-radius:10px;">
 <form action="https://formspree.io/f/xpqowknj" method="POST" onsubmit="sendForm(event)">
@@ -215,7 +215,7 @@ tt <div style="font-family:Arial, sans-serif; max-width:850px; margin:0 auto; pa
 </form>
 </div>
 
-<!-- DESTEK OL - GÜNCELLENMİŞ HALİ -->
+<!-- DESTEK OL -->
 <div id="destek" class="tab-content" style="display:none; padding:20px; background:white; border-radius:10px;">
 <form action="https://formspree.io/f/xpqowknj" method="POST" onsubmit="sendForm(event)" enctype="multipart/form-data">
     <h2 style="color:#006d77; text-align:center; margin-bottom:20px;">Destek Ol</h2>
@@ -277,27 +277,23 @@ function sendForm(e){
             document.getElementById("successMessage").style.display = "block";
             form.reset();
             // Gizli alanları kapat
-            document.getElementById("bursAlani").style.display = "none";
-            document.getElementById("ibanAlani").style.display = "none";
+            document.getElementById("bursForm")?.style.display = "none";
+            document.getElementById("ibanAlani")?.style.display = "none";
+            document.getElementById("bursIste")?.checked = false;
+            // 5 saniye sonra mesaj kaybolur
+            setTimeout(() => {
+                document.getElementById("successMessage").style.display = "none";
+            }, 5000);
         }
     }).catch(err => console.error(err));
 }
 
-// Burs Talebi Toggle
-function bursToggle(checkbox) {
-    const bursAlani = document.getElementById("bursAlani");
-    const nedenAlani = document.querySelector('textarea[name="burs_neden"]');
-    
-    if (checkbox.checked) {
-        bursAlani.style.display = "block";
-        if (nedenAlani) nedenAlani.required = true;
-    } else {
-        bursAlani.style.display = "none";
-        if (nedenAlani) nedenAlani.required = false;
-    }
-}
+// Burs isteği
+document.getElementById("bursIste")?.addEventListener("change", function() {
+    document.getElementById("bursForm").style.display = this.checked ? "block" : "none";
+});
 
-// Ödeme Yöntemi Seçimi
+// Ödeme yöntemi
 function odemeSecildi(val) {
     const ibanAlani = document.getElementById("ibanAlani");
     if (val === "EFT_Havale") {
@@ -313,3 +309,6 @@ function odemeSecildi(val) {
 <a href="./index.html" style="position:fixed;bottom:20px;right:20px;background:#006d77;color:white;padding:12px 18px;border-radius:30px;text-decoration:none;">
 🏠 Ana Sayfaya Dön
 </a>
+
+</body>
+</html>
