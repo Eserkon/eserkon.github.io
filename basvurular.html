@@ -67,6 +67,16 @@
     <input type="text" name="adsoyad" placeholder="Ad Soyad" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
     <input type="tel" name="telefon" placeholder="Telefon" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
     <input type="email" name="email" placeholder="E-posta" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+
+    <select name="okul_turu" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+      <option value="">Okul Türü</option>
+      <option>İlkokul</option>
+      <option>Ortaokul</option>
+      <option>Lise</option>
+      <option>Meslek Lisesi</option>
+      <option>Üniversite</option>
+    </select>
+
     <input type="text" name="okul" placeholder="Okulunuz" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
     <input type="text" name="bolum" placeholder="Bölümünüz" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
 
@@ -82,18 +92,20 @@
     <div id="bursForm" style="display:none; margin-top:20px; padding:15px; background:#f8f9fa; border:1px dashed #006d77; border-radius:8px;">
       <h3 style="color:#006d77; margin-top:0;">Burs Başvuru Bilgileri</h3>
 
-      <select name="anne_durum" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
-        <option value="">Anne Hayatta mı?</option>
-        <option>Evet</option>
-        <option>Hayır</option>
-        <option>Bilinmiyor</option>
+      <select name="okul_turu" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+        <option value="">Okuduğunuz Eğitim Düzeyi</option>
+        <option>İlkokul</option>
+        <option>Ortaokul</option>
+        <option>Lise</option>
+        <option>Ön Lisans</option>
+        <option>Lisans</option>
+        <option>Yüksek Lisans</option>
       </select>
 
-      <select name="baba_durum" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
-        <option value="">Baba Hayatta mı?</option>
-        <option>Evet</option>
-        <option>Hayır</option>
-        <option>Bilinmiyor</option>
+      <select name="engel_durum" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+        <option value="">Engelli bir durumunuz var mı?</option>
+        <option>Yok</option>
+        <option>Var (Lütfen açıklama kısmına yazınız)</option>
       </select>
 
       <select name="aylik_gelir" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
@@ -119,7 +131,31 @@
         <option>Özel Kurum</option>
       </select>
 
-      <textarea name="aciklama" placeholder="Eklemek istediğiniz bir durum varsa (isteğe bağlı)" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px; height:60px;"></textarea>
+      <select name="anne_durum" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+        <option value="">Anne Hayatta mı?</option>
+        <option>Evet</option>
+        <option>Hayır</option>
+        <option>Bilinmiyor</option>
+      </select>
+
+      <select name="baba_durum" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+        <option value="">Baba Hayatta mı?</option>
+        <option>Evet</option>
+        <option>Hayır</option>
+        <option>Bilinmiyor</option>
+      </select>
+
+      <input type="text" name="acil_kisi" placeholder="Acil Durumda Ulaşılacak Kişi" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+      <input type="tel" name="acil_telefon" placeholder="Acil Kişi Telefonu" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+
+      <textarea name="aciklama" placeholder="Eklemek istediğiniz bir durum varsa (rapor, belge, açıklama)" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px; height:60px;"></textarea>
+
+      <div style="margin:10px 0; font-size:14px; color:#555;">
+        <label>
+          <input type="checkbox" name="belge_gonder" value="1"> 
+          Gerekli belgeleri (e-devlet gelir belgesi, rapor, kimlik) e-posta ile göndermek istiyorum.
+        </label>
+      </div>
     </div>
 
     <!-- Gönder Butonu -->
@@ -128,7 +164,6 @@
 </div>
 
 <script>
-  // Burs formunu aç/kapa
   document.getElementById("bursIste")?.addEventListener("change", function() {
     document.getElementById("bursForm").style.display = this.checked ? "block" : "none";
   });
