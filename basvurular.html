@@ -88,7 +88,7 @@
       </label>
     </div>
 
-    <!-- Burs Formu (Gizli başlar) -->
+    <!-- Burs Formu -->
     <div id="bursForm" style="display:none; margin-top:20px; padding:15px; background:#f8f9fa; border:1px dashed #006d77; border-radius:8px;">
       <h3 style="color:#006d77; margin-top:0;">Burs Başvuru Bilgileri</h3>
 
@@ -158,6 +158,20 @@
       </div>
     </div>
 
+    <!-- Onay kutusu -->
+    <div style="margin:15px 0; font-size:14px;">
+      <label>
+        <input type="checkbox" name="sozlesme" required style="margin-right:6px;"> 
+        Verdiğim bilgilerin doğru ve eksiksiz olduğunu kabul ediyorum.
+      </label>
+    </div>
+
+    <!-- Bilgi metni -->
+    <p style="font-size:13px; color:#555; margin:10px 0; line-height:1.5;">
+      <em>Burs başvurunuz tarafımıza ulaştıktan sonra bir ön değerlendirme yapılır. 
+      Uygun görülmeniz halinde, gerekli resmi belgeler e-posta ile talep edilecektir.</em>
+    </p>
+
     <!-- Gönder Butonu -->
     <button type="submit" style="background:#006d77; color:white; padding:12px 20px; border:none; border-radius:4px; cursor:pointer; width:100%; font-size:16px;">Üye Ol ve Başvur</button>
   </form>
@@ -168,6 +182,8 @@
     document.getElementById("bursForm").style.display = this.checked ? "block" : "none";
   });
 </script>
+
+     
     </button>
 </form>
 </div>
