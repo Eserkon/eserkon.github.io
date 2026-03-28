@@ -1,97 +1,473 @@
-<!-- SADECE DÜZELTİLEN KRİTİK KISIM GÖSTERİLİYOR -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bize Katıl - Eserkon</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      background: #f0f8ff;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #006d77;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+    p.intro {
+      text-align: center;
+      color: #555;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .tab-btn {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 50px;
+      background: #e0f7fa;
+      color: #006d77;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 140px;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: #006d77;
+      color: white;
+      transform: translateY(-2px);
+    }
+    .tab-content {
+      display: none;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      margin-top: 10px;
+      border: 1px solid #e0f7fa;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .form-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .form-header img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+    }
+    .form-header h2 {
+      color: #006d77;
+      margin: 0;
+    }
+    #successMessage {
+      display: none;
+      background: #00c853;
+      color: white;
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .grid-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #333;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+    textarea {
+      height: 100px;
+      resize: vertical;
+    }
+    button.btn {
+      background: #006d77;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button.btn:hover {
+      background: #005f66;
+    }
+    #bursKisim {
+      display: none;
+      margin-top: 25px;
+      padding: 25px;
+      background: #f9f9f9;
+      border: 2px dashed #006d77;
+      border-radius: 12px;
+    }
+    .section-title {
+      font-size: 18px;
+      color: #d35400;
+      margin: 15px 0 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+    .info-text {
+      font-size: 14px;
+      color: #555;
+      background: #f0f8ff;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+    @media (max-width: 600px) {
+      .tab-btn { width: 100%; }
+      .grid-group { grid-template-columns: 1fr; }
+      .container { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>✨ Bize Katıl</h1>
+  <p class="intro">Aşağıdaki sekmelerden başvuru türünü seçin.</p>
+  <div id="successMessage">✅ Mesajınız başarıyla iletildi! En kısa sürede dönüş sağlanacaktır.</div>
 
-<!-- ====================== ÖĞRENCİ ====================== -->
-<div id="ogrenci" class="tab-content">
-  <div class="form-header">
-    <img src="https://source.unsplash.com/800x400/?university,student">
-    <h2>Öğrenci Kayıt ve Burs Formu</h2>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openTab('ogretmen')">🧑‍🏫 Gönüllü Öğretmen</button>
+    <button class="tab-btn" onclick="openTab('ogrenci')">🎓 Öğrenci & Burs</button>
+    <button class="tab-btn" onclick="openTab('gonullu')">🤝 Gönüllü Üye</button>
+    <button class="tab-btn" onclick="openTab('destek')">💖 Destek Ol</button>
   </div>
 
-  <form onsubmit="sendForm(event, 'ogrenci')">
-    <input type="hidden" name="form_type" value="Öğrenci ve Burs">
-
-    <div class="section-title">Kişisel Bilgiler</div>
-    <div class="form-group">
-      <input type="text" name="adsoyad" placeholder="Ad Soyad *" required>
+  <!-- ====================== GÖNÜLLÜ ÖĞRETMEN ====================== -->
+  <div id="ogretmen" class="tab-content active">
+    <div class="form-header">
+      <img src="https://source.unsplash.com/800x400/?teacher,education" alt="Gönüllü Öğretmen">
+      <h2>Gönüllü Öğretmen Başvurusu</h2>
     </div>
-
-    <div class="grid-group">
-      <input type="text" name="tc_no" placeholder="T.C. Kimlik No">
-      <input type="tel" name="telefon" placeholder="Telefon *" required>
-    </div>
-
-    <div class="form-group">
-      <input type="email" name="email" placeholder="E-posta *" required>
-    </div>
-
-    <div class="section-title">Eğitim Bilgileri</div>
-    <div class="grid-group">
-      <select name="okul_kademesi" required>
-        <option value="">Eğitim Kademesi *</option>
-        <option>İlkokul</option>
-        <option>Ortaokul</option>
-        <option>Lise</option>
-        <option>Lisans</option>
-      </select>
-
-      <input type="text" name="sinif" placeholder="Sınıf *" required>
-    </div>
-
-    <input type="text" name="okul_adi" placeholder="Okul Adı *" required>
-
-    <!-- BURS SEÇİM -->
-    <div style="margin:20px 0;">
-      <label>
-        <input type="radio" name="burs_secim" id="bursIste" value="evet" onchange="toggleBurs()" required>
-        Burs İstiyorum
-      </label><br>
-
-      <label>
-        <input type="radio" name="burs_secim" id="sadeceUye" value="hayir" onchange="toggleBurs()" required>
-        Sadece Üyelik
-      </label>
-    </div>
-
-    <!-- BURS ALANI -->
-    <div id="bursKisim">
-      <div class="section-title">Aile Bilgileri</div>
-
+    <form onsubmit="sendForm(event, 'ogretmen')">
+      <input type="hidden" name="form_type" value="Gönüllü Öğretmen">
+      <div class="form-group"><input type="text" name="adsoyad" placeholder="Ad Soyad *" required></div>
       <div class="grid-group">
-        <select name="anne_durum">
-          <option>Anne Durumu</option>
-          <option>Sağ</option>
-          <option>Vefat</option>
-        </select>
-
-        <select name="baba_durum">
-          <option>Baba Durumu</option>
-          <option>Sağ</option>
-          <option>Vefat</option>
-        </select>
+        <div class="form-group"><input type="tel" name="telefon" placeholder="Telefon *" required></div>
+        <div class="form-group"><input type="email" name="email" placeholder="E-posta *" required></div>
       </div>
-
+      <div class="form-group"><input type="text" name="sehir" placeholder="Şehir *" required></div>
       <div class="grid-group">
-        <select name="gelir">
-          <option>Gelir</option>
-          <option>0-17.000</option>
-          <option>17.000+</option>
-        </select>
-
-        <select name="konaklama">
-          <option>Konaklama</option>
-          <option>Aile</option>
-          <option>Yurt</option>
-        </select>
+        <div class="form-group">
+          <select name="brans" required><option value="">Branş *</option>
+            <option>Matematik</option><option>Türkçe</option><option>İngilizce</option>
+            <option>Fen Bilimleri</option><option>Sosyal Bilgiler</option><option>Diğer</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <select name="seviye" required><option value="">Seviye *</option>
+            <option>İlkokul</option><option>Ortaokul</option><option>Lise</option><option>Üniversite</option>
+          </select>
+        </div>
       </div>
+      <div class="form-group"><textarea name="mesaj" placeholder="Kendinizi tanıtın..." required></textarea></div>
+      <button type="submit" class="btn">Başvuruyu Gönder</button>
+    </form>
+  </div>
+
+  <!-- ====================== ÖĞRENCİ ====================== -->
+  <div id="ogrenci" class="tab-content">
+    <div class="form-header">
+      <img src="https://source.unsplash.com/800x400/?university,student" alt="Öğrenci Başvuru">
+      <h2>Öğrenci Kayıt ve Burs Formu</h2>
+    </div>
+    <form onsubmit="sendForm(event, 'ogrenci')">
+      <div id="bursThankYou" style="display: none; background: linear-gradient(135deg, #00c853, #009624); color: white; padding: 25px; border-radius: 12px; text-align: center; margin: 20px 0; font-size: 18px; font-weight: 600; box-shadow: 0 5px 15px rgba(0, 200, 83, 0.3);">
+      ❤️ Burs başvurunuz için teşekkür ederiz!<br>
+      <span style="font-size: 16px; opacity: 0.95;">Başvurunuz ön değerlendirmeye alınmıştır.<br>Olumlu sonuçlanması durumunda gerekli belgeler e-posta adresinize gönderilecektir.</span>
     </div>
 
-    <div style="margin:20px 0;">
-      <label>
-        <input type="checkbox" required>
-        Bilgiler doğru
-      </label>
-    </div>
-
-    <button class="btn">Başvuruyu Tamamla</button>
+    <!-- Diğer form alanları devam eder... -->
+    ...
   </form>
 </div>
+      <input type="hidden" name="form_type" value="Öğrenci ve Burs">
+     
+      <div class="section-title">Kişisel Bilgiler</div>
+      <div class="form-group"><input type="text" name="adsoyad" placeholder="Ad Soyad *" required></div>
+      <div class="grid-group">
+        <div class="form-group"><input type="text" name="tc_no" placeholder="T.C. Kimlik No (Opsiyonel)" maxlength="11"></div>
+        <div class="form-group"><input type="tel" name="telefon" placeholder="Telefon *" required></div>
+      </div>
+      <div class="form-group"><input type="email" name="email" placeholder="E-posta *" required></div>
+
+      <div class="section-title">Eğitim Bilgileri</div>
+      <div class="grid-group">
+        <div class="form-group">
+            <select name="okul_kademesi" required>
+                <option value="">Eğitim Kademesi *</option>
+                <option>İlkokul</option><option>Ortaokul</option><option>Lise</option>
+                <option>Ön Lisans</option><option>Lisans</option><option>Yüksek Lisans</option>
+            </select>
+        </div>
+        <div class="form-group"><input type="text" name="sinif" placeholder="Sınıf (Örn: 2 veya Hazırlık) *" required></div>
+      </div>
+      <div class="form-group"><input type="text" name="okul_adi" placeholder="Okul / Üniversite Adı *" required></div>
+      <div class="form-group"><input type="text" name="bolum" placeholder="Bölümünüz"></div>
+
+      <!-- Burs Seçimi - Zorunlu Alan -->
+<div style="margin: 25px 0; padding: 20px; background: #e0f2f1; border-radius: 10px; border: 1px solid #b2dfdb;">
+  <p style="margin-bottom: 12px; font-weight: 600; color: #006d77;">
+    Burs Talebi:
+  </p>
+  
+  <label style="cursor: pointer; display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 16px;">
+    <input type="radio" name="burs_secim" id="bursIste" value="evet" onchange="toggleBurs()" required>
+    <strong>Maddi Burs Başvurusunda Bulunmak İstiyorum</strong>
+  </label>
+  
+  <label style="cursor: pointer; display: flex; align-items: center; gap: 12px; font-size: 16px;">
+    <input type="radio" name="burs_secim" id="sadeceUye" value="hayir" onchange="toggleBurs()" required>
+    <strong>Sadece Üye Olmak İstiyorum (Burs istemiyorum)</strong>
+  </label>
+</div>
+
+      <div id="bursKisim">
+        <h3 style="color:#006d77; text-align: center; margin-bottom: 15px;">📋 Mali ve Ailevi Durum Beyanı</h3>
+        
+        <!-- İstediğin bilgi metni burada -->
+        <div class="info-text">
+          Burs başvurunuz ön değerlendirmeye alınacak. Değerlendirme olumlu olursa tarafınızdan gerekli belgeler e-mail üzerinden talep edilecektir.
+        </div>
+       
+        <div class="section-title">Aile Bilgileri</div>
+        <div class="grid-group">
+            <div class="form-group">
+                <label>Anne Durumu</label>
+                <select name="anne_durum">
+                    <option>Sağ / Öz</option><option>Sağ / Üvey</option><option>Vefat Etmiş</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Baba Durumu</label>
+                <select name="baba_durum">
+                    <option>Sağ / Öz</option><option>Sağ / Üvey</option><option>Vefat Etmiş</option>
+                </select>
+            </div>
+        </div>
+        <div class="grid-group">
+            <div class="form-group">
+                <label>Kardeş Sayısı (Okuyan) *</label>
+                <select name="kardes_sayisi">
+                    <option>0 (Tek Çocuğum)</option><option>1</option><option>2</option><option>3</option><option>4 ve üzeri</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Konaklama Durumu *</label>
+                <select name="konaklama">
+                    <option>Aile Yanında</option><option>KYK Yurdu</option><option>Özel Yurt</option><option>Öğrenci Evi (Kira)</option><option>Vakıf/Dernek Yurdu</option>
+                </select>
+            </div>
+        </div>
+        <div class="section-title">Gelir Bilgileri</div>
+        <div class="grid-group">
+            <div class="form-group">
+                <label>Hane Aylık Toplam Geliri *</label>
+                <select name="gelir_araligi">
+                    <option>0 - 17.002 TL (Asgari Ücret Altı)</option>
+                    <option>17.003 - 30.000 TL</option>
+                    <option>30.001 - 50.000 TL</option>
+                    <option>50.001 TL ve üzeri</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Aile İkamet Durumu</label>
+                <select name="mulkiyet">
+                    <option>Kendi Evimiz</option><option>Kira</option><option>Lojman</option><option>Diğer</option>
+                </select>
+            </div>
+        </div>
+        <div class="section-title">Başarı ve Özel Durum</div>
+        <div class="grid-group">
+            <div class="form-group">
+                <label>Not Ortalaması (GNO)</label>
+                <input type="text" name="gno" placeholder="Örn: 3.50 veya 85">
+            </div>
+            <div class="form-group">
+                <label>Özel Durum Belirtecî</label>
+                <select name="ozel_durum">
+                    <option value="Yok">Yok</option>
+                    <option value="Engel">Engel Durumu (%40+)</option>
+                    <option value="SehitGazi">Şehit / Gazi Yakını</option>
+                    <option value="Yurt">Devlet Koruması (Yetiştirme Yurdu)</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Eklemek İstediğiniz Detaylar</label>
+            <textarea name="burs_notu" placeholder="Mali durumunuzu açıklayan ek bilgiler..."></textarea>
+        </div>
+      </div>
+
+      <!-- Onay Kutusu - Öğrenci Formu -->
+      <div style="margin: 20px 0;">
+        <label style="cursor:pointer;">
+          <input type="checkbox" name="sozlesme" required style="width:18px; height:18px; margin-right:8px;">
+          Verdiğim bilgilerin doğru ve eksiksiz olduğunu beyan ediyorum.
+        </label>
+      </div>
+
+      <button type="submit" class="btn">Başvuruyu Tamamla</button>
+    </form>
+  </div>
+
+  <!-- ====================== GÖNÜLLÜ ÜYE ====================== -->
+  <div id="gonullu" class="tab-content">
+    <div class="form-header">
+      <img src="https://source.unsplash.com/random/800x400/?volunteer,group" alt="Gönüllü Üye">
+      <h2>Gönüllü Üye Başvurusu</h2>
+    </div>
+    <form onsubmit="sendForm(event, 'gonullu')">
+      <input type="hidden" name="form_type" value="Gönüllü Üye">
+      <div class="form-group"><input type="text" name="adsoyad" placeholder="Ad Soyad *" required></div>
+      <div class="form-group"><input type="tel" name="telefon" placeholder="Telefon *" required></div>
+      <div class="form-group"><input type="email" name="email" placeholder="E-posta *" required></div>
+      <div class="form-group"><input type="text" name="meslek" placeholder="Meslek *" required></div>
+      <div class="form-group">
+        <select name="ilgi" required><option value="">İlgi Alanı *</option>
+          <option>Eğitim</option><option>Sosyal Yardım</option><option>Çevre</option><option>Diğer</option>
+        </select>
+      </div>
+      <div class="form-group"><textarea name="mesaj" placeholder="Neden katılmak istiyorsunuz?" required></textarea></div>
+
+      <!-- Onay Kutusu - Gönüllü Üye Formu -->
+      <div style="margin: 20px 0;">
+        <label style="cursor:pointer;">
+          <input type="checkbox" name="sozlesme" required style="width:18px; height:18px; margin-right:8px;">
+          Verdiğim bilgilerin doğru ve eksiksiz olduğunu beyan ediyorum.
+        </label>
+      </div>
+
+      <button type="submit" class="btn">Başvur</button>
+    </form>
+  </div>
+
+   <!-- ====================== DESTEK OL (İstenen Özellikler Eklendi) ====================== -->
+  <div id="destek" class="tab-content">
+    <form onsubmit="sendForm(event, 'destek')">
+      <input type="hidden" name="form_type" value="Destek">
+
+      <div class="form-group"><input type="text" name="adsoyad" placeholder="Ad Soyad *" required></div>
+      <div class="form-group"><input type="email" name="email" placeholder="E-posta *" required></div>
+      <div class="form-group"><input type="tel" name="telefon" placeholder="Telefon (isteğe bağlı)"></div>
+
+      <!-- Destek Miktarı -->
+      <div class="form-group">
+        <label style="font-weight:600;">Destek Miktarı (TL)</label>
+        <input type="number" name="destek_miktari" placeholder="Örn: 500" min="1" step="1" style="font-size:17px;">
+      </div>
+
+      <div class="form-group">
+        <label>Ödeme Yöntemi</label>
+        <select name="odeme" onchange="toggleIBAN(this.value)" required>
+          <option value="">Seçiniz</option>
+          <option value="iban">IBAN / EFT (Banka Transferi)</option>
+          <option value="elden">Elden Nakit</option>
+        </select>
+      </div>
+
+      <div id="ibanBilgi" style="display:none; padding:15px; background:#e0f7fa; border-radius:8px; margin:10px 0;">
+        <p><strong>IBAN:</strong> TR00 0000 0000 0000 0000 0000 00</p>
+        <small>Lütfen açıklama kısmına ( ESERKON - KURUMSAL FAALİYET DESTEĞİ )yazın👇</small>
+      </div>
+
+      <div class="form-group"><textarea name="mesaj" placeholder="Destekle ilgili notlarınız veya sorularınız"></textarea></div>
+
+      <button type="submit" class="btn">Destek Talebini Gönder</button>
+    </form>
+  </div>
+</div>
+<script>
+  function openTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabName).classList.add('active');
+    
+    const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.innerText.toLowerCase().includes(tabName.substring(0,3)));
+    if(activeBtn) activeBtn.classList.add('active');
+  }
+
+  function toggleBurs() {
+    const burs = document.getElementById('bursKisim');
+    burs.style.display = document.getElementById('bursIste').checked ? 'block' : 'none';
+  }
+
+  function toggleIBAN(val) {
+    document.getElementById('ibanBilgi').style.display = val === 'iban' ? 'block' : 'none';
+  }
+
+  function sendForm(e, tab) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector('button');
+    submitBtn.innerText = "Gönderiliyor...";
+    submitBtn.disabled = true;
+
+    fetch('https://formspree.io/f/mgvglwbz', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(r => {
+      if (r.ok) {
+        form.reset();
+        document.getElementById('successMessage').style.display = 'block';
+        setTimeout(() => { document.getElementById('successMessage').style.display = 'none'; }, 6000);
+        
+        if (tab === 'ogrenci') document.getElementById('bursKisim').style.display = 'none';
+        if (tab === 'destek') document.getElementById('ibanBilgi').style.display = 'none';
+        
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      }
+    }).catch(() => alert('Hata oluştu. Lütfen tekrar deneyin.'))
+      .finally(() => {
+        submitBtn.innerText = "Gönderildi ✅";
+        setTimeout(() => {
+            submitBtn.innerText = "Başvuruyu Gönder";
+            submitBtn.disabled = false;
+        }, 3000);
+      });
+  }
+</script>
+
+<a href="./index.html" style="position:fixed;bottom:20px;right:20px;background:#006d77;color:white;padding:12px 20px;border-radius:30px;text-decoration:none;box-shadow:0 4px 10px rgba(0,0,0,0.2); font-weight: bold; z-index: 1000;">🏠 Ana Sayfaya Dön</a>
+</body>
+</html>
