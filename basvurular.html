@@ -11,9 +11,15 @@
     h1 { text-align: center; color: #006d77; margin-bottom: 10px; font-size: 28px; }
     p.intro { text-align: center; color: #555; margin-bottom: 30px; font-size: 16px; }
 
-    .tabs { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+    .tabs { 
+      display: flex; 
+      justify-content: center; 
+      gap: 12px; 
+      flex-wrap: wrap; 
+      margin-bottom: 25px; 
+    }
     .tab-btn {
-      padding: 12px 20px;
+      padding: 12px 22px;
       border: none;
       border-radius: 50px;
       background: #e0f7fa;
@@ -42,22 +48,22 @@
     .form-group { margin-bottom: 16px; }
     input, select, textarea {
       width: 100%;
-      padding: 10px;
+      padding: 11px;
       border: 1px solid #ccc;
       border-radius: 8px;
-      font-size: 15px;
+      font-size: 15.5px;
     }
     button.btn {
       background: #006d77;
       color: white;
-      padding: 14px;
+      padding: 15px;
       border: none;
       border-radius: 8px;
       width: 100%;
-      font-size: 16px;
+      font-size: 16.5px;
       font-weight: bold;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 15px;
     }
     button.btn:hover { background: #005f66; }
 
@@ -85,7 +91,6 @@
     ✅ Mesajınız başarıyla iletildi!
   </div>
 
-  <!-- Destek için özel teşekkür mesajı -->
   <div id="thankYouMessage">
     ❤️ Desteğiniz için çok teşekkür ederiz!<br>
     <span style="font-size:16px; opacity:0.95;">Yaptığınız katkı, ihtiyaç sahibi öğrencilerimize umut olacak.</span>
@@ -98,12 +103,80 @@
     <button class="tab-btn" onclick="openTab('destek')">💖 Destek Ol</button>
   </div>
 
-  <!-- DESTEK OL FORMU (Güncellenmiş) -->
+  <!-- ====================== GÖNÜLLÜ ÖĞRETMEN ====================== -->
+  <div id="ogretmen" class="tab-content active">
+    <form onsubmit="sendForm(event, 'ogretmen')">
+      <input type="hidden" name="form_type" value="Gönüllü Öğretmen">
+      <div class="form-group"><input type="text" name="adsoyad" placeholder="Ad Soyad *" required></div>
+      <div class="form-group"><input type="tel" name="telefon" placeholder="Telefon *" required></div>
+      <div class="form-group"><input type="email" name="email" placeholder="E-posta *" required></div>
+      <div class="form-group"><input type="text" name="sehir" placeholder="Şehir *" required></div>
+      
+      <div class="form-group">
+        <select name="brans" required>
+          <option value="">Branş Seçiniz *</option>
+          <option>Matematik</option><option>Türkçe</option><option>İngilizce</option>
+          <option>Fen Bilimleri</option><option>Sosyal Bilgiler</option><option>Diğer</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select name="seviye" required>
+          <option value="">Seviye Seçiniz *</option>
+          <option>İlkokul</option><option>Ortaokul</option><option>Lise</option><option>Üniversite</option>
+        </select>
+      </div>
+      <div class="form-group"><textarea name="mesaj" placeholder="Kendinizi tanıtın ve neden gönüllü öğretmen olmak istediğinizi yazınız..." required></textarea></div>
+      <button type="submit" class="btn">Başvuruyu Gönder</button>
+    </form>
+  </div>
+
+  <!-- ====================== ÖĞRENCİ ====================== -->
+  <div id="ogrenci" class="tab-content">
+    <form onsubmit="sendForm(event, 'ogrenci')">
+      <input type="hidden" name="form_type" value="Öğrenci ve Burs">
+      <div class="form-group"><input type="text" name="adsoyad" placeholder="Ad Soyad *" required></div>
+      <div class="form-group"><input type="tel" name="telefon" placeholder="Telefon *" required></div>
+      <div class="form-group"><input type="email" name="email" placeholder="E-posta *" required></div>
+      <div class="form-group"><input type="text" name="okul_adi" placeholder="Okul / Üniversite Adı *" required></div>
+      <div class="form-group"><input type="text" name="bolum" placeholder="Bölüm / Sınıf"></div>
+
+      <div style="margin: 20px 0; padding: 15px; background: #e0f2f1; border-radius: 8px;">
+        <label style="cursor:pointer; display: flex; align-items: center; gap: 10px;">
+          <input type="checkbox" id="bursIste" onchange="toggleBurs()" style="width: 20px; height: 20px;">
+          <strong>Maddi Burs Başvurusunda Bulunmak İstiyorum</strong>
+        </label>
+      </div>
+
+      <div id="bursKisim" style="display: none;">
+        <!-- Burs alanları buraya gelebilir -->
+        <textarea name="burs_notu" placeholder="Burs ile ilgili ek açıklamalar..." style="height:120px;"></textarea>
+      </div>
+
+      <button type="submit" class="btn">Başvuruyu Tamamla</button>
+    </form>
+  </div>
+
+  <!-- ====================== GÖNÜLLÜ ÜYE ====================== -->
+  <div id="gonullu" class="tab-content">
+    <form onsubmit="sendForm(event, 'gonullu')">
+      <input type="hidden" name="form_type" value="Gönüllü Üye">
+      <div class="form-group"><input type="text" name="adsoyad" placeholder="Ad Soyad *" required></div>
+      <div class="form-group"><input type="tel" name="telefon" placeholder="Telefon *" required></div>
+      <div class="form-group"><input type="email" name="email" placeholder="E-posta *" required></div>
+      <div class="form-group"><input type="text" name="meslek" placeholder="Meslek *" required></div>
+      <div class="form-group">
+        <select name="ilgi" required>
+          <option value="">İlgi Alanı *</option>
+          <option>Eğitim</option><option>Sosyal Yardım</option><option>Çevre</option><option>Diğer</option>
+        </select>
+      </div>
+      <div class="form-group"><textarea name="mesaj" placeholder="Neden katılmak istiyorsunuz?" required></textarea></div>
+      <button type="submit" class="btn">Başvuruyu Gönder</button>
+    </form>
+  </div>
+
+  <!-- ====================== DESTEK OL (İstenen Özellikler Eklendi) ====================== -->
   <div id="destek" class="tab-content">
-    <div class="form-header">
-      <img src="https://source.unsplash.com/random/800x400/?donation,help" alt="Destek Ol">
-      <h2>Destek Ol</h2>
-    </div>
     <form onsubmit="sendForm(event, 'destek')">
       <input type="hidden" name="form_type" value="Destek">
 
@@ -126,12 +199,12 @@
         </select>
       </div>
 
-      <div id="ibanBilgi" style="display:none; padding:15px; background:#e0f7fa; border-radius:8px; margin:10px 0; border: 1px solid #00acc1;">
+      <div id="ibanBilgi" style="display:none; padding:15px; background:#e0f7fa; border-radius:8px; margin:10px 0;">
         <p><strong>IBAN:</strong> TR00 0000 0000 0000 0000 0000 00</p>
-        <small>Lütfen açıklama kısmına adınızı ve destek türünü yazın.</small>
+        <small>Lütfen açıklama kısmına adınızı yazın.</small>
       </div>
 
-      <div class="form-group"><textarea name="mesaj" placeholder="Destekle ilgili eklemek istedikleriniz"></textarea></div>
+      <div class="form-group"><textarea name="mesaj" placeholder="Destekle ilgili notlarınız veya sorularınız"></textarea></div>
 
       <button type="submit" class="btn">Destek Talebini Gönder</button>
     </form>
@@ -143,6 +216,11 @@
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(tabName).classList.add('active');
+  }
+
+  function toggleBurs() {
+    const burs = document.getElementById('bursKisim');
+    burs.style.display = document.getElementById('bursIste').checked ? 'block' : 'none';
   }
 
   function toggleIBAN(val) {
@@ -166,14 +244,10 @@
         
         if (tab === 'destek') {
           document.getElementById('thankYouMessage').style.display = 'block';
-          setTimeout(() => {
-            document.getElementById('thankYouMessage').style.display = 'none';
-          }, 7000);
+          setTimeout(() => document.getElementById('thankYouMessage').style.display = 'none', 7000);
         } else {
           document.getElementById('successMessage').style.display = 'block';
-          setTimeout(() => {
-            document.getElementById('successMessage').style.display = 'none';
-          }, 6000);
+          setTimeout(() => document.getElementById('successMessage').style.display = 'none', 6000);
         }
         
         window.scrollTo({top: 0, behavior: 'smooth'});
@@ -181,10 +255,10 @@
     }).catch(() => alert('Hata oluştu. Lütfen tekrar deneyin.'))
       .finally(() => {
         submitBtn.innerText = "Gönderildi ✅";
-        setTimeout(() => {
-            submitBtn.innerText = "Destek Talebini Gönder";
-            submitBtn.disabled = false;
-        }, 3000);
+        setTimeout(() => { 
+          submitBtn.innerText = tab === 'destek' ? "Destek Talebini Gönder" : "Başvuruyu Gönder"; 
+          submitBtn.disabled = false; 
+        }, 2500);
       });
   }
 </script>
