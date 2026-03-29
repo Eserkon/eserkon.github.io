@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
@@ -10,6 +10,7 @@
       background-color: #f4f6f9;
       margin: 0;
       padding: 0;
+      color: #333;
     }
 
     .container {
@@ -27,9 +28,10 @@
 
     p.description {
       text-align: center;
-      color: #333;
+      color: #555;
       font-size: 16px;
       margin-bottom: 50px;
+      line-height: 1.6;
     }
 
     .sponsor-grid {
@@ -39,30 +41,32 @@
     }
 
     .sponsor-card {
-      background-color: #fff;
+      background-color: white;
       border-radius: 12px;
-      padding: 20px;
+      padding: 25px;
       text-align: center;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
     }
 
     .sponsor-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     }
 
     .sponsor-card img {
       max-width: 120px;
       max-height: 80px;
       object-fit: contain;
-      margin-bottom: 15px;
+      margin: 15px auto;
+      display: block;
     }
 
     .sponsor-card h3 {
-      margin: 10px 0 5px 0;
+      margin: 12px 0 8px;
       color: #1a3d7c;
       font-size: 18px;
+      font-weight: bold;
     }
 
     .sponsor-card p {
@@ -78,7 +82,7 @@
       font-size: 13px;
     }
 
-    /* ANA SAYFAYA DÖN */
+    /* ANA SAYFAYA DÖN BUTONU */
     .home-btn {
       position: fixed;
       bottom: 20px;
@@ -90,15 +94,36 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 14px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
       z-index: 9999;
       transition: 0.3s;
     }
 
     .home-btn:hover {
       transform: scale(1.08);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
       background: linear-gradient(135deg, #0096c7, #023e8a);
+    }
+
+    /* MOBİL UYUM */
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+        margin: 30px 15px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .sponsor-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .sponsor-card {
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -111,11 +136,12 @@
   <div class="container">
     <h1>🌟 Sponsorlarımız</h1>
     <p class="description">
-      ESERKON olarak değerli sponsorlarımızın desteğiyle eğitim, sosyal ve kültürel projelerimizi hayata geçiriyoruz.
+      ESERKON olarak değerli sponsorlarımızın desteğiyle eğitim, sosyal ve kültürel projelerimizi hayata geçiriyoruz.<br>
       Onların katkılarıyla gençlerimizin geleceğine yatırım yapıyoruz.
     </p>
 
     <div class="sponsor-grid">
+      <!-- SPONSOR 1 -->
       <div class="sponsor-card">
         <img alt="Firma 1" src="https://via.placeholder.com/120x80?text=Firma+1" />
         <h3>Firma 1</h3>
@@ -123,6 +149,7 @@
         <p class="promo">“Gençlerin eğitimine katkı sağlıyoruz!”</p>
       </div>
 
+      <!-- SPONSOR 2 -->
       <div class="sponsor-card">
         <img alt="Firma 2" src="https://via.placeholder.com/120x80?text=Firma+2" />
         <h3>Firma 2</h3>
@@ -130,6 +157,7 @@
         <p class="promo">“Sağlıklı beslenme ve destek!”</p>
       </div>
 
+      <!-- SPONSOR 3 -->
       <div class="sponsor-card">
         <img alt="Firma 3" src="https://via.placeholder.com/120x80?text=Firma+3" />
         <h3>Firma 3</h3>
@@ -137,6 +165,7 @@
         <p class="promo">“Geleceğin teknoloji liderlerine destek!”</p>
       </div>
 
+      <!-- SPONSOR 4 -->
       <div class="sponsor-card">
         <img alt="Firma 4" src="https://via.placeholder.com/120x80?text=Firma+4" />
         <h3>Firma 4</h3>
