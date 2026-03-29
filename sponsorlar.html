@@ -1,154 +1,217 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sponsorlarımız | ESERKON</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sponsorlarımız - ESERKON</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: linear-gradient(to bottom, #eef3f9, #f8fafc);
-}
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f6f9;
+      color: #333;
+      line-height: 1.6;
+    }
 
-/* HEADER */
-header {
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: white;
-  text-align: center;
-  padding: 50px 20px;
-}
+    .container {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 30px 20px;
+    }
 
-header h1 {
-  margin: 0;
-  font-size: 36px;
-}
+    h1 {
+      text-align: center;
+      color: #1a3d7c;
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
 
-header p {
-  margin-top: 10px;
-  opacity: 0.9;
-}
+    .description {
+      text-align: center;
+      color: #555;
+      font-size: 16px;
+      max-width: 800px;
+      margin: 0 auto 50px;
+      line-height: 1.7;
+    }
 
-/* CONTAINER */
-.container {
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 20px;
-}
+    .sponsor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      justify-items: center;
+    }
 
-/* GRID */
-.sponsor-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-}
+    .sponsor-link {
+      text-decoration: none;
+      width: 100%;
+    }
 
-/* CARD */
-.sponsor-card {
-  background: white;
-  border-radius: 12px;
-  padding: 25px;
-  text-align: center;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-  transition: 0.3s;
-  border-top: 4px solid #2a5298;
-}
+    .sponsor-card {
+      background: white;
+      border-radius: 14px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.35s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-.sponsor-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
+    .sponsor-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+    }
 
-/* LOGO */
-.sponsor-card img {
-  max-width: 110px;
-  margin-bottom: 15px;
-}
+    .sponsor-card img {
+      max-width: 130px;
+      max-height: 85px;
+      object-fit: contain;
+      margin: 15px auto 12px;
+      display: block;
+    }
 
-/* TEXT */
-.sponsor-card h3 {
-  margin: 10px 0;
-  color: #1e3c72;
-}
+    .sponsor-card h3 {
+      margin: 8px 0 6px;
+      color: #1a3d7c;
+      font-size: 18px;
+      font-weight: 600;
+    }
 
-.sponsor-card p {
-  font-size: 14px;
-  color: #555;
-}
+    .sponsor-card p {
+      margin: 5px 0;
+      color: #555;
+      font-size: 14px;
+    }
 
-.promo {
-  margin-top: 10px;
-  font-style: italic;
-  color: #27ae60;
-}
+    .tag {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #27ae60;
+      background: #e8f5e8;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
 
-/* BUTON */
-.home-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: linear-gradient(135deg, #00b4d8, #0077b6);
-  color: white;
-  padding: 12px 18px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-size: 14px;
-}
+    .home-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #00b4d8, #0077b6);
+      color: white;
+      padding: 13px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      transition: all 0.3s ease;
+    }
 
-/* MOBİL */
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 26px;
-  }
-}
-</style>
+    .home-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(135deg, #0096c7, #023e8a);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+        margin: 30px 10px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .description {
+        font-size: 15px;
+        margin-bottom: 40px;
+      }
+
+      .sponsor-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .sponsor-card {
+        padding: 22px 18px;
+      }
+
+      .home-btn {
+        padding: 12px 18px;
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-  <h1>🌟 Sponsorlarımız</h1>
-  <p>Gençlerimizin geleceğine birlikte yatırım yapıyoruz</p>
-</header>
+  <!-- ANA SAYFAYA DÖN BUTONU -->
+  <a href="anasayfa.html" class="home-btn">🏠 Ana Sayfaya Dön</a>
 
-<div class="container">
+  <!-- SPONSORLAR İÇERİK -->
+  <div class="container">
+    <h1>🌟 Sponsorlarımız</h1>
+    <p class="description">
+      Gençlerin eğitim, kültür ve gelişimine katkı sunan değerli kurum ve kuruluşlara minnetle teşekkür ederiz.<br>
+      Birlikte daha güçlü bir geleceğe adım atıyoruz.
+    </p>
 
-  <div class="sponsor-grid">
+    <div class="sponsor-grid">
 
-    <div class="sponsor-card">
-      <img src="https://via.placeholder.com/120x80?text=Firma+1">
-      <h3>Firma 1</h3>
-      <p>Eğitim Teknolojileri</p>
-      <p class="promo">“Gençlerin eğitimine katkı sağlıyoruz”</p>
+      <!-- TRUZİM SEYAHAT -->
+      <a href="https://truzim.com" target="_blank" class="sponsor-link">
+        <div class="sponsor-card">
+          <img src="https://via.placeholder.com/130x85?text=Truzim+Seyahat" alt="Truzim Seyahat">
+          <h3>Truzim Seyahat</h3>
+          <p>Seyahat & Turizm</p>
+          <span class="tag">Altın Sponsor</span>
+        </div>
+      </a>
+
+      <!-- HASTANE ÖRNEK -->
+      <a href="https://hastane.com" target="_blank" class="sponsor-link">
+        <div class="sponsor-card">
+          <img src="https://via.placeholder.com/130x85?text=Özel+Hastane" alt="Özel Hastane">
+          <h3>Özel Sağlık Hastanesi</h3>
+          <p>Sağlık & Tıp</p>
+          <span class="tag">Destekçi</span>
+        </div>
+      </a>
+
+      <!-- SPOR KULÜBÜ -->
+      <a href="https://sporkulubu.com" target="_blank" class="sponsor-link">
+        <div class="sponsor-card">
+          <img src="https://via.placeholder.com/130x85?text=Spor+Kulübü" alt="Spor Kulübü">
+          <h3>Yerel Spor Kulübü</h3>
+          <p>Spor & Gençlik</p>
+          <span class="tag">Gümüş Sponsor</span>
+        </div>
+      </a>
+
+      <!-- FİRMA ÖRNEK -->
+      <a href="https://teknofirma.com" target="_blank" class="sponsor-link">
+        <div class="sponsor-card">
+          <img src="https://via.placeholder.com/130x85?text=Tekno+Firma" alt="Tekno Firma">
+          <h3>Tekno Firma A.Ş.</h3>
+          <p>Teknoloji & Yazılım</p>
+          <span class="tag">Bronz Sponsor</span>
+        </div>
+      </a>
+
     </div>
-
-    <div class="sponsor-card">
-      <img src="https://via.placeholder.com/120x80?text=Firma+2">
-      <h3>Firma 2</h3>
-      <p>Gıda ve İçecek</p>
-      <p class="promo">“Sağlıklı destek!”</p>
-    </div>
-
-    <div class="sponsor-card">
-      <img src="https://via.placeholder.com/120x80?text=Firma+3">
-      <h3>Firma 3</h3>
-      <p>Yazılım & Teknoloji</p>
-      <p class="promo">“Geleceğe yatırım”</p>
-    </div>
-
-    <div class="sponsor-card">
-      <img src="https://via.placeholder.com/120x80?text=Firma+4">
-      <h3>Firma 4</h3>
-      <p>Spor & Sağlık</p>
-      <p class="promo">“Gençler için destek”</p>
-    </div>
-
   </div>
-
-</div>
-
-<a href="index.html" class="home-btn">🏠 Ana Sayfa</a>
 
 </body>
 </html>
