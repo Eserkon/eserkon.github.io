@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ESERKON Katılım Formları</title>
+
+  <!-- ✅ EKLEDİĞİM (SEO DÜZELTME) -->
+  <meta name="description" content="ESERKON resmi web sitesi. Başvurular, duyurular ve iletişim bilgileri burada.">
+  <link rel="canonical" href="https://www.eserkon.com.tr/">
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -95,7 +100,6 @@
     }
     .qr-box img { width: 220px; border-radius: 8px; box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
 
-    /* POPUP */
     .popup { display: none; position: fixed; inset: 0; background: rgba(13,27,42,0.92); z-index: 1000; align-items: center; justify-content: center; }
     .popup.active { display: flex; }
     .popup-content { background: #1b263b; padding: 40px; border-radius: 16px; max-width: 500px; width: 100%; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.6);}
@@ -103,7 +107,6 @@
     .close-btn:hover { color: white; }
     h2 { margin-bottom: 1.2rem; font-size: 1.8rem; }
 
-    /* Duyurular / Etkinlikler */
     .events-section { max-width: 1000px; margin: 0 auto 100px; padding: 20px; }
     .event-card {
       background: #1b263b;
@@ -127,7 +130,7 @@
       transition: background 0.3s ease;
     }
     .event-card button:hover { background: #00eaff; }
-    /* Responsive */
+
     @media (max-width:768px){
       .hero-text h1 { font-size: 2.5rem; }
       .hero-text p { font-size: 1.1rem; }
@@ -137,115 +140,9 @@
   </style>
 </head>
 <body>
+
+<!-- ✅ EKLEDİĞİM (Google düzgün okusun diye) -->
+<h1 style="display:none;">ESERKON</h1>
+<p style="display:none;">ESERKON resmi başvuru ve bilgilendirme platformudur.</p>
+
 <div class="hero">
-  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgEuqMyi9iTUz8Mtp8GN85InHVgANQHOXEAQhjhZHJsilqa9FrWXikcX1pAa7Xi2nQfFDblyewwpkRGiWTxlKOmXWJluZwqaPy5yRodC2AXEuvp5XwV5qLDbhAFJifc7ntFnD8WJ-IkFTfPFrWkZzPV7yiYVyL-HIsr-NVnKpnocHvknEixxC0UhSkMw5BX/s320/TRANSPARAN%20LOGO.png" alt="ESERKON Logo" class="big-logo">
-  <div class="hero-text">
-    <h1>
-      <span class="eskon-white">E S E R K</span>
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgEuqMyi9iTUz8Mtp8GN85InHVgANQHOXEAQhjhZHJsilqa9FrWXikcX1pAa7Xi2nQfFDblyewwpkRGiWTxlKOmXWJluZwqaPy5yRodC2AXEuvp5XwV5qLDbhAFJifc7ntFnD8WJ-IkFTfPFrWkZzPV7yiYVyL-HIsr-NVnKpnocHvknEixxC0UhSkMw5BX/s320/TRANSPARAN%20LOGO.png" alt="ESERKON" class="inline-logo">
-      <span class="eskon-white">N</span>
-    </h1>
-    <p>
-      <span class="green">EĞİTİM</span>
-      <span class="orange">SOSYAL ETKİNLİK</span>
-      <span class="darkred">VE</span>
-      <span class="eskon-white">REHBERLİK</span>
-      <span class="purple">KONSEYİ</span>
-    </p>
-  </div>
-</div>
-
-<!-- QR Kodları -->
-<div class="qr-container">
-  <div class="qr-box">
-    <div class="title">📲 QR Kodu Tarat</div>
-    <div class="subtitle">💼 Dijital Kartvizite Anında Ulaş</div>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://www.eserkon.com.tr/" alt="Dijital Kartvizit QR">
-  </div>
-  <div class="qr-box">
-    <div class="title">📞 İletişim QR’sı</div>
-    <div class="subtitle">📝 Bize Ulaşın Formu</div>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://www.eserkon.com.tr/bizeulasin" alt="Bize Ulaşın Form QR">
-  </div>
-</div>
-
-<!-- Duyurular / Etkinlikler -->
-<div class="events-section">
-  <div class="event-card">
-    <h3>📚 Ücretsiz Etüt Programı</h3>
-    <p>Öğrencilerimiz için ücretsiz etüt programımız başladı.</p>
-    <button onclick="window.location.href='#'">Detayları Gör & Başvur</button>
-  </div>
-  <div class="event-card">
-    <h3>🎓 Burs Başvuruları</h3>
-    <p>İhtiyaç sahibi öğrenciler için burs başvuruları başladı.</p>
-    <button onclick="window.location.href='#'">Detayları Gör & Başvur</button>
-  </div>
-  <div class="event-card">
-    <h3>🤝 Sosyal Etkinlik</h3>
-    <p>Topluluk etkinliklerimize katılmak için başvurun.</p>
-    <button onclick="window.location.href='#'">Detayları Gör & Başvur</button>
-  </div>
-  <div class="event-card">
-    <h3>🚌 Şehir İçi ve Dışı Geziler</h3>
-    <p>Gezi turlarımızla eğlenceli anlar yaşayın.</p>
-    <button onclick="window.location.href='#'">Detayları Gör & Başvur</button>
-  </div>
-  <div class="event-card">
-    <h3>🎵 Konser Katılımları</h3>
-    <p>Kültürel etkinliklerimize katılın.</p>
-    <button onclick="window.location.href='#'">Detayları Gör & Başvur</button>
-  </div>
-</div>
-
-<!-- Popup placeholders -->
-<div id="gonulluForm" class="popup"><div class="popup-content"><span class="close-btn">×</span></div></div>
-<div id="ogrenciForm" class="popup"><div class="popup-content"><span class="close-btn">×</span></div></div>
-<div id="uyeForm" class="popup"><div class="popup-content"><span class="close-btn">×</span></div></div>
-<div id="destekForm" class="popup"><div class="popup-content"><span class="close-btn">×</span></div></div>
-
-<script>
-  document.querySelectorAll('.fancy-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.getAttribute('data-target');
-      const popup = document.getElementById(target);
-      if (popup) popup.classList.add('active');
-    });
-  });
-  document.querySelectorAll('.close-btn, .popup').forEach(el => {
-    el.addEventListener('click', e => {
-      if (e.target.classList.contains('close-btn') || e.target.classList.contains('popup')) {
-        document.querySelectorAll('.popup').forEach(p => p.classList.remove('active'));
-      }
-    });
-  });
-
-  // Ses çalma
-  const audio = document.getElementById('myAudio');
-  document.body.addEventListener('click', () => {
-    audio.play().catch(err => console.log("Ses çalınamadı:", err));
-  }, { once: true });
-</script>
-
-<!-- Ses -->
-<audio id="myAudio" src="assets/kadin-sesi.mp3" preload="auto"></audio>
-
-<!-- Ana sayfaya dön -->
-<a href="anasayfa.html" style="
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #0077b6;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-  z-index: 9999;
-  font-family: 'Poppins', sans-serif;
-">🏠 Ana Sayfaya Git</a>
-
-</body>
-</html>
