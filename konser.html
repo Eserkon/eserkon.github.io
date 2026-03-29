@@ -25,236 +25,36 @@
       margin: auto;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      gap: 20px;
     }
 
     .header-text {
+      flex: 3; /* DAHA GENİŞ */
       text-align: center;
-      flex: 2;
     }
 
     .header-text h1 {
       margin: 0;
-      font-size: 30px;
+      font-size: 32px;
+      word-wrap: break-word;
     }
 
     .header-text p {
       margin-top: 10px;
-      font-size: 15px;
-      opacity: 0.9;
+      font-size: 16px;
+      opacity: 0.95;
     }
 
     .header-img {
       flex: 1;
-      text-align: center;
-    }
-
-    .header-img img {
-      width: 90%;
-      max-width: 180px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-
-    /* CONTENT */
-    .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.08);
-    }
-
-    h2 {
-      color: #2a5298;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    /* SABİT BUTON */
-    .back-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #2a5298;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-size: 14px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    .back-button:hover {
-      background: #1e3c72;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      color: #777;
-    }
-
-    /* MOBİL */
-    @media (max-width: 768px) {
-      .header-container {
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .header-img img {
-        max-width: 120px;
-      }
-
-      .header-text h1 {
-        font-size: 22px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <header>
-    <div class="header-container">
-
-      <!-- SOL RESİM -->
-      <div class="header-img">
-        <img src="https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2" alt="Konser">
-      </div>
-
-      <!-- ORTA YAZI -->
-      <div class="header-text">
-        <h1>🎵 Konser Katılımları</h1>
-        <p>Öğrencilerimizin kültürel gelişimini destekleyen etkinlikler</p>
-      </div>
-
-      <!-- SAĞ RESİM -->
-      <div class="header-img">
-        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f" alt="Konser">
-      </div>
-
-    </div>
-  </header>
-
-  <div class="container">
-<p>
-        Sanatın ve müziğin birleştirici gücüne inanıyor, öğrencilerimizin kültürel gelişimlerini desteklemenin
-        en önemli yollarından birinin de bu tür etkinlikler olduğunu düşünüyoruz.
-      </p>
-
-      <p>
-        Konserler; gençlerimizin sadece müzik dinlediği etkinlikler değil, aynı zamanda farklı kültürleri tanıdığı,
-        sosyal bağlarını güçlendirdiği ve kendilerini ifade etme fırsatı bulduğu önemli alanlardır.
-      </p>
-
-      <h2>Amaçlarımız</h2>
-      <ul>
-        <li>Kültürel farkındalık kazandırmak</li>
-        <li>Sanata ilgiyi artırmak</li>
-        <li>Sosyal bağları güçlendirmek</li>
-        <li>Motivasyonu yükseltmek</li>
-      </ul>
-
-      <p>
-        Öğrencilerimizin kendi il ve ilçelerinde düzenlenen etkinliklere katılımını destekliyor,
-        onların aktif bireyler olarak gelişmelerine katkı sağlıyoruz.
-      </p>
-
-    </div>
-
-    <!-- SAĞ RESİM -->
-    <div class="side-image">
-      <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f" alt="Konser 2">
-    </div>
-
-  </div>
-
-  <!-- SABİT ANA SAYFA BUTONU -->
-  <a href="index.html" class="back-button">🏠 Ana Sayfa</a>
-
-  <footer>
-    © 2026 ESERKON
-  </footer>
-
-</body>
-</html>
-🔥 Ekstra geliştirme önerisi (istersen yapalım)
-
-Bir sonraki seviyede şunları ekleyebiliriz:
-
-🎥 Video konser alanı
-🖼️ Slider (kayan resimler)
-📍 Etkinlik şehir listesi
-🧾 Katılım başvuru formu
-
-İstersen “efsane seviye” tasarıma da geçiririm 😎
-
-görselleri keşke bu mavi alana koysaydın 
-
-Aynen 👍 çok daha profesyonel durur — senin dediğin gibi görselleri mavi header alanına almak tasarımı direkt “kurumsal site” seviyesine çıkarır.
-
-Şimdi sana üst mavi alana sağ–sol görseller eklenmiş, ortada başlık kalan yeni versiyonu veriyorum 👇
-
-✅ GÜNCEL TASARIM (Görseller header içinde)
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Konser Katılımları | ESERKON</title>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f9;
-      color: #333;
-    }
-
-    /* HEADER */
-    header {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-      padding: 30px 10px;
-    }
-
-    .header-container {
-      max-width: 1200px;
-      margin: auto;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .header-text {
-      text-align: center;
-      flex: 2;
-    }
-
-    .header-text h1 {
-      margin: 0;
-      font-size: 30px;
-    }
-
-    .header-text p {
-      margin-top: 10px;
-      font-size: 15px;
-      opacity: 0.9;
-    }
-
-    .header-img {
-      flex: 1;
-      text-align: center;
+      justify-content: center;
     }
 
     .header-img img {
-      width: 90%;
-      max-width: 180px;
+      width: 100%;
+      max-width: 140px; /* KÜÇÜLDÜ */
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
@@ -277,7 +77,7 @@ Aynen 👍 çok daha profesyonel durur — senin dediğin gibi görselleri mavi 
       padding-left: 20px;
     }
 
-    /* SABİT BUTON */
+    /* BUTON */
     .back-button {
       position: fixed;
       bottom: 20px;
@@ -306,15 +106,14 @@ Aynen 👍 çok daha profesyonel durur — senin dediğin gibi görselleri mavi 
     @media (max-width: 768px) {
       .header-container {
         flex-direction: column;
-        gap: 15px;
       }
 
       .header-img img {
-        max-width: 120px;
+        max-width: 110px;
       }
 
       .header-text h1 {
-        font-size: 22px;
+        font-size: 24px;
       }
     }
   </style>
@@ -365,7 +164,6 @@ Aynen 👍 çok daha profesyonel durur — senin dediğin gibi görselleri mavi 
 
   </div>
 
-  <!-- BUTON -->
   <a href="anasayfa.html" class="back-button">🏠 Ana Sayfa</a>
 
   <footer>
@@ -374,7 +172,3 @@ Aynen 👍 çok daha profesyonel durur — senin dediğin gibi görselleri mavi 
 
 </body>
 </html>
-
-    
-      
-  
