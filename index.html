@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ESERKON — Şahin UYMAZ</title>
+    <style>
+        :root {
+            --bg: #0a0f1c;
+            --card: #0b1220;
+            --accent: #0a66d1;
+            --glow1: #22d3ee;
+            --glow2: #6366f1;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+            background: linear-gradient(180deg, #05070f 0%, #0a1222 70%);
+            color: #ffffff; /* Genel yazı rengi beyaz */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 24px;
+        }
+        .card {
+            width: 100%;
+            max-width: 780px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.008));
+            border-radius: 24px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.75);
+            padding: 32px 28px;
+            position: relative;
+            overflow: visible;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+
+        /* Köşe animasyonları */
+        .corner-anim {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            pointer-events: none;
+            filter: blur(22px);
+            opacity: 0.85;
+            border-radius: 30px;
+        }
+        .corner-anim.c1 { left: -80px; top: -80px; background: radial-gradient(circle at 30% 30%, var(--glow1), transparent 45%); animation: blink1 2.8s linear infinite; }
+        .corner-anim.c2 { right: -80px; bottom: -80px; background: radial-gradient(circle at 70% 70%, var(--glow2), transparent 45%); animation: blink2 3.4s linear infinite; }
+        @keyframes blink1 { 0%,100% {opacity:0.07} 50% {opacity:0.38} }
+        @keyframes blink2 { 0%,100% {opacity:0.06} 50% {opacity:0.32} }
+
+        .header { 
+            text-align: center; 
+            position: relative; 
+            z-index: 5; 
+            margin-bottom: 12px; 
+        }
+        .logo-container { 
+            position: relative; 
+            display: inline-block; 
+            margin-bottom: 10px; 
+        }
+        .main-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+        .org-title {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 1.4px;
+            color: #ffffff;
+            margin: 0 0 6px 0;
+            text-shadow: 0 0 15px rgba(255,255,255,0.6), 
+                         0 0 30px rgba(34, 211, 238, 0.7), 
+                         0 0 50px rgba(99, 102, 241, 0.5);
+            animation: titleNeon 2.3s ease-in-out infinite;
+        }
+        @keyframes titleNeon {
+            0%, 100% { text-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 30px rgba(34,211,238,0.7), 0 0 50px rgba(99,102,241,0.5); }
+            50% { text-shadow: 0 0 25px rgba(255,255,255,0.9), 0 0 45px rgba(34,211,238,1), 0 0 70px rgba(99,102,241,0.8); }
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 4;
+        }
+        .col { flex: 1 1 340px; min-width: 280px; }
+
+        .link-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 15px 18px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .link-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(199,16,46,0.18), 0 0 25px rgba(99,102,241,0.25);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .badge {
+            width: 65px;
+            height: 65px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #1e2a4a, #0f1b38);
+            box-shadow: 0 5px 18px rgba(0,0,0,0.35), inset 0 3px 10px rgba(255,255,255,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            animation: badgePulse 3.5s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+        .badge img {
+            width: 52px;
+            height: 52px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+        }
+
+        /* TÜM YAZILAR BEYAZ YAPILDI */
+        .meta {
+            font-size: 15.5px;
+            color: #ffffff;           /* Beyaz */
+            position: relative;
+            z-index: 2;
+            line-height: 1.35;
+        }
+        .muted {
+            color: #ffffff;           /* Muted bile tamamen beyaz */
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 4px;
+            display: block;
+            letter-spacing: 0.3px;
+        }
+        .link-box a, .link-box span {
+            color: #ffffff;           /* Link ve span'ler de beyaz */
+            text-decoration: none;
+        }
+
+        /* Alt Butonlar */
+        .actions {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            margin-top: 32px;
+            position: relative;
+            z-index: 4;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 14px 26px;
+            border-radius: 14px;
+            border: none;
+            font-weight: 800;
+            cursor: pointer;
+            letter-spacing: 0.6px;
+            font-size: 15px;
+            position: relative;
+            overflow: hidden;
+            min-width: 160px;
+            color: #ffffff;           /* Buton yazıları da beyaz */
+        }
+        .btn.save {
+            background: linear-gradient(90deg, #10b981, #059669);
+            box-shadow: 0 12px 35px rgba(16,185,129,0.35);
+        }
+        .btn.vcf {
+            background: linear-gradient(90deg, #4f46e5, #6366f1);
+            box-shadow: 0 12px 35px rgba(99,102,241,0.35);
+        }
+        .btn:hover { 
+            transform: translateY(-4px) scale(1.04); 
+        }
+
+        .note {
+            text-align: center;
+            color: #ffffff;           /* Not da beyaz */
+            font-size: 13.2px;
+            margin-top: 18px;
+            position: relative;
+            z-index: 4;
+        }
+
+        @media (max-width: 540px) {
+            .card { padding: 24px 18px; border-radius: 20px; }
+            .org-title { font-size: 27px; }
+            .main-logo { width: 78px; height: 78px; }
+            .badge { width: 54px; height: 54px; }
+            .badge img { width: 38px; height: 38px; }
+        }
+    </style>
+</head>
+<body>
+    <main class="card" role="main">
+        <div class="corner-anim c1" aria-hidden="true"></div>
+        <div class="corner-anim c2" aria-hidden="true"></div>
+
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-container">
+                <img src="https://raw.githubusercontent.com/Eserkon/Eserkon/main/assets/eses.logo.png" alt="ESERKON Logo" class="main-logo">
+            </div>
+            <h1 class="org-title">ESERKON</h1>
+            <h1 class="org-title">Kurucu &amp; Başkan Şahin UYMAZ</h1>
+        </div>
+
+        <!-- Buton Grid -->
+        <div class="grid">
+            <!-- SOL TARAF -->
+            <div class="col">
+                <div class="link-box" data-href="https://wa.me/905435871765">
+                    <div class="badge"><img src="https://raw.githubusercontent.com/Eserkon/Eserkon/main/assets/eses.logo.png" alt="WhatsApp"></div>
+                    <div class="meta">
+                        <span class="muted">WhatsApp</span>
+                        <a href="https://wa.me/905435871765" target="_blank">+90 543 587 17 65</a>
+                    </div>
+                </div>
+                <div class="link-box" data-href="https://t.me/eserkon">
+                    <div class="badge"><img src="https://raw.githubusercontent.com/Eserkon/Eserkon/main/assets/eses.logo.png" alt="Telegram"></div>
+                    <div class="meta">
+                        <span class="muted">Telegram</span>
+                        <a href="https://t.me/eserkon" target="_blank">@eserkon</a>
+                    </div>
+                </div>
+                <div class="link-box" data-href="tel:+905435871765">
+                    <div class="badge"><img src="https://raw.githubusercontent.com/Eserkon/Eserkon/main/assets/eses.logo.png" alt="Telefon"></div>
+                    <div class="meta">
+                        <span class="muted">Zangi</span>
+                        <a href="tel:+905435871765"> +90 543 587 17 65</a>
+                    </div>
+                </div>
+                <div class="link-box" data-href="mailto:gonulselkisi@gmail.com">
+                    <div class="badge"><img src="https://raw.githubusercontent.com/Eserkon/Eserkon/main/assets/eses.logo.png" alt="E-Mail"></div>
+                    <div class="meta">
+                        <span class="muted">E-Mail</span>
+                        <a href="mailto:gonulselkisi@gmail.com">gonulselkisi@gmail.com</a>
+                    </div>
+                </div>
+                <div class="link-box" data-href="https://www.eserkon.com.tr">
+                    <div class="badge"><img src="https://raw.githubusercontent.com/Eserkon/Eserkon/main/assets/eses.logo.png" alt="Web Sitesi"></div>
+                    <div class="meta">
+                        <span class="muted">Web Sitesi</span>
+                        <a href="https://www.eserkon.com.tr" target="_blank">www.eserkon.com.tr</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SAĞ TARAF -->
+            <div class="col">
+                <div class="link-box" data-href="https://t.me/eserkontr">
+                    <div class="badge"><img src="https://raw.githubusercontent.com/Eserkon/Eserkon/main/assets/eses.logo.png" alt="Sosyal Medya"></div>
+                    <div class="meta">
+                        <span class="muted">Sosyal Medya</span>
+                        <a href="https://t.me/eserkon.tr" target="_blank">@eserkon.com.tr</a>
+                    </div>
+                </div>
+                <div class="link-box" data-href="#">
+                    <div class="badge"><img src="https://raw.githubusercontent.com/Eserkon/Eserkon/main/assets/eses.logo.png" alt="Adres"></div>
+                    <div class="meta">
+                        <span class="muted">Merkez Adres</span>
+                        <span>ESKİŞEHİR</span>
+                    </div>
+                </div>
+                <div class="link-box" data-href="#">
+                    <div class="badge"><img src="https://raw.githubusercontent.com/Eserkon/Eserkon/main/assets/eses.logo.png" alt="Şubeler"></div>
+                    <div class="meta">
+                        <span class="muted">şubelerimiz</span>
+                        <span>ERZURUM / KONYA</span>
+                    </div>
+                </div>
+                <div class="link-box" data-href="tel:+905435871765">
+                    <div class="badge"><img src="https://raw.githubusercontent.com/Eserkon/Eserkon/main/assets/eses.logo.png" alt="Diğer Telefon"></div>
+                    <div class="meta">
+                        <span class="muted">Telefon</span>
+                        <a href="tel:+905425871765">+90 542 587 17 65</a>
+                    </div>
+                </div>
+                <div class="link-box" data-href="tel:+905435871765">
+                    <div class="badge"><img src="https://raw.githubusercontent.com/Eserkon/Eserkon/main/assets/eses.logo.png" alt="Dernek Telefon"></div>
+                    <div class="meta">
+                        <span class="muted">Dernek Telefon</span>
+                        <a href="tel:+905425871765">+90 542 587 17 65</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kartvizit İndirme Butonları -->
+        <div class="actions">
+            <button onclick="window.location.href='https://wa.me/905435871765'" class="btn save">WhatsApp ile İletişime Geç</button>
+            <button onclick="downloadKartvizit()" class="btn vcf">Kartviziti İndir</button>
+        </div>
+
+        <div class="note">
+            ESERKON — Şahin UYMAZ<br>
+            Ziyaret ettiğiniz için teşekkürler.
+        </div>
+    </main>
+
+    <script>
+        // Sayfa açıldığında kartvizit otomatik indirilir
+        window.onload = function() {
+            const kartvizitUrl = "kartvizit.pdf";           // ← Burayı kendi dosya adınla değiştir
+            const indirilenIsim = "Sahin-Uymaz-ESERKON-Kartvizit.pdf"; 
+
+            const link = document.createElement('a');
+            link.href = kartvizitUrl;
+            link.download = indirilenIsim;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+
+        // Butona basınca tekrar indirme
+        function downloadKartvizit() {
+            const kartvizitUrl = "kartvizit.pdf";           // ← Burayı da aynı şekilde değiştir
+            const indirilenIsim = "Sahin-Uymaz-ESERKON-Kartvizit.pdf";
+
+            const link = document.createElement('a');
+            link.href = kartvizitUrl;
+            link.download = indirilenIsim;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
