@@ -17,7 +17,7 @@
             margin: 0;
             font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
             background: linear-gradient(180deg, #05070f 0%, #0a1222 70%);
-            color: #ffffff; /* Genel yazı rengi beyaz */
+            color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -133,16 +133,15 @@
             filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
         }
 
-        /* TÜM YAZILAR BEYAZ YAPILDI */
         .meta {
             font-size: 15.5px;
-            color: #ffffff;           /* Beyaz */
+            color: #ffffff;
             position: relative;
             z-index: 2;
             line-height: 1.35;
         }
         .muted {
-            color: #ffffff;           /* Muted bile tamamen beyaz */
+            color: #ffffff;
             font-weight: 600;
             font-size: 13px;
             margin-bottom: 4px;
@@ -150,7 +149,7 @@
             letter-spacing: 0.3px;
         }
         .link-box a, .link-box span {
-            color: #ffffff;           /* Link ve span'ler de beyaz */
+            color: #ffffff;
             text-decoration: none;
         }
 
@@ -175,7 +174,7 @@
             position: relative;
             overflow: hidden;
             min-width: 160px;
-            color: #ffffff;           /* Buton yazıları da beyaz */
+            color: #ffffff;
         }
         .btn.save {
             background: linear-gradient(90deg, #10b981, #059669);
@@ -191,11 +190,40 @@
 
         .note {
             text-align: center;
-            color: #ffffff;           /* Not da beyaz */
+            color: #ffffff;
             font-size: 13.2px;
             margin-top: 18px;
             position: relative;
             z-index: 4;
+        }
+
+        /* === YENİ ANA SAYFA BUTONU === */
+        .home-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(90deg, #4f46e5, #6366f1);
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .home-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(99, 102, 241, 0.6);
+        }
+        .home-btn i {
+            font-size: 18px;
         }
 
         @media (max-width: 540px) {
@@ -204,6 +232,12 @@
             .main-logo { width: 78px; height: 78px; }
             .badge { width: 54px; height: 54px; }
             .badge img { width: 38px; height: 38px; }
+            .home-btn {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 16px;
+                font-size: 13px;
+            }
         }
     </style>
 </head>
@@ -314,10 +348,15 @@
         </div>
     </main>
 
+    <!-- SAĞ ALT KÖŞE ANA SAYFA BUTONU -->
+    <a href="https://www.eserkon.com.tr" target="_blank" class="home-btn">
+        <span>← Ana Sayfaya Git</span>
+    </a>
+
     <script>
         // Sayfa açıldığında kartvizit otomatik indirilir
         window.onload = function() {
-            const kartvizitUrl = "kartvizit.pdf";           // ← Burayı kendi dosya adınla değiştir
+            const kartvizitUrl = "kartvizit.pdf";           // ← Kendi kartvizit dosya adını buraya yaz
             const indirilenIsim = "Sahin-Uymaz-ESERKON-Kartvizit.pdf"; 
 
             const link = document.createElement('a');
@@ -330,7 +369,7 @@
 
         // Butona basınca tekrar indirme
         function downloadKartvizit() {
-            const kartvizitUrl = "kartvizit.pdf";           // ← Burayı da aynı şekilde değiştir
+            const kartvizitUrl = "kartvizit.pdf";           
             const indirilenIsim = "Sahin-Uymaz-ESERKON-Kartvizit.pdf";
 
             const link = document.createElement('a');
