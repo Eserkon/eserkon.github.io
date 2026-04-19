@@ -8,6 +8,9 @@
   <meta name="description" content="ESERKON  öğrencilere yönelik ulaşım, konaklama, yemek ve burs ihtiyaçlarını desteklemek amacıyla kurulmuş bir oluşumdur.
     Öğrencilerin sosyal ve ekonomik ihtiyaçlarına çözüm sunmayı hedefler.">
 
+  <!-- ✅ EKLENDİ (SEO düzeltme) -->
+  <link rel="canonical" href="https://eserkon.com.tr/">
+
   <!-- Eğer style.css yoksa bu satırı silebilirsin -->
   <link rel="stylesheet" href="/assets/css/style.css">
 
@@ -139,6 +142,13 @@
 </head>
 
 <body>
+
+  <!-- ✅ EKLENDİ (index.html → ana sayfa yönlendirme) -->
+  <script>
+    if (window.location.pathname === "/index.html") {
+      window.location.replace("/");
+    }
+  </script>
 
   <div class="top-banner">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj9i9oouhCnqE7ls1Na2CQZGTbxIVMrXG6qAbmjT6D_-ZTkJKq9H7x0gkp561y_BiR1K3c1dTfvBJgjhjlxFm6UGji2S2orXez1jkuTA_2HGzpuYB0-5JRj0-r0Kpbb6q4Hxd6sm6ggDmV2ZO_doFTGx7ZLCRxq9g2c9BILdQgS_JSw549bUZynrB6s8APl/s1536/THE%20END%202.png" alt="Banner" />
