@@ -25,16 +25,11 @@
         .ticker-content {
             display: inline-block;
             padding-right: 100%;
-            animation: ticker 25s linear infinite;
+            animation: ticker 30s linear infinite;
         }
         @keyframes ticker {
             0% { transform: translateX(0); }
             100% { transform: translateX(-100%); }
-        }
-        /* İçeriklerin görünmesini garanti etmek için */
-        .main-content {
-            position: relative;
-            z-index: 10;
         }
     </style>
 </head>
@@ -43,13 +38,13 @@
     <!-- HEADER -->
     <header class="bg-white shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto">
-            <nav class="max-w-7xl mx-auto px-4 py-4 border-b">
+            <!-- Menü -->
+            <nav class="px-4 py-4 border-b">
                 <div class="flex justify-between items-center">
                     <div class="flex items-center gap-4">
                         <img src="https://i.imgur.com/0zqKz9k.png" class="h-14" alt="ESERKON Logo">
                         <div class="text-3xl font-bold text-red-700">ESERKON</div>
                     </div>
-
                     <div class="hidden md:flex items-center gap-8 text-lg font-medium">
                         <a href="index.html" class="text-red-700 hover:text-red-800">Ana Sayfa</a>
                         <a href="basvurular.html" class="hover:text-red-700">Başvurular</a>
@@ -70,7 +65,7 @@
             </div>
 
             <!-- GRUP FOTOĞRAFI -->
-            <div class="max-w-7xl mx-auto px-4 pt-4 pb-6">
+            <div class="px-4 pt-4 pb-6">
                 <img src="https://picsum.photos/id/1015/1920/600" 
                      class="w-full rounded-3xl shadow-2xl" 
                      alt="ESERKON Öğrenci Grubu">
@@ -79,7 +74,7 @@
     </header>
 
     <!-- SLIDER -->
-    <div class="max-w-7xl mx-auto px-4 mt-6">
+    <div class="max-w-7xl mx-auto px-4 mt-4">
         <div class="swiper mySwiper rounded-3xl overflow-hidden shadow-2xl">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="https://source.unsplash.com/random/1920x600/?students" class="w-full h-[450px] object-cover" alt=""></div>
@@ -91,20 +86,20 @@
     </div>
 
     <!-- ANA İÇERİK -->
-    <div class="main-content max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-        <!-- SOL İÇERİK -->
+        <!-- SOL KISIM -->
         <div class="lg:col-span-8 space-y-16">
 
-            <!-- REKLAM -->
+            <!-- Reklam -->
             <div class="bg-white border-2 border-dashed border-red-300 rounded-2xl p-8 text-center">
                 <p class="text-gray-400 mb-3">— REKLAM / SPONSOR ALANI —</p>
-                <div class="h-52 bg-gray-100 rounded-xl flex items-center justify-center text-gray-500 text-xl">
+                <div class="h-52 bg-gray-100 rounded-xl flex items-center justify-center text-gray-500">
                     728x90 Reklam Alanı
                 </div>
             </div>
 
-            <!-- ÖNEMLİ DUYURULAR -->
+            <!-- Önemli Duyurular -->
             <div>
                 <h2 class="text-3xl font-bold mb-6 flex items-center gap-3 text-red-700">
                     <i class="fas fa-bullhorn"></i> Önemli Duyurular
@@ -121,11 +116,11 @@
                 </div>
             </div>
 
-            <!-- YAPTIGIMIZ ZIYARETLER (30 Kutu) -->
+            <!-- Yaptığımız Ziyaretler - 30 Kutucuk -->
             <div>
                 <h2 class="text-3xl font-bold mb-6 text-red-700">Yaptığımız Ziyaretler</h2>
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
-                    <!-- 30 tane resim kutusu (örnek olarak 12 tane koydum, hepsini çoğaltabilirsiniz) -->
+                    <!-- 30 tane resim (örnek olarak 12 tane, istersen çoğaltırım) -->
                     <img src="https://source.unsplash.com/random/300x200/?company" class="gallery-img rounded-xl shadow aspect-video object-cover" alt="">
                     <img src="https://source.unsplash.com/random/300x200/?office" class="gallery-img rounded-xl shadow aspect-video object-cover" alt="">
                     <img src="https://source.unsplash.com/random/300x200/?meeting" class="gallery-img rounded-xl shadow aspect-video object-cover" alt="">
@@ -141,21 +136,21 @@
                 </div>
             </div>
 
-            <!-- 3 VİDEO -->
+            <!-- 3 Video -->
             <div>
                 <h2 class="text-3xl font-bold mb-6 text-red-700">Videolarımız</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="bg-white rounded-xl overflow-hidden shadow">
                         <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/dQw4w9wgxcq" allowfullscreen></iframe>
-                        <div class="p-4 text-center font-medium">Etkinlik Özeti</div>
+                        <div class="p-4 text-center">Etkinlik Özeti</div>
                     </div>
                     <div class="bg-white rounded-xl overflow-hidden shadow">
                         <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/3JZ_D3ELwOQ" allowfullscreen></iframe>
-                        <div class="p-4 text-center font-medium">Kariyer Semineri</div>
+                        <div class="p-4 text-center">Kariyer Semineri</div>
                     </div>
                     <div class="bg-white rounded-xl overflow-hidden shadow">
                         <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/9bZkp7q19f0" allowfullscreen></iframe>
-                        <div class="p-4 text-center font-medium">Öğrenci Röportajı</div>
+                        <div class="p-4 text-center">Öğrenci Röportajı</div>
                     </div>
                 </div>
             </div>
@@ -167,7 +162,7 @@
             <div class="bg-white rounded-2xl shadow p-6">
                 <h2 class="text-2xl font-bold mb-5 text-red-700">Başkanın Mesajı</h2>
                 <div class="flex flex-col items-center text-center">
-                    <img src="https://source.unsplash.com/random/280x280/?man,formal" class="w-32 h-32 rounded-full object-cover mb-4 shadow" alt="">
+                    <img src="https://source.unsplash.com/random/280x280/?man,formal" class="w-32 h-32 rounded-full object-cover mb-4" alt="">
                     <p class="italic text-gray-700">"Sevgili öğrencilerimiz, ESERKON olarak sizleri geleceğe en iyi şekilde hazırlamak için buradayız."</p>
                     <p class="mt-4 font-semibold text-red-700">— ESERKON Başkanı</p>
                 </div>
@@ -176,7 +171,7 @@
             <!-- Sponsorlar -->
             <div class="bg-white rounded-2xl shadow p-6">
                 <h3 class="text-xl font-bold mb-6 text-center text-red-700">Sponsorlarımız</h3>
-                <div class="flex flex-wrap gap-6 justify-center items-center text-2xl font-bold opacity-75">
+                <div class="flex flex-wrap gap-6 justify-center text-2xl font-bold opacity-75">
                     <div>Turkcell</div>
                     <div>Vodafone</div>
                     <div>Koç</div>
