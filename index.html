@@ -1,201 +1,170 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ESERKON - Ana Sayfa</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #ffffff;
-    }
-
-    /* ÜST BANNER */
-    .top-banner {
-      background: #FFFFFF;
-      text-align: center;
-      padding: 15px 0;
-    }
-    .top-banner img {
-      max-width: 100%;
-      height: 300px;
-      display: block;
-      margin: auto;
-    }
-
-    /* MENÜ KAPSAYICI */
-    .topbar {
-      background: #1a237e;
-      padding: 1rem 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-
-    .menu-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 10px;
-    }
-
-    .fixed-buttons a {
-      color: white;
-      text-decoration: none;
-      padding: 8px 12px;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .dropdown {
-      position: relative;
-    }
-
-    .dropbtn {
-      background: #005b96;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background: #1a237e;
-      min-width: 160px;
-      z-index: 1;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    .dropdown-content a {
-      color: white;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      font-size: 14px;
-    }
-
-    .dropdown-content a:hover {
-      background: #003c6c;
-      border-radius: 8px;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    /* Mobil Uyum */
-    @media (max-width: 768px) {
-      .menu-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .fixed-buttons a {
-        font-size: 16px;
-        padding: 10px 15px;
-      }
-      .dropbtn {
-        font-size: 16px;
-        width: 100%;
-        max-width: 200px;
-      }
-    }
-
-    /* İÇERİK */
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 30px;
-    }
-
-    .container img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 20px auto;
-    }
-
-    /* FOOTER */
-    .footer {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Sayfa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://source.unsplash.com/random/1920x1080/?nature') center/cover;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-50 font-sans">
 
-  <!-- ÜST BANNER -->
-  <div class="top-banner">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj9i9oouhCnqE7ls1Na2CQZGTbxIVMrXG6qAbmjT6D_-ZTkJKq9H7x0gkp561y_BiR1K3c1dTfvBJgjhjlxFm6UGji2S2orXez1jkuTA_2HGzpuYB0-5JRj0-r0Kpbb6q4Hxd6sm6ggDmV2ZO_doFTGx7ZLCRxq9g2c9BILdQgS_JSw549bUZynrB6s8APl/s1536/THE%20END%202.png" alt="Banner" />
-  </div>
+    <!-- ==================== MENÜ ==================== -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto">
+            <!-- Topbar -->
+            <div class="bg-gray-900 text-white py-2 text-sm">
+                <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
+                    <div>Hoş geldiniz</div>
+                    <div class="flex gap-4">
+                        <a href="#" class="hover:text-yellow-400">Ana Sayfa</a>
+                        <a href="basvurular.html" class="hover:text-yellow-400">Başvurular</a>
+                        <a href="sponsorlarimiz.html" class="hover:text-yellow-400">Sponsorlar</a>
+                    </div>
+                </div>
+            </div>
 
-  <!-- MENÜ (3 Sabit + Açılır Menü) -->
-  <div class="topbar">
-    <div class="menu-container">
-      <div class="fixed-buttons">
-        <a href="index.html">Ana Sayfa</a>
-        <a href="basvurular.html">Başvurular</a>
-        <a href="Sponsorlarimiz.html" target="_blank">Sponsorlar</a>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn">☰ Diğer</button>
-        <div class="dropdown-content">
-          <a href="duyurular.html">Duyurular</a></li>
-          <li><a href="hakkimizda.html">Hakkımızda</a></li>
-          <a href="iletisim.html">İletişim</a></li>
-          <li><a href="destek-ol.html">Destek Ol</a></li>
-          <a href="bize-ulasin.html">Bize Ulaşın</a></li>
+            <!-- Ana Menü -->
+            <nav class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-between items-center py-4">
+                    <div class="text-2xl font-bold text-blue-700">LOGO</div>
+                    
+                    <div class="hidden md:flex items-center gap-8 text-lg">
+                        <a href="index.html" class="font-medium text-blue-600 hover:text-blue-800">Ana Sayfa</a>
+                        <a href="basvurular.html" class="hover:text-blue-600">Başvurular</a>
+                        
+                        <!-- Dropdown Menü -->
+                        <div class="relative group">
+                            <button class="flex items-center gap-1 hover:text-blue-600">
+                                Diğer <i class="fas fa-chevron-down text-sm"></i>
+                            </button>
+                            <div class="absolute hidden group-hover:block bg-white shadow-xl rounded-md py-2 w-56 mt-2 border">
+                                <a href="duyurular.html" class="block px-4 py-2 hover:bg-gray-100">Duyurular</a>
+                                <a href="hakkimizda.html" class="block px-4 py-2 hover:bg-gray-100">Hakkımızda</a>
+                                <a href="iletisim.html" class="block px-4 py-2 hover:bg-gray-100">İletişim</a>
+                                <a href="destek-ol.html" class="block px-4 py-2 hover:bg-gray-100">Destek Ol</a>
+                                <a href="bize-ulasin.html" class="block px-4 py-2 hover:bg-gray-100">Bize Ulaşın</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </div>
-      </div>
+    </header>
+
+    <!-- ==================== HERO BANNER ==================== -->
+    <section class="hero-bg h-[500px] flex items-center text-white">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4">Hoş Geldiniz</h1>
+            <p class="text-xl md:text-2xl mb-8">Birlikte daha güçlü bir topluluk için</p>
+            <a href="basvurular.html" class="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg text-lg font-semibold inline-block">
+                Hemen Katıl
+            </a>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+        <!-- ==================== SOL İÇERİK ==================== -->
+        <div class="lg:col-span-8 space-y-12">
+
+            <!-- Ortaboy Reklam Alanı -->
+            <div class="bg-white border-2 border-dashed border-gray-300 rounded-xl p-6 text-center">
+                <p class="text-gray-400 text-sm mb-2">— REKLAM ALANI 728x90 / 970x250 —</p>
+                <div class="h-32 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500">
+                    <span class="text-xl">📰 Reklam Alanı 1</span>
+                </div>
+            </div>
+
+            <!-- Galeri Bölümü -->
+            <div>
+                <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+                    <i class="fas fa-images text-blue-600"></i> Galeri
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <img src="https://source.unsplash.com/random/400x300/?event" class="rounded-xl shadow hover:scale-105 transition" alt="Galeri 1">
+                    <img src="https://source.unsplash.com/random/400x300/?meeting" class="rounded-xl shadow hover:scale-105 transition" alt="Galeri 2">
+                    <img src="https://source.unsplash.com/random/400x300/?people" class="rounded-xl shadow hover:scale-105 transition" alt="Galeri 3">
+                    <img src="https://source.unsplash.com/random/400x300/?conference" class="rounded-xl shadow hover:scale-105 transition" alt="Galeri 4">
+                    <img src="https://source.unsplash.com/random/400x300/?team" class="rounded-xl shadow hover:scale-105 transition" alt="Galeri 5">
+                    <img src="https://source.unsplash.com/random/400x300/?workshop" class="rounded-xl shadow hover:scale-105 transition" alt="Galeri 6">
+                </div>
+            </div>
+
+            <!-- Videolar Bölümü -->
+            <div>
+                <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+                    <i class="fas fa-video text-blue-600"></i> Videolar
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl overflow-hidden shadow">
+                        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/dQw4w9wgxcq" allowfullscreen></iframe>
+                        <div class="p-4">Etkinlik Özeti 2025</div>
+                    </div>
+                    <div class="bg-white rounded-xl overflow-hidden shadow">
+                        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/3JZ_D3ELwOQ" allowfullscreen></iframe>
+                        <div class="p-4">Konuşmacı Röportajı</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ==================== SAĞ SİDEBAR ==================== -->
+        <div class="lg:col-span-4 space-y-8">
+
+            <!-- Reklam Alanı 2 -->
+            <div class="bg-white border border-gray-200 rounded-xl p-4">
+                <p class="text-xs text-gray-500 mb-3 text-center">REKLAM ALANI</p>
+                <div class="bg-gray-100 h-64 rounded-lg flex items-center justify-center">
+                    <span class="text-gray-400">300x250 Reklam</span>
+                </div>
+            </div>
+
+            <!-- Ziyaretçi İstatistikleri -->
+            <div class="bg-white rounded-xl shadow p-6">
+                <h3 class="text-xl font-semibold mb-6 text-center">Ziyaretçi İstatistikleri</h3>
+                <div class="grid grid-cols-2 gap-6 text-center">
+                    <div>
+                        <div class="text-4xl font-bold text-blue-600">12.458</div>
+                        <div class="text-sm text-gray-600">Toplam Ziyaretçi</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-green-600">248</div>
+                        <div class="text-sm text-gray-600">Bugün</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-purple-600">89</div>
+                        <div class="text-sm text-gray-600">Online</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-orange-600">42</div>
+                        <div class="text-sm text-gray-600">Üye Katılımı</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reklam Alanı 3 -->
+            <div class="bg-white border border-gray-200 rounded-xl p-4">
+                <div class="bg-gray-100 h-80 rounded-lg flex items-center justify-center">
+                    <span class="text-gray-400">Ortaboy Reklam Alanı</span>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </div>
 
-  <!-- İÇERİK VE GÖRSELLER -->
-  <div class="container">
-    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiOSHxOzFyBW46QsJ4nAed-CGr_mHMqOitmZ_XlV3y8VjupfNis4ZEAvFpBaH77a_OarBAMa0APr5DgoJ19yuCkxTWvTUxK0WpQ_aS8WNNeKVxGAFe0bIHsRv5xXoBcspGl2wZzsR-fgHyAw8dvbnOdLnUKDWhawovFzpzEa19lE4qPwnq8nQQXFzaA2Z83=s1076" alt="Görsel 1" />
-    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjaqwjNE714rmr-wlGv1FnbM_7aInNtbfosXXJNlsO4feuv2Nq2N-6FRG2vJKbdtTv2kE-WUTANjDXGX30v1s7mxo1UKIKLtXJzpmQ_b86fISFwGuQLRx7wdHascgaFRJvOZ3QmgrNQtzF19sN9JRZZm7yXMLYptgPWDD8rG5rUybDx6F7xdxmHshJk-FhT=s1076" alt="Görsel 2" />
-    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEg5rcoTAmpFXTsYT4aOGsHCzD77fQ8DSwScWg1xdNGYOTHwHKK4NxkvvfEF7W8R7BRA-DQ9_ayyf-LWWg9fDQzJXi1C7HVQUzR8UAAnYhVn2_dAGVEaM-m3VIz-dh0yw7avr51Yw5FwPYUd-lMQ4IBfOcBEHfoiSC8YquHa8RhRjtnen_EdK4rVQPBhXjL9=s1076" alt="Görsel 3" />
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>
-      <strong>Yasal Uyarı:</strong> Bu web sitesi, <strong>ESERKON (Eğitim, Sosyal, Etkinlik ve Rehberlik Konseyi)</strong> tarafından hazırlanmıştır ve tüm içerik yalnızca bilgilendirme amaçlıdır.
-      Sitede yer alan metin, görsel, logo ve diğer materyallerin tüm hakları saklıdır. İzinsiz kopyalanamaz, çoğaltılamaz veya dağıtılamaz.
-    </p>
-    <p>&copy; 2026 ESERKON - Tüm Hakları Saklıdır.</p>
-  </footer>
-
-  <!-- SES -->
-  <audio id="kadinAnons" preload="auto">
-    <source src="https://drive.google.com/uc?export=download&id=1D4hJpO1LD4he4dTh3bclQvxXrKeA1UXu" type="audio/mpeg" />
-    Tarayıcınız ses dosyasını desteklemiyor.
-  </audio>
-
-  <script>
-    var anonsSes = document.getElementById("kadinAnons");
-    var oynatildi = false;
-
-    document.addEventListener("click", function () {
-      if (!oynatildi) {
-        anonsSes.play().then(function () {
-          oynatildi = true;
-        }).catch(function (error) {
-          console.log("Ses oynatma hatası:", error);
-        });
-      }
-    }, { once: true });
-  </script>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-10 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2026 Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
