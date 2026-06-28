@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ana Sayfa</title>
+    <title>ESERKON - Ana Sayfa</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -11,14 +11,16 @@
 
     <style>
         .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://source.unsplash.com/random/1920x1080/?nature') center/cover;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://source.unsplash.com/random/1920x1080/?students') center/cover;
         }
         .gallery-img {
             transition: all 0.3s ease;
         }
         .gallery-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            transform: scale(1.06);
+        }
+        .logo-glow {
+            filter: drop-shadow(0 0 12px rgba(234, 179, 8, 0.6));
         }
     </style>
 </head>
@@ -28,36 +30,43 @@
     <header class="bg-white shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto">
             <!-- Topbar -->
-            <div class="bg-gray-900 text-white py-2 text-sm">
+            <div class="bg-red-900 text-white py-3 text-sm">
                 <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
-                    <div>Hoş geldiniz</div>
-                    <div class="flex gap-4">
-                        <a href="#" class="hover:text-yellow-400">Ana Sayfa</a>
-                        <a href="basvurular.html" class="hover:text-yellow-400">Başvurular</a>
-                        <a href="sponsorlarimiz.html" class="hover:text-yellow-400">Sponsorlar</a>
+                    <div class="flex items-center gap-3">
+                        <img src="https://via.placeholder.com/40" class="h-8" alt="ESERKON"> 
+                        <span class="font-semibold">ESERKON - Eğitim, Sosyal, Etkinlik ve Rehberlik Konseyi</span>
                     </div>
                 </div>
             </div>
 
             <!-- Ana Menü -->
-            <nav class="max-w-7xl mx-auto px-4">
-                <div class="flex justify-between items-center py-4">
-                    <div class="text-2xl font-bold text-blue-700">LOGO</div>
-                    
-                    <div class="hidden md:flex items-center gap-8 text-lg">
-                        <a href="index.html" class="font-medium text-blue-600 hover:text-blue-800">Ana Sayfa</a>
-                        <a href="basvurular.html" class="hover:text-blue-600">Başvurular</a>
-                        
-                        <div class="relative group">
-                            <button class="flex items-center gap-1 hover:text-blue-600">
-                                Diğer <i class="fas fa-chevron-down text-sm"></i>
-                            </button>
-                            <div class="absolute hidden group-hover:block bg-white shadow-xl rounded-md py-2 w-56 mt-2 border">
-                                <a href="duyurular.html" class="block px-4 py-2 hover:bg-gray-100">Duyurular</a>
-                                <a href="hakkimizda.html" class="block px-4 py-2 hover:bg-gray-100">Hakkımızda</a>
-                                <a href="iletisim.html" class="block px-4 py-2 hover:bg-gray-100">İletişim</a>
-                                <a href="destek-ol.html" class="block px-4 py-2 hover:bg-gray-100">Destek Ol</a>
-                                <a href="bize-ulasin.html" class="block px-4 py-2 hover:bg-gray-100">Bize Ulaşın</a>
+            <nav class="bg-white border-b">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="flex justify-between items-center py-4">
+                        <!-- Logo -->
+                        <div class="flex items-center gap-3">
+                            <img src="https://i.imgur.com/0zqKz9k.png" class="h-14 logo-glow" alt="ESERKON Logo"> 
+                            <div>
+                                <div class="text-2xl font-bold text-red-700">ESERKON</div>
+                                <div class="text-xs text-gray-600 -mt-1">Öğrenci Derneği</div>
+                            </div>
+                        </div>
+
+                        <div class="hidden md:flex items-center gap-8 text-lg">
+                            <a href="index.html" class="font-medium text-red-700 hover:text-red-800">Ana Sayfa</a>
+                            <a href="basvurular.html" class="hover:text-red-700">Başvurular</a>
+                            
+                            <div class="relative group">
+                                <button class="flex items-center gap-1 hover:text-red-700 font-medium">
+                                    Diğer <i class="fas fa-chevron-down text-sm"></i>
+                                </button>
+                                <div class="absolute hidden group-hover:block bg-white shadow-xl rounded-md py-2 w-56 mt-2 border z-50">
+                                    <a href="duyurular.html" class="block px-4 py-2 hover:bg-gray-100">Duyurular</a>
+                                    <a href="hakkimizda.html" class="block px-4 py-2 hover:bg-gray-100">Hakkımızda</a>
+                                    <a href="iletisim.html" class="block px-4 py-2 hover:bg-gray-100">İletişim</a>
+                                    <a href="destek-ol.html" class="block px-4 py-2 hover:bg-gray-100">Destek Ol</a>
+                                    <a href="bize-ulasin.html" class="block px-4 py-2 hover:bg-gray-100">Bize Ulaşın</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -68,144 +77,81 @@
 
     <!-- ==================== SLIDER ==================== -->
     <div class="max-w-7xl mx-auto px-4 pt-6">
-        <div class="swiper mySwiper">
+        <div class="swiper mySwiper rounded-3xl overflow-hidden shadow-2xl">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="https://source.unsplash.com/random/1920x600/?conference" class="w-full h-[500px] object-cover rounded-2xl" alt="Slider 1">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-2xl flex items-end p-8">
+                <div class="swiper-slide relative">
+                    <img src="https://source.unsplash.com/random/1920x600/?students,university" class="w-full h-[480px] object-cover" alt="Slider 1">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-10">
                         <div class="text-white">
-                            <h2 class="text-4xl font-bold mb-2">2025 Yılı Değerlendirme Toplantısı</h2>
-                            <p class="text-lg">Birlikte daha güçlü yarınlara...</p>
+                            <h2 class="text-4xl font-bold">Geleceğin Liderleri Burada Yetişiyor</h2>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <img src="https://source.unsplash.com/random/1920x600/?workshop" class="w-full h-[500px] object-cover rounded-2xl" alt="Slider 2">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-2xl flex items-end p-8">
-                        <div class="text-white">
-                            <h2 class="text-4xl font-bold mb-2">Eğitim ve Gelişim Programı</h2>
-                            <p class="text-lg">Bilgi paylaştıkça çoğalır</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <img src="https://source.unsplash.com/random/1920x600/?team" class="w-full h-[500px] object-cover rounded-2xl" alt="Slider 3">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-2xl flex items-end p-8">
-                        <div class="text-white">
-                            <h2 class="text-4xl font-bold mb-2">Ziyaret ve İşbirliği</h2>
-                            <p class="text-lg">Güçlü bağlar, güçlü gelecek</p>
-                        </div>
-                    </div>
-                </div>
+                <!-- Daha fazla slayt ekleyebilirsiniz -->
             </div>
             <div class="swiper-pagination"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next text-white"></div>
+            <div class="swiper-button-prev text-white"></div>
         </div>
     </div>
 
-    <!-- ==================== HERO BANNER ==================== -->
-    <section class="hero-bg h-[400px] flex items-center text-white mt-8">
+    <!-- ==================== HERO ==================== -->
+    <section class="hero-bg h-[420px] flex items-center text-white">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <h1 class="text-5xl md:text-6xl font-bold mb-4">Hoş Geldiniz</h1>
-            <p class="text-xl md:text-2xl mb-8">Birlikte daha güçlü bir topluluk için</p>
-            <a href="basvurular.html" class="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg text-lg font-semibold inline-block">
-                Hemen Katıl
+            <h1 class="text-5xl md:text-6xl font-bold mb-4">ESERKON'a Hoş Geldin!</h1>
+            <p class="text-2xl mb-8">Eğitimde, Sosyalde, Etkinlikte Birlikte Güçleniyoruz</p>
+            <a href="basvurular.html" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-10 py-4 rounded-xl text-lg inline-block">
+                Hemen Üye Ol →
             </a>
         </div>
     </section>
 
     <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-        <!-- ==================== SOL İÇERİK ==================== -->
-        <div class="lg:col-span-8 space-y-12">
+        <!-- SOL İÇERİK -->
+        <div class="lg:col-span-8 space-y-14">
 
-            <!-- Ortaboy Reklam Alanı -->
-            <div class="bg-white border-2 border-dashed border-gray-300 rounded-xl p-6 text-center">
-                <p class="text-gray-400 text-sm mb-2">— REKLAM ALANI 728x90 / 970x250 —</p>
-                <div class="h-32 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500">
-                    <span class="text-xl">📰 Reklam Alanı 1</span>
-                </div>
+            <!-- Reklam Alanı -->
+            <div class="bg-white border-2 border-dashed border-gray-300 rounded-2xl p-8 text-center">
+                <p class="text-gray-400 mb-3">— REKLAM / SPONSOR ALANI —</p>
             </div>
 
-            <!-- ====================== YAPTIĞIMIZ ZİYARETLER ====================== -->
+            <!-- Yaptığımız Ziyaretler -->
             <div>
-                <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
-                    <i class="fas fa-plane text-blue-600"></i> Yaptığımız Ziyaretler
+                <h2 class="text-3xl font-bold mb-6 flex items-center gap-3 text-red-700">
+                    <i class="fas fa-plane"></i> Yaptığımız Ziyaretler
                 </h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <img src="https://source.unsplash.com/random/400x300/?visit" class="gallery-img rounded-xl shadow" alt="Ziyaret 1">
-                    <img src="https://source.unsplash.com/random/400x300/?meeting" class="gallery-img rounded-xl shadow" alt="Ziyaret 2">
-                    <img src="https://source.unsplash.com/random/400x300/?handshake" class="gallery-img rounded-xl shadow" alt="Ziyaret 3">
-                    <img src="https://source.unsplash.com/random/400x300/?office" class="gallery-img rounded-xl shadow" alt="Ziyaret 4">
-                    <img src="https://source.unsplash.com/random/400x300/?teamwork" class="gallery-img rounded-xl shadow" alt="Ziyaret 5">
-                    <img src="https://source.unsplash.com/random/400x300/?company" class="gallery-img rounded-xl shadow" alt="Ziyaret 6">
+                    <img src="https://source.unsplash.com/random/400x300/?company,visit" class="gallery-img rounded-2xl shadow" alt="">
+                    <img src="https://source.unsplash.com/random/400x300/?university" class="gallery-img rounded-2xl shadow" alt="">
+                    <img src="https://source.unsplash.com/random/400x300/?meeting" class="gallery-img rounded-2xl shadow" alt="">
+                    <img src="https://source.unsplash.com/random/400x300/?office" class="gallery-img rounded-2xl shadow" alt="">
+                    <img src="https://source.unsplash.com/random/400x300/?handshake" class="gallery-img rounded-2xl shadow" alt="">
                 </div>
             </div>
 
-            <!-- ====================== BİZE YAPILAN ZİYARETLER ====================== -->
+            <!-- Bize Yapılan Ziyaretler -->
             <div>
-                <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
-                    <i class="fas fa-users text-green-600"></i> Bize Yapılan Ziyaretler
+                <h2 class="text-3xl font-bold mb-6 flex items-center gap-3 text-red-700">
+                    <i class="fas fa-users"></i> Bize Yapılan Ziyaretler
                 </h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <img src="https://source.unsplash.com/random/400x300/?delegation" class="gallery-img rounded-xl shadow" alt="Ziyaret 1">
-                    <img src="https://source.unsplash.com/random/400x300/?guest" class="gallery-img rounded-xl shadow" alt="Ziyaret 2">
-                    <img src="https://source.unsplash.com/random/400x300/?ceremony" class="gallery-img rounded-xl shadow" alt="Ziyaret 3">
-                    <img src="https://source.unsplash.com/random/400x300/?event" class="gallery-img rounded-xl shadow" alt="Ziyaret 4">
-                    <img src="https://source.unsplash.com/random/400x300/?speech" class="gallery-img rounded-xl shadow" alt="Ziyaret 5">
-                    <img src="https://source.unsplash.com/random/400x300/?welcome" class="gallery-img rounded-xl shadow" alt="Ziyaret 6">
-                </div>
-            </div>
-
-            <!-- Videolar Bölümü (eski) -->
-            <div>
-                <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
-                    <i class="fas fa-video text-blue-600"></i> Videolar
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-xl overflow-hidden shadow">
-                        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/dQw4w9wgxcq" allowfullscreen></iframe>
-                        <div class="p-4">Etkinlik Özeti 2025</div>
-                    </div>
-                    <div class="bg-white rounded-xl overflow-hidden shadow">
-                        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/3JZ_D3ELwOQ" allowfullscreen></iframe>
-                        <div class="p-4">Konuşmacı Röportajı</div>
-                    </div>
+                    <img src="https://source.unsplash.com/random/400x300/?guest,speaker" class="gallery-img rounded-2xl shadow" alt="">
+                    <img src="https://source.unsplash.com/random/400x300/?event" class="gallery-img rounded-2xl shadow" alt="">
+                    <img src="https://source.unsplash.com/random/400x300/?ceremony" class="gallery-img rounded-2xl shadow" alt="">
+                    <img src="https://source.unsplash.com/random/400x300/?students" class="gallery-img rounded-2xl shadow" alt="">
                 </div>
             </div>
 
         </div>
 
-        <!-- ==================== SAĞ SİDEBAR ==================== -->
+        <!-- SAĞ SİDEBAR -->
         <div class="lg:col-span-4 space-y-8">
-            <!-- Reklamlar (eski) -->
-            <div class="bg-white border border-gray-200 rounded-xl p-4">
-                <p class="text-xs text-gray-500 mb-3 text-center">REKLAM ALANI</p>
-                <div class="bg-gray-100 h-64 rounded-lg flex items-center justify-center">
-                    <span class="text-gray-400">300x250 Reklam</span>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-xl shadow p-6">
-                <h3 class="text-xl font-semibold mb-6 text-center">Ziyaretçi İstatistikleri</h3>
-                <div class="grid grid-cols-2 gap-6 text-center">
-                    <div>
-                        <div class="text-4xl font-bold text-blue-600">12.458</div>
-                        <div class="text-sm text-gray-600">Toplam Ziyaretçi</div>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-bold text-green-600">248</div>
-                        <div class="text-sm text-gray-600">Bugün</div>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-bold text-purple-600">89</div>
-                        <div class="text-sm text-gray-600">Online</div>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-bold text-orange-600">42</div>
-                        <div class="text-sm text-gray-600">Üye Katılımı</div>
-                    </div>
+            <div class="bg-white rounded-2xl shadow p-6 text-center">
+                <h3 class="text-2xl font-bold text-red-700 mb-6">ESERKON İstatistikleri</h3>
+                <div class="grid grid-cols-2 gap-6">
+                    <div><div class="text-4xl font-bold text-red-600">1240+</div><div class="text-sm">Üye Öğrenci</div></div>
+                    <div><div class="text-4xl font-bold text-amber-600">68</div><div class="text-sm">Etkinlik</div></div>
                 </div>
             </div>
         </div>
@@ -214,21 +160,15 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-10 mt-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <p>&copy; 2026 Tüm Hakları Saklıdır.</p>
+            <p>&copy; 2026 ESERKON - Eğitim, Sosyal, Etkinlik ve Rehberlik Konseyi • Tüm Hakları Saklıdır.</p>
         </div>
     </footer>
 
     <script>
         new Swiper('.mySwiper', {
             loop: true,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
+            autoplay: { delay: 4500 },
+            pagination: { el: '.swiper-pagination', clickable: true },
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
