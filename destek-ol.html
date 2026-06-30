@@ -153,348 +153,893 @@ Yeni Destek Talebi
 </div>
 
 </div>
-<!-- DESTEK OL FORMU - TAM VERSİYON -->
-<div id="destekForm" class="popup-form" style="display:block; text-align:center; font-family:Arial, sans-serif;">
-  <div class="popup-icerik" style="display:inline-block; text-align:left; background:#f9f9f9; padding:25px; border-radius:12px; box-shadow:0 0 15px rgba(0,0,0,0.15); max-width:520px; width:100%;">
-    
-    <span class="kapat" onclick="this.parentElement.parentElement.style.display='none';" 
-          style="float:right; font-size:28px; cursor:pointer; color:#aaa;">&times;</span>
-    
-    <h2 style="color:#006d77; text-align:center; margin-bottom:20px;">Destek Ol</h2>
-    
-    <form id="destekFormElement" action="https://formspree.io/f/xpqowknj" method="POST">
-      
-      <input type="text" name="adsoyad" placeholder="Ad Soyad" required style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-      <input type="email" name="email" placeholder="E-posta" required style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-      <input type="tel" name="telefon" placeholder="Telefon" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
+<style>
 
-      <select id="destekTuru" name="destek_turu" required onchange="destekTuruSecildi(this.value)"
-              style="width:100%; padding:12px; margin:12px 0; border:1px solid #ccc; border-radius:6px;">
-        <option value="">Destek Türü Seçiniz</option>
-        <option value="Finansal Destek">Finansal Destek</option>
-        <option value="Burs Desteği">Burs Desteği</option>
-        <option value="Malzeme Bağışı">Malzeme Bağışı</option>
-        <option value="Zaman / Gönüllülük">Zaman / Gönüllülük</option>
-        <option value="Eğitim Desteği">Eğitim Desteği</option>
-        <option value="Ulaşım Desteği">Ulaşım Desteği</option>
-        <option value="Konaklama Desteği">Konaklama Desteği</option>
-        <option value="Kahvaltı / Yemek Desteği">Kahvaltı / Yemek Desteği</option>
-        <option value="Diğer">Diğer</option>
-      </select>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
 
-      <!-- Dinamik Alanlar -->
-      <div id="dynamicFields" style="margin:15px 0;"></div>
+.popup{
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.65);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:99999;
+padding:20px;
+}
 
-      <textarea name="mesaj" placeholder="Ek detay ve notlarınızı yazınız..." 
-                style="width:100%; padding:12px; margin:12px 0; border:1px solid #ccc; border-radius:6px; height:100px;"></textarea>
-      
-      <button type="submit" 
-              style="background:#006d77; color:white; padding:14px; border:none; border-radius:6px; cursor:pointer; width:100%; font-size:17px; margin-top:10px;">
-        Destek Talebimi Gönder
-      </button>
-    </form>
-  </div>
+.popup-box{
+background:#fff;
+width:100%;
+max-width:620px;
+border-radius:22px;
+overflow:hidden;
+box-shadow:0 25px 70px rgba(0,0,0,.35);
+animation:popup .35s ease;
+position:relative;
+}
+
+@keyframes popup{
+
+from{
+transform:scale(.85);
+opacity:0;
+}
+
+to{
+transform:scale(1);
+opacity:1;
+}
+
+}
+
+.close-btn{
+
+position:absolute;
+right:18px;
+top:15px;
+border:none;
+background:none;
+font-size:34px;
+cursor:pointer;
+color:#666;
+
+}
+
+.close-btn:hover{
+
+color:#d62828;
+
+}
+
+.popup-header{
+
+background:linear-gradient(135deg,#006d77,#0096c7);
+padding:35px;
+text-align:center;
+color:#fff;
+
+}
+
+.icon-box{
+
+width:90px;
+height:90px;
+margin:auto;
+border-radius:50%;
+background:#ffffff22;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:45px;
+margin-bottom:15px;
+
+}
+
+.popup-header h2{
+
+font-size:34px;
+margin-bottom:10px;
+
+}
+
+.popup-header p{
+
+font-size:16px;
+line-height:28px;
+
+}
+
+form{
+
+padding:30px;
+
+}
+
+input,
+select,
+textarea{
+
+width:100%;
+padding:15px;
+margin-top:12px;
+border-radius:10px;
+border:1px solid #ddd;
+font-size:16px;
+transition:.3s;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+outline:none;
+border-color:#0096c7;
+box-shadow:0 0 8px rgba(0,150,199,.25);
+
+}
+
+textarea{
+
+resize:none;
+
+}
+
+.gonderBtn{
+
+margin-top:20px;
+width:100%;
+padding:16px;
+background:#006d77;
+color:#fff;
+border:none;
+border-radius:12px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+
+}
+
+.gonderBtn:hover{
+
+background:#004d56;
+
+}
+
+#bilgiKutusu{
+
+display:none;
+margin-top:20px;
+padding:18px;
+border-radius:12px;
+background:#f4fbfc;
+border-left:5px solid #0096c7;
+font-size:15px;
+line-height:28px;
+
+}
+
+#bilgiKutusu h3{
+
+margin-bottom:10px;
+color:#006d77;
+
+}
+
+#bilgiKutusu p{
+
+margin-bottom:8px;
+
+}
+
+#bilgiKutusu strong{
+
+color:#000;
+
+}
+
+.copyBtn{
+
+margin-top:15px;
+padding:10px 18px;
+border:none;
+background:#0096c7;
+color:#fff;
+cursor:pointer;
+border-radius:8px;
+font-weight:bold;
+transition:.3s;
+
+}
+
+.copyBtn:hover{
+
+background:#006d77;
+
+}
+
+.onlineBtn{
+
+display:inline-block;
+margin-top:15px;
+margin-left:8px;
+padding:10px 18px;
+background:#28a745;
+color:#fff;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+
+}
+
+.onlineBtn:hover{
+
+background:#218838;
+
+}
+
+.success-icon{
+
+font-size:80px;
+margin-bottom:20px;
+
+}
+
+#tesekkurMesaji{
+
+padding:45px;
+text-align:center;
+
+}
+
+#tesekkurMesaji h3{
+
+font-size:30px;
+margin-bottom:15px;
+
+}
+
+#tesekkurMesaji p{
+
+font-size:18px;
+line-height:30px;
+
+}
+
+#tesekkurMesaji button{
+
+margin-top:25px;
+padding:15px 30px;
+background:#006d77;
+border:none;
+color:#fff;
+border-radius:10px;
+cursor:pointer;
+font-size:17px;
+
+}
+
+#tesekkurMesaji button:hover{
+
+background:#004d56;
+
+}
+
+@media(max-width:768px){
+
+.popup{
+
+padding:10px;
+
+}
+
+.popup-box{
+
+max-width:100%;
+
+}
+
+.popup-header{
+
+padding:25px;
+
+}
+
+.popup-header h2{
+
+font-size:28px;
+
+}
+
+.icon-box{
+
+width:70px;
+height:70px;
+font-size:35px;
+
+}
+
+form{
+
+padding:20px;
+
+}
+
+}
+
+</style>
+<script>
+
+const destekSecim=document.getElementById("destekSecim");
+const bilgiKutusu=document.getElementById("bilgiKutusu");
+
+destekSecim.addEventListener("change",function(){
+
+let secim=this.value;
+
+bilgiKutusu.style.display="block";
+
+if(secim=="finans"){
+
+bilgiKutusu.innerHTML=`
+
+<h3>💳 Finansal Destek</h3>
+
+<p>
+Derneğimizin faaliyetlerine maddi destek sağlayabilirsiniz.
+</p>
+
+<p><strong>Banka :</strong> Ziraat Bankası</p>
+
+<p><strong>Hesap Sahibi :</strong> Eskişehir Erzurumlular Derneği</p>
+
+<p id="ibanNo"><strong>IBAN :</strong>
+TR00 0000 0000 0000 0000 0000 00
+</p>
+
+<button type="button"
+class="copyBtn"
+onclick="ibanKopyala()">
+
+IBAN Kopyala
+
+</button>
+
+<a href="https://bagis.derneginiz.org"
+target="_blank"
+class="onlineBtn">
+
+Online Bağış
+
+</a>
+
+<br><br>
+
+<img src="images/qr.png"
+style="width:180px;border-radius:10px;">
+
+`;
+
+}
+
+else if(secim=="burs"){
+
+bilgiKutusu.innerHTML=`
+
+<h3>🎓 Burs Desteği</h3>
+
+<p>
+
+Bir öğrencimizin eğitim hayatına destek olabilirsiniz.
+
+</p>
+
+<p>
+
+Burs ödemeleri aşağıdaki IBAN'a yapılmaktadır.
+
+</p>
+
+<p>
+
+<strong>IBAN :</strong>
+
+TR00 0000 0000 0000 0000 0000 00
+
+</p>
+
+`;
+
+}
+
+else if(secim=="kahvalti"){
+
+bilgiKutusu.innerHTML=`
+
+<h3>🍽 Kahvaltı / Yemek Desteği</h3>
+
+<p>
+
+Bir öğrencimizin günlük yemek giderine katkıda bulunabilirsiniz.
+
+</p>
+
+<p>
+
+Destek ödemelerini aşağıdaki IBAN'a gönderebilirsiniz.
+
+</p>
+
+`;
+
+}
+
+else if(secim=="malzeme"){
+
+bilgiKutusu.innerHTML=`
+
+<h3>📦 Malzeme Bağışı</h3>
+
+<p>
+
+Bağışlamak istediğiniz malzemeleri aşağıdaki adrese teslim edebilirsiniz.
+
+</p>
+
+<p>
+
+<strong>Adres :</strong>
+
+....................................
+
+</p>
+
+<p>
+
+<strong>Telefon :</strong>
+
+05xx xxx xx xx
+
+</p>
+
+`;
+
+}
+
+else if(secim=="gonullu"){
+
+bilgiKutusu.innerHTML=`
+
+<h3>🤝 Gönüllülük</h3>
+
+<p>
+
+Lütfen aşağıdaki kutuya;
+
+</p>
+
+<ul>
+
+<li>Mesleğinizi</li>
+
+<li>Hangi günler müsait olduğunuzu</li>
+
+<li>Nasıl katkı sağlayabileceğinizi</li>
+
+</ul>
+
+<p>
+
+Mesaj bölümüne yazınız.
+
+</p>
+
+`;
+
+}
+
+else if(secim=="ulasim"){
+
+bilgiKutusu.innerHTML=`
+
+<h3>🚗 Ulaşım Desteği</h3>
+
+<p>
+
+Araç desteği sağlayabilir veya ulaşım masraflarına katkıda bulunabilirsiniz.
+
+</p>
+
+`;
+
+}
+
+else if(secim=="konaklama"){
+
+bilgiKutusu.innerHTML=`
+
+<h3>🏠 Konaklama Desteği</h3>
+
+<p>
+
+Konaklama desteği vermek istiyorsanız iletişim bilgilerinizle birlikte mesaj bırakınız.
+
+</p>
+
+`;
+
+}
+
+else if(secim=="egitim"){
+
+bilgiKutusu.innerHTML=`
+
+<h3>📚 Eğitim Desteği</h3>
+
+<p>
+
+Kitap, kırtasiye, kurs veya eğitim desteği sağlayabilirsiniz.
+
+</p>
+
+`;
+
+}
+
+else{
+
+bilgiKutusu.innerHTML=`
+
+<h3>📝 Diğer Destek</h3>
+
+<p>
+
+Destek türünüzü mesaj kısmında ayrıntılı olarak yazabilirsiniz.
+
+</p>
+
+`;
+
+}
+
+});
+
+
+
+function ibanKopyala(){
+
+let iban="TR00 0000 0000 0000 0000 0000 00";
+
+navigator.clipboard.writeText(iban);
+
+alert("IBAN panoya kopyalandı.");
+
+}
+
+
+
+function kapatPopup(){
+
+document.getElementById("destekPopup").style.display="none";
+
+}
+
+</script>
+bilgiKutusu.innerHTML=`
+
+<h3>💳 Finansal Destek</h3>
+
+<p>
+Derneğimizin eğitim, burs ve sosyal yardım faaliyetlerine katkıda bulunabilirsiniz.
+</p>
+
+<hr><br>
+
+<label><strong>Destek Tutarı</strong></label>
+
+<select name="bagis_tutari">
+
+<option>250 TL</option>
+
+<option>500 TL</option>
+
+<option>1000 TL</option>
+
+<option>2500 TL</option>
+
+<option>5000 TL</option>
+
+<option>Diğer</option>
+
+</select>
+
+<br><br>
+
+<strong>Banka</strong><br>
+
+Ziraat Bankası
+
+<br><br>
+
+<strong>Hesap Sahibi</strong><br>
+
+Eskişehir Erzurumlular Derneği
+
+<br><br>
+
+<strong>IBAN</strong>
+
+<div style="background:#eef7fb;padding:12px;border-radius:8px;margin-top:8px;font-size:18px;">
+
+TR00 0000 0000 0000 0000 0000 00
+
 </div>
 
-<script>
-// Dinamik Alan Yönetimi
-function destekTuruSecildi(deger) {
-    const dynamic = document.getElementById('dynamicFields');
-    dynamic.innerHTML = '';
+<br>
 
-    const iban = "TR00 0000 0000 0000 0000 0000 00"; // Gerçek IBAN'ınızı buraya yazın
+<button type="button"
 
-    if (deger === "Finansal Destek" || deger === "Burs Desteği") {
-        dynamic.innerHTML = `
-            <div style="background:#e0f7fa; padding:18px; border-radius:10px; margin:15px 0;">
-                <p style="margin:0 0 12px 0; font-weight:600; color:#006d77;">💰 Ödeme Bilgileri</p>
-                <p><strong>IBAN:</strong> ${iban}</p>
-                <input type="text" name="odeme_tutari" placeholder="Ödeme yaptığınız tutar (₺)" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-                <small style="color:#555;">Dekontu mesaj kısmına ekleyebilir veya e-posta ile gönderebilirsiniz.</small>
-            </div>
-        `;
-    } 
-    else if (deger === "Malzeme Bağışı") {
-        dynamic.innerHTML = `
-            <textarea name="malzeme_detay" placeholder="Bağışlamak istediğiniz malzemeleri detaylı yazın..." 
-                      style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px; height:90px;"></textarea>
-        `;
-    } 
-    else if (deger === "Zaman / Gönüllülük") {
-        dynamic.innerHTML = `
-            <input type="text" name="gorev_alani" placeholder="Hangi alanda gönüllü olmak istersiniz?" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-            <input type="text" name="zaman" placeholder="Haftada kaç saat ayırabilirsiniz?" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-        `;
-    } 
-    else if (deger === "Kahvaltı / Yemek Desteği") {
-        dynamic.innerHTML = `
-            <input type="text" name="yemek_kisi" placeholder="Kaç kişilik destek vereceksiniz?" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-        `;
-    } 
-    else if (deger === "Konaklama Desteği" || deger === "Ulaşım Desteği") {
-        dynamic.innerHTML = `
-            <textarea name="detay" placeholder="Detayları yazınız (kişi sayısı, tarih, süre vb.)" 
-                      style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px; height:80px;"></textarea>
-        `;
-    } 
-    else if (deger === "Eğitim Desteği") {
-        dynamic.innerHTML = `
-            <input type="text" name="egitim_konusu" placeholder="Hangi konuda eğitim desteği?" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-        `;
-    } 
-    else if (deger === "Diğer") {
-        dynamic.innerHTML = `
-            <textarea name="diger_detay" placeholder="Lütfen destek türünüzü ve detayları açıklayın..." 
-                      style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px; height:90px;"></textarea>
-        `;
-    }
-}
-</script>
-<!-- DESTEK OL FORMU - 1. VERSİYON -->
-<div id="destekForm" class="popup-form" style="display:block; text-align:center; font-family:Arial, sans-serif;">
-  <div class="popup-icerik" style="display:inline-block; text-align:left; background:#f9f9f9; padding:25px; border-radius:12px; box-shadow:0 0 15px rgba(0,0,0,0.15); max-width:520px; width:100%;">
-    
-    <span class="kapat" onclick="this.parentElement.parentElement.style.display='none';" 
-          style="float:right; font-size:28px; cursor:pointer; color:#aaa;">&times;</span>
-    
-    <h2 style="color:#006d77; text-align:center; margin-bottom:20px;">Destek Ol</h2>
-    
-    <form id="destekFormElement" action="https://formspree.io/f/xpqowknj" method="POST">
-      
-      <input type="text" name="adsoyad" placeholder="Ad Soyad" required 
-             style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-      
-      <input type="email" name="email" placeholder="E-posta" required 
-             style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-      
-      <input type="tel" name="telefon" placeholder="Telefon" 
-             style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
+class="copyBtn"
 
-      <select id="destekTuru" name="destek_turu" required onchange="destekTuruSecildi(this.value)"
-              style="width:100%; padding:12px; margin:12px 0; border:1px solid #ccc; border-radius:6px;">
-        <option value="">Destek Türü Seçiniz</option>
-        <option value="Finansal Destek">Finansal Destek</option>
-        <option value="Burs Desteği">Burs Desteği</option>
-        <option value="Malzeme Bağışı">Malzeme Bağışı</option>
-        <option value="Zaman / Gönüllülük">Zaman / Gönüllülük</option>
-        <option value="Eğitim Desteği">Eğitim Desteği</option>
-        <option value="Ulaşım Desteği">Ulaşım Desteği</option>
-        <option value="Konaklama Desteği">Konaklama Desteği</option>
-        <option value="Kahvaltı / Yemek Desteği">Kahvaltı / Yemek Desteği</option>
-        <option value="Diğer">Diğer</option>
-      </select>
+onclick="ibanKopyala()">
 
-      <!-- Dinamik Alanlar -->
-      <div id="dynamicFields" style="margin:15px 0;"></div>
+📋 IBAN Kopyala
 
-      <textarea name="mesaj" placeholder="Ek detay ve notlarınızı yazınız..." 
-                style="width:100%; padding:12px; margin:12px 0; border:1px solid #ccc; border-radius:6px; height:100px;"></textarea>
-      
-      <button type="submit" 
-              style="background:#006d77; color:white; padding:14px; border:none; border-radius:6px; cursor:pointer; width:100%; font-size:17px; margin-top:10px;">
-        Destek Talebimi Gönder
-      </button>
-    </form>
-  </div>
-</div>
+</button>
 
-<script>
-// Dinamik alanlar
-function destekTuruSecildi(deger) {
-    const dynamic = document.getElementById('dynamicFields');
-    dynamic.innerHTML = '';
+<a href="#"
 
-    const iban = "TR00 0000 0000 0000 0000 0000 00"; // Gerçek IBAN buraya
+class="onlineBtn">
 
-    if (deger === "Finansal Destek" || deger === "Burs Desteği") {
-        dynamic.innerHTML = `
-            <div style="background:#e0f7fa; padding:18px; border-radius:10px; margin:15px 0;">
-                <p style="margin:0 0 12px 0; font-weight:600; color:#006d77;">💰 Ödeme Bilgileri</p>
-                <p><strong>IBAN:</strong> ${iban}</p>
-                <input type="text" name="odeme_tutari" placeholder="Ödeme Tutarı (₺)" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-            </div>
-        `;
-    } 
-    else if (deger === "Malzeme Bağışı") {
-        dynamic.innerHTML = `
-            <textarea name="malzeme_detay" placeholder="Bağışlamak istediğiniz malzemeleri yazın..." 
-                      style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px; height:90px;"></textarea>
-        `;
-    } 
-    else if (deger === "Zaman / Gönüllülük") {
-        dynamic.innerHTML = `
-            <input type="text" name="gorev" placeholder="Hangi alanda gönüllü olacaksınız?" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-        `;
-    } 
-    else if (deger === "Diğer") {
-        dynamic.innerHTML = `
-            <textarea name="diger_detay" placeholder="Destek türünüzü ve detayları açıklayın..." 
-                      style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px; height:90px;"></textarea>
-        `;
-    }
-}
-</script>
-<!-- DESTEK OL FORMU - 3. VERSİYON (En Gelişmiş) -->
-<div id="destekForm" class="popup-form" style="display:block; text-align:center; font-family:Arial, sans-serif;">
-  <div class="popup-icerik" style="display:inline-block; text-align:left; background:#f9f9f9; padding:25px; border-radius:12px; box-shadow:0 0 15px rgba(0,0,0,0.15); max-width:520px; width:100%;">
-    
-    <span class="kapat" onclick="this.parentElement.parentElement.style.display='none';" 
-          style="float:right; font-size:28px; cursor:pointer; color:#aaa;">&times;</span>
-    
-    <h2 style="color:#006d77; text-align:center; margin-bottom:20px;">Destek Ol</h2>
-    
-    <form id="destekFormElement" action="https://formspree.io/f/xpqowknj" method="POST">
-      
-      <input type="text" name="adsoyad" placeholder="Ad Soyad" required style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-      <input type="email" name="email" placeholder="E-posta" required style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-      <input type="tel" name="telefon" placeholder="Telefon" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
+💳 Online Bağış
 
-      <select id="destekTuru" name="destek_turu" required onchange="destekTuruSecildi(this.value)"
-              style="width:100%; padding:12px; margin:12px 0; border:1px solid #ccc; border-radius:6px;">
-        <option value="">Destek Türü Seçiniz</option>
-        <option value="Finansal Destek">Finansal Destek</option>
-        <option value="Burs Desteği">Burs Desteği</option>
-        <option value="Malzeme Bağışı">Malzeme Bağışı</option>
-        <option value="Zaman / Gönüllülük">Zaman / Gönüllülük</option>
-        <option value="Eğitim Desteği">Eğitim Desteği</option>
-        <option value="Ulaşım Desteği">Ulaşım Desteği</option>
-        <option value="Konaklama Desteği">Konaklama Desteği</option>
-        <option value="Kahvaltı / Yemek Desteği">Kahvaltı / Yemek Desteği</option>
-        <option value="Diğer">Diğer</option>
-      </select>
+</a>
 
-      <!-- Dinamik Alanlar -->
-      <div id="dynamicFields" style="margin:15px 0;"></div>
+<br><br>
 
-      <textarea name="mesaj" placeholder="Ek detay ve notlarınızı yazınız..." 
-                style="width:100%; padding:12px; margin:12px 0; border:1px solid #ccc; border-radius:6px; height:100px;"></textarea>
-      
-      <button type="submit" 
-              style="background:#006d77; color:white; padding:14px; border:none; border-radius:6px; cursor:pointer; width:100%; font-size:17px; margin-top:10px;">
-        Destek Talebimi Gönder
-      </button>
-    </form>
-  </div>
-</div>
+<center>
 
-<script>
-// En kapsamlı dinamik alan yönetimi
-function destekTuruSecildi(deger) {
-    const dynamic = document.getElementById('dynamicFields');
-    dynamic.innerHTML = '';
+<img src="images/qr.png"
 
-    const iban = "TR00 0000 0000 0000 0000 0000 00"; // Gerçek IBAN buraya yazın
+style="width:180px">
 
-    if (deger === "Finansal Destek" || deger === "Burs Desteği") {
-        dynamic.innerHTML = `
-            <div style="background:#e0f7fa; padding:18px; border-radius:10px; margin:15px 0;">
-                <p style="margin:0 0 12px 0; font-weight:600; color:#006d77;">💰 Ödeme Bilgileri</p>
-                <p><strong>IBAN:</strong> ${iban}</p>
-                <input type="text" name="odeme_tutari" placeholder="Ödeme yaptığınız tutar (₺)" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-                <small style="color:#555;">Dekontu mesaj alanına ekleyebilirsiniz.</small>
-            </div>
-        `;
-    } 
-    else if (deger === "Malzeme Bağışı") {
-        dynamic.innerHTML = `
-            <textarea name="malzeme_detay" placeholder="Bağışlamak istediğiniz malzemeleri detaylı yazınız..." 
-                      style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px; height:90px;"></textarea>
-        `;
-    } 
-    else if (deger === "Zaman / Gönüllülük") {
-        dynamic.innerHTML = `
-            <input type="text" name="gorev_alani" placeholder="Hangi alanda gönüllü olmak istersiniz?" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-            <input type="text" name="zaman_araligi" placeholder="Haftada kaç saat / hangi günlerde?" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-        `;
-    } 
-    else if (deger === "Kahvaltı / Yemek Desteği") {
-        dynamic.innerHTML = `
-            <input type="text" name="yemek_adedi" placeholder="Kaç kişilik yemek/kahvaltı desteği?" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-            <input type="text" name="tarih" placeholder="Hangi tarihlerde verebilirsiniz?" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-        `;
-    } 
-    else if (deger === "Konaklama Desteği" || deger === "Ulaşım Desteği") {
-        dynamic.innerHTML = `
-            <textarea name="konaklama_detay" placeholder="Detayları yazınız (kişi sayısı, tarih, süre vb.)" 
-                      style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px; height:80px;"></textarea>
-        `;
-    } 
-    else if (deger === "Eğitim Desteği") {
-        dynamic.innerHTML = `
-            <input type="text" name="egitim_konusu" placeholder="Hangi konuda eğitim desteği vereceksiniz?" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-        `;
-    } 
-    else if (deger === "Diğer") {
-        dynamic.innerHTML = `
-            <textarea name="diger_detay" placeholder="Lütfen destek türünüzü ve detayları açıklayın..." 
-                      style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px; height:90px;"></textarea>
-        `;
-    }
-}
-</script>
-<!-- DESTEK OL FORMU - 4. VERSİYON (Sade ve Temiz) -->
-<div id="destekForm" class="popup-form" style="display:block; text-align:center; font-family:Arial, sans-serif;">
-  <div class="popup-icerik" style="display:inline-block; text-align:left; background:#f9f9f9; padding:25px; border-radius:12px; box-shadow:0 0 15px rgba(0,0,0,0.15); max-width:500px; width:100%;">
-    
-    <span class="kapat" onclick="this.parentElement.parentElement.style.display='none';" 
-          style="float:right; font-size:28px; cursor:pointer; color:#aaa;">&times;</span>
-    
-    <h2 style="color:#006d77; text-align:center; margin-bottom:20px;">Destek Ol</h2>
-    
-    <form id="destekFormElement" action="https://formspree.io/f/xpqowknj" method="POST">
-      
-      <input type="text" name="adsoyad" placeholder="Ad Soyad" required style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-      <input type="email" name="email" placeholder="E-posta" required style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-      <input type="tel" name="telefon" placeholder="Telefon" style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
+<br>
 
-      <select id="destekTuru" name="destek_turu" required onchange="destekTuruSecildi(this.value)"
-              style="width:100%; padding:12px; margin:12px 0; border:1px solid #ccc; border-radius:6px;">
-        <option value="">Destek Türü Seçiniz</option>
-        <option value="Finansal Destek">Finansal Destek</option>
-        <option value="Burs Desteği">Burs Desteği</option>
-        <option value="Malzeme Bağışı">Malzeme Bağışı</option>
-        <option value="Zaman / Gönüllülük">Zaman / Gönüllülük</option>
-        <option value="Eğitim Desteği">Eğitim Desteği</option>
-        <option value="Ulaşım Desteği">Ulaşım Desteği</option>
-        <option value="Konaklama Desteği">Konaklama Desteği</option>
-        <option value="Kahvaltı / Yemek Desteği">Kahvaltı / Yemek Desteği</option>
-        <option value="Diğer">Diğer</option>
-      </select>
+QR Kod ile Öde
 
-      <div id="dynamicFields" style="margin:15px 0;"></div>
+</center>
 
-      <textarea name="mesaj" placeholder="Ek detay ve notlarınızı yazınız..." 
-                style="width:100%; padding:12px; margin:12px 0; border:1px solid #ccc; border-radius:6px; height:100px;"></textarea>
-      
-      <button type="submit" 
-              style="background:#006d77; color:white; padding:14px; border:none; border-radius:6px; cursor:pointer; width:100%; font-size:17px; margin-top:10px;">
-        Gönder
-      </button>
-    </form>
-  </div>
-</div>
+`;
+bilgiKutusu.innerHTML=`
 
-<script>
-function destekTuruSecildi(deger) {
-    const dynamic = document.getElementById('dynamicFields');
-    dynamic.innerHTML = '';
+<h3>🎓 Öğrenci Burs Desteği</h3>
 
-    const iban = "TR00 0000 0000 0000 0000 0000 00";
+<p>
 
-    if (deger === "Finansal Destek" || deger === "Burs Desteği") {
-        dynamic.innerHTML = `
-            <div style="background:#e0f7fa; padding:15px; border-radius:8px;">
-                <p style="font-weight:600; color:#006d77;">💰 Ödeme Bilgileri</p>
-                <p><strong>IBAN:</strong> ${iban}</p>
-                <input type="text" name="tutar" placeholder="Ödeme Tutarı (₺)" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-            </div>
-        `;
-    } 
-    else if (deger === "Malzeme Bağışı" || deger === "Diğer") {
-        dynamic.innerHTML = `
-            <textarea name="detay" placeholder="Lütfen detayları yazınız..." 
-                      style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px; height:80px;"></textarea>
-        `;
-    }
-}
-</script>
+Bir öğrencimizin eğitimine katkı sağlayabilirsiniz.
+
+</p>
+
+<table style="width:100%;margin-top:15px">
+
+<tr>
+
+<td>1 Aylık Burs</td>
+
+<td><b>2.500 TL</b></td>
+
+</tr>
+
+<tr>
+
+<td>6 Aylık Burs</td>
+
+<td><b>15.000 TL</b></td>
+
+</tr>
+
+<tr>
+
+<td>12 Aylık Burs</td>
+
+<td><b>30.000 TL</b></td>
+
+</tr>
+
+</table>
+
+<br>
+
+IBAN
+
+<br>
+
+TR00....
+
+`;
+bilgiKutusu.innerHTML=`
+
+<h3>🍽 Yemek Desteği</h3>
+
+<p>
+
+Bir öğrencimizin günlük beslenmesine katkıda bulunabilirsiniz.
+
+</p>
+
+<ul>
+
+<li>☕ Kahvaltı : 150 TL</li>
+
+<li>🍛 Öğle Yemeği : 250 TL</li>
+
+<li>🍲 Akşam Yemeği : 250 TL</li>
+
+<li>❤️ Günlük Destek : 650 TL</li>
+
+</ul>
+
+<br>
+
+IBAN
+
+<br>
+
+TR00....
+
+`;
+bilgiKutusu.innerHTML=`
+
+<h3>📦 Malzeme Bağışı</h3>
+
+<label>
+
+Bağış Türü
+
+</label>
+
+<select>
+
+<option>Kitap</option>
+
+<option>Bilgisayar</option>
+
+<option>Tablet</option>
+
+<option>Kırtasiye</option>
+
+<option>Gıda</option>
+
+<option>Giysi</option>
+
+<option>Mobilya</option>
+
+<option>Diğer</option>
+
+</select>
+
+<br><br>
+
+<strong>Teslim Adresi</strong>
+
+<br>
+
+Eskişehir Erzurumlular Derneği
+
+<br>
+
+............
+
+<br>
+
+Telefon
+
+<br>
+
+05xx xxx xx xx
+
+`;
+bilgiKutusu.innerHTML=`
+
+<h3>🤝 Gönüllülük</h3>
+
+<input
+
+type="text"
+
+name="meslek"
+
+placeholder="Mesleğiniz">
+
+<input
+
+type="text"
+
+name="uzmanlik"
+
+placeholder="Uzmanlık Alanınız">
+
+<select
+
+name="musait">
+
+<option>Pazartesi</option>
+
+<option>Salı</option>
+
+<option>Çarşamba</option>
+
+<option>Perşembe</option>
+
+<option>Cuma</option>
+
+<option>Cumartesi</option>
+
+<option>Pazar</option>
+
+</select>
+
+`;
+bilgiKutusu.innerHTML=`
+
+<h3>🚗 Ulaşım Desteği</h3>
+
+<select>
+
+<option>Şehir İçi</option>
+
+<option>Şehirler Arası</option>
+
+<option>Araç Tahsisi</option>
+
+<option>Yakıt Desteği</option>
+
+</select>
+
+`;
+bilgiKutusu.innerHTML=`
+
+<h3>🏠 Konaklama Desteği</h3>
+
+<select>
+
+<option>1 Gün</option>
+
+<option>3 Gün</option>
+
+<option>1 Hafta</option>
+
+<option>1 Ay</option>
+
+</select>
+
+`;
+bilgiKutusu.innerHTML=`
+
+<h3>📚 Eğitim Desteği</h3>
+
+<select>
+
+<option>Kitap</option>
+
+<option>Kurs</option>
+
+<option>Kırtasiye</option>
+
+<option>Online Eğitim</option>
+
+<option>Yabancı Dil</option>
+
+</select>
+
+`;
