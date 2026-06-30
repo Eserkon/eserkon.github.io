@@ -1,226 +1,111 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bize Ulaşın - ESERKON</title>
-  <style>
-    body {
-      font-family: system-ui, sans-serif;
-      background: #f1f5f9;
-      margin: 0;
-      padding: 40px 15px;
-    }
-    .container {
-      max-width: 1076px;
-      margin: auto;
-      background: white;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-      padding: 20px;
-    }
-    .header {
-      background: #7c5c3e;
-      color: white;
-      text-align: center;
-      padding: 22px;
-      font-size: 26px;
-      font-weight: bold;
-    }
-    .marquee-container {
-      background: #7c5c3e;
-      color: white;
-      overflow: hidden;
-      white-space: nowrap;
-      height: 48px;
-      line-height: 48px;
-      font-weight: 600;
-      font-size: 18px;
-    }
-    .marquee {
-      display: inline-block;
-      padding-left: 100%;
-      animation: kay 20s linear infinite;
-    }
-    @keyframes kay {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-    .form-body {
-      padding: 30px;
-    }
-    label {
-      font-weight: 600;
-      margin-top: 15px;
-      display: block;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 14px;
-      margin-top: 6px;
-      border-radius: 10px;
-      border: 1px solid #cbd5e1;
-      background: #f8fafc;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 25px;
-      width: 100%;
-      padding: 16px;
-      border: none;
-      border-radius: 10px;
-      background: #7c5c3e;
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #5d432c;
-    }
-    #thankyou {
-      display: none;
-      text-align: center;
-      padding: 30px;
-      background: #f8fafc;
-      border-radius: 12px;
-      margin-top: 20px;
-    }
-    #thankyou h2 {
-      color: #333;
-      font-size: 24px;
-    }
-    #thankyou a {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 20px;
-      background: #7c5c3e;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-    }
-    #thankyou a:hover {
-      background: #5d432c;
-    }
-    @media (max-width: 768px) {
-      .container {
-        padding: 15px;
-        margin: 10px;
-      }
-      .form-body {
-        padding: 20px;
-      }
-      .header {
-        font-size: 22px;
-        padding: 15px;
-      }
-      .marquee-container {
-        font-size: 16px;
-        height: 40px;
-        line-height: 40px;
-      }
-    }
-    .home-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: linear-gradient(135deg, #00b4d8, #0077b6);
-      color: white;
-      padding: 12px 18px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-      z-index: 9999;
-    }
-    .home-btn:hover {
-      transform: scale(1.08);
-    }
-  </style>
-</head>
-<body>
-  <!-- ANA SAYFAYA DÖN -->
-  <a class="home-btn" href="anasayfa.html">🏠 Ana Sayfaya Dön</a>
+<!-- BİZE ULAŞIN - SAĞ TARAF FORMU -->
+<div class="flex justify-end py-12">
+    <div class="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+        
+        <!-- Başlık -->
+        <div class="flex items-center gap-4 mb-8">
+            <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-4xl shadow-inner">
+                ✉️
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-red-700">Bize Ulaşın</h2>
+                <p class="text-gray-600 text-sm">Önerileriniz, şikayetleriniz ve talepleriniz için</p>
+            </div>
+        </div>
 
-  <!-- İÇERİK -->
-  <div class="container">
-    <div class="header">BİZE ULAŞIN</div>
-    <div class="marquee-container">
-      <div class="marquee">
-        DERNEĞİMİZ İÇİN ŞİKAYET VE ÖNERİLERİNİZİ BİZE YAZABİLİRSİNİZ BİZİM İÇİN GÖRÜŞLERİNİZ ÖNEMLİDİR
-        DERNEĞİMİZ İÇİN ŞİKAYET VE ÖNERİLERİNİZİ BİZE YAZABİLİRSİNİZ BİZİM İÇİN GÖRÜŞLERİNİZ ÖNEMLİDİR
-      </div>
+        <!-- Form -->
+        <form id="bizeUlasinForm" action="https://formspree.io/f/xpqowknj" method="POST" class="space-y-5">
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Ad Soyad</label>
+                <input type="text" name="name" required
+                       class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 transition">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Telefon Numaranız</label>
+                <input type="tel" name="phone" 
+                       class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 transition">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">E-posta Adresiniz</label>
+                <input type="email" name="email" required
+                       class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 transition">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Konu</label>
+                <select name="subject" required
+                        class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 transition">
+                    <option value="">Konu Seçin...</option>
+                    <option value="Öneri">Öneri</option>
+                    <option value="Şikayet">Şikayet</option>
+                    <option value="Talep">Talep</option>
+                    <option value="Yardım">Yardım Talebi</option>
+                    <option value="Diğer">Diğer</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Mesajınız</label>
+                <textarea name="message" rows="5" required
+                          class="w-full px-5 py-3 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-red-500 transition resize-none"
+                          placeholder="Mesajınızı buraya yazın..."></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn"
+                    class="w-full bg-red-700 hover:bg-red-800 text-white font-semibold py-4 rounded-2xl text-lg transition-all duration-300 mt-2">
+                Mesajı Gönder
+            </button>
+        </form>
+
+        <!-- Başarı Mesajı -->
+        <div id="successMessage" class="hidden mt-6 p-4 bg-green-100 text-green-700 rounded-2xl text-center font-medium">
+            ✅ Mesajınız başarıyla gönderildi. Teşekkür ederiz!
+        </div>
+
+        <p class="text-center text-xs text-gray-500 mt-6">
+            Mesajınız gizlilikle işlenecek ve en kısa sürede değerlendirilecektir.
+        </p>
     </div>
-    <div class="form-body">
-      <form id="bizeUlasinForm" action="https://formspree.io/f/xpqowknj" method="POST">
-        <label>Adınız Soyadınız</label>
-        <input type="text" name="name" placeholder="Ad Soyad" required />
+</div>
 
-        <label>Telefon Numaranız</label>
-        <input type="tel" name="phone" placeholder="05XXX XXX XX XX" />
+<script>
+// Formspree ile entegrasyon
+const form = document.getElementById('bizeUlasinForm');
+const successMsg = document.getElementById('successMessage');
+const submitBtn = document.getElementById('submitBtn');
 
-        <label>E-posta Adresiniz</label>
-        <input type="email" name="email" placeholder="ornek@email.com" required />
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    submitBtn.innerHTML = 'Gönderiliyor...';
+    submitBtn.disabled = true;
 
-        <label>Konu / Tür</label>
-        <select name="subject" required>
-          <option value="">Seçiniz...</option>
-          <option>Öneri</option>
-          <option>Şikayet</option>
-          <option>Talep</option>
-          <option>Yardım</option>
-        </select>
-
-        <label>Mesajınız</label>
-        <textarea name="message" placeholder="Mesajınızı yazın..." rows="6" required></textarea>
-
-        <button type="submit">GÖNDER</button>
-      </form>
-
-      <div id="thankyou">
-        <h2>Teşekkür ederiz, mesajınız tarafımıza iletilmiştir.</h2>
-        <a href="javascript:location.reload()">Yeni Mesaj Gönder</a>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const form = document.getElementById('bizeUlasinForm');
-    const thankyou = document.getElementById('thankyou');
-
-    form.addEventListener('submit', async function(e) {
-      // Formspree'nin çalışması için preventDefault yapmıyoruz, 
-      // ama görsel olarak teşekkür mesajı göstermek için fetch kullanıyoruz
-      const submitButton = form.querySelector('button');
-      const originalText = submitButton.textContent;
-      
-      submitButton.textContent = "Gönderiliyor...";
-      submitButton.disabled = true;
-
-      try {
+    try {
         const response = await fetch(form.action, {
-          method: "POST",
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
         });
 
         if (response.ok) {
-          form.style.display = "none";
-          thankyou.style.display = "block";
+            successMsg.classList.remove('hidden');
+            form.reset();
+            
+            // 6 saniye sonra başarı mesajını gizle
+            setTimeout(() => {
+                successMsg.classList.add('hidden');
+            }, 6000);
         } else {
-          alert("Mesaj gönderilemedi. Lütfen tekrar deneyin.");
+            alert("Mesaj gönderilemedi. Lütfen tekrar deneyin.");
         }
-      } catch (error) {
-        alert("Bağlantı hatası. Lütfen internet bağlantınızı kontrol edin.");
-      }
+    } catch (error) {
+        alert("Bağlantı hatası. Lütfen internetinizi kontrol edin.");
+    }
 
-      submitButton.textContent = originalText;
-      submitButton.disabled = false;
-    });
-  </script>
-</body>
-</html>
+    submitBtn.innerHTML = 'Mesajı Gönder';
+    submitBtn.disabled = false;
+});
+</script>
