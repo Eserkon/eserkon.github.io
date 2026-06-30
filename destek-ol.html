@@ -1,94 +1,39 @@
-<script>
-// Destek Formu Dinamik İşlemleri
-document.getElementById("destekSecimSidebar").addEventListener("change", function() {
-    const content = document.getElementById("dynamicContent");
-    let html = "";
+<!-- ==================== SAĞ TARAF - GELİŞTİRİLMİŞ DESTEK OL FORMU ==================== -->
+<div class="lg:col-span-4">
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 sticky top-8">
+        <div class="bg-gradient-to-r from-red-600 to-red-700 text-white p-6 text-center">
+            <div class="text-5xl mb-3">❤️</div>
+            <h3 class="text-2xl font-bold">Destek Ol</h3>
+            <p class="text-red-100 mt-1">Birlikte Daha Güçlü Olalım</p>
+        </div>
 
-    if (this.value === "finans") {
-        html = `
-            <div class="mb-4">
-                <label class="block text-sm font-semibold mb-2">Destek Tutarı</label>
-                <div class="grid grid-cols-2 gap-3">
-                    <button type="button" onclick="secimYap(this, '500 TL')" class="tutar-btn">500 TL</button>
-                    <button type="button" onclick="secimYap(this, '1000 TL')" class="tutar-btn">1.000 TL</button>
-                    <button type="button" onclick="secimYap(this, '2500 TL')" class="tutar-btn">2.500 TL</button>
-                    <button type="button" onclick="secimYap(this, '5000 TL')" class="tutar-btn">5.000 TL</button>
-                </div>
-            </div>
-            <div>
-                <label class="block text-sm font-semibold mb-2">Banka Seçin</label>
-                <select id="bankaSecim" class="w-full p-4 border border-gray-300 rounded-xl" onchange="ibanGoster()">
-                    <option value="">Banka Seçiniz</option>
-                    <option value="ziraat">Ziraat Bankası</option>
-                    <option value="vakif">Vakıfbank</option>
-                    <option value="isbank">İş Bankası</option>
+        <div class="p-6">
+            <form id="destekFormSidebar" action="https://formspree.io/f/mgvglwbz" method="POST">
+                
+                <input type="text" name="adsoyad" placeholder="Ad Soyad" required class="w-full p-4 border border-gray-300 rounded-xl mb-4">
+                <input type="email" name="email" placeholder="E-Posta Adresiniz" required class="w-full p-4 border border-gray-300 rounded-xl mb-4">
+                <input type="tel" name="telefon" placeholder="Telefon Numaranız" class="w-full p-4 border border-gray-300 rounded-xl mb-4">
+
+                <!-- Destek Türü -->
+                <select id="destekSecimSidebar" name="destek_turu" required class="w-full p-4 border border-gray-300 rounded-xl mb-4">
+                    <option value="">Destek Türü Seçiniz</option>
+                    <option value="finans">💳 Finansal Destek</option>
+                    <option value="burs">🎓 Burs Desteği</option>
+                    <option value="yemek">🍽 Yemek/Kahvaltı Desteği</option>
+                    <option value="egitim">📚 Eğitim Desteği</option>
+                    <option value="malzeme">📦 Malzeme Bağışı</option>
+                    <option value="gonullu">🤝 Gönüllülük</option>
                 </select>
-                <div id="ibanAlani" class="mt-4 hidden bg-gray-50 p-4 rounded-xl border"></div>
-            </div>`;
-    } 
-    else if (this.value === "burs") {
-        html = `
-            <label class="block text-sm font-semibold mb-3">Burs Paketleri</label>
-            <div class="space-y-3">
-                <button type="button" onclick="secimYap(this, 'Aylık Burs - 2500 TL')" class="plan-btn">1 Aylık - 2.500 TL</button>
-                <button type="button" onclick="secimYap(this, '6 Aylık Burs - 15000 TL')" class="plan-btn">6 Aylık - 15.000 TL</button>
-                <button type="button" onclick="secimYap(this, '12 Aylık Burs - 30000 TL')" class="plan-btn">12 Aylık - 30.000 TL</button>
-            </div>`;
-    } 
-    else if (this.value === "yemek") {
-        html = `
-            <label class="block text-sm font-semibold mb-3">Yemek Paketleri</label>
-            <div class="space-y-3">
-                <button type="button" onclick="secimYap(this, 'Kahvaltı - 150 TL')" class="plan-btn">Kahvaltı Paketi - 150 TL</button>
-                <button type="button" onclick="secimYap(this, 'Günlük Yemek - 650 TL')" class="plan-btn">Günlük Tam Paket - 650 TL</button>
-            </div>`;
-    } 
-    else if (this.value === "egitim") {
-        html = `
-            <button type="button" onclick="window.open('https://odeme.linkiniz.com/kurs','_blank')" class="w-full bg-green-600 text-white py-4 rounded-2xl font-bold">
-                💳 Kurs Ücretini Online Öde
-            </button>`;
-    }
 
-    content.innerHTML = html;
-});
+                <!-- Dinamik Alan -->
+                <div id="dynamicContent" class="mb-6"></div>
 
-function secimYap(btn, deger) {
-    document.querySelectorAll('.tutar-btn, .plan-btn').forEach(b => b.classList.remove('!bg-green-600', '!text-white'));
-    btn.classList.add('!bg-green-600', '!text-white');
-    
-    let hidden = document.getElementById("selectedPlan");
-    if (!hidden) {
-        hidden = document.createElement("input");
-        hidden.type = "hidden";
-        hidden.name = "secilen_plan";
-        hidden.id = "selectedPlan";
-        document.getElementById("destekFormSidebar").appendChild(hidden);
-    }
-    hidden.value = deger;
-}
+                <textarea name="mesaj" rows="3" placeholder="Ek açıklama yazabilirsiniz..." class="w-full p-4 border border-gray-300 rounded-xl mb-6"></textarea>
 
-function ibanGoster() {
-    const banka = document.getElementById("bankaSecim").value;
-    const ibanAlani = document.getElementById("ibanAlani");
-    
-    let iban = "";
-    if (banka === "ziraat") iban = "TR12 0000 0000 0000 0000 0000 01";
-    else if (banka === "vakif") iban = "TR45 0000 0000 0000 0000 0000 02";
-    else if (banka === "isbank") iban = "TR78 0000 0000 0000 0000 0000 03";
-
-    if (iban) {
-        ibanAlani.innerHTML = `
-            <strong>IBAN:</strong><br>
-            <span class="font-mono text-lg">${iban}</span><br><br>
-            <button onclick="kopyala('${iban}')" class="bg-blue-600 text-white px-5 py-2 rounded-xl text-sm">📋 IBAN Kopyala</button>
-        `;
-        ibanAlani.classList.remove("hidden");
-    }
-}
-
-function kopyala(iban) {
-    navigator.clipboard.writeText(iban);
-    alert("✅ IBAN kopyalandı!");
-}
-</script>
+                <button type="submit" class="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-4 rounded-2xl text-lg transition">
+                    Talebimi Gönder
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
