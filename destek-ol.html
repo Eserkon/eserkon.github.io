@@ -1,1045 +1,274 @@
 <!-- ========================= DESTEK OL POPUP ========================= -->
-
 <div id="destekPopup" class="popup">
+    <div class="popup-box">
+        <button class="close-btn" onclick="kapatPopup()">×</button>
+        
+        <div class="popup-header">
+            <div class="icon-box">❤️</div>
+            <h2>Destek Ol</h2>
+            <p>Derneğimizin eğitim, burs ve sosyal yardım faaliyetlerine destek olarak iyiliğin bir parçası olabilirsiniz.</p>
+        </div>
 
-<div class="popup-box">
+        <form id="destekForm" action="https://formspree.io/f/mgvglwbz" method="POST">
+            <input type="text" name="adsoyad" placeholder="Ad Soyad" required>
+            <input type="email" name="email" placeholder="E-Posta Adresiniz" required>
+            <input type="tel" name="telefon" placeholder="Telefon Numaranız">
 
-<button class="close-btn" onclick="kapatPopup()">&times;</button>
+            <select id="destekSecim" name="destek_turu" required>
+                <option value="">Destek Türü Seçiniz</option>
+                <option value="finans">💳 Finansal Destek</option>
+                <option value="burs">🎓 Burs Desteği</option>
+                <option value="kahvalti">🍽 Yemek / Kahvaltı Desteği</option>
+                <option value="malzeme">📦 Malzeme Bağışı</option>
+                <option value="gonullu">🤝 Gönüllülük</option>
+                <option value="ulasim">🚗 Ulaşım Desteği</option>
+                <option value="konaklama">🏠 Konaklama Desteği</option>
+                <option value="egitim">📚 Eğitim Desteği</option>
+                <option value="diger">📝 Diğer</option>
+            </select>
 
-<div class="popup-header">
+            <!-- Dinamik Bilgi Kutusu -->
+            <div id="bilgiKutusu"></div>
 
-<div class="icon-box">
-❤️
+            <textarea name="mesaj" rows="4" placeholder="Destek vermek istediğiniz konu hakkında kısa açıklama yazabilirsiniz..."></textarea>
+
+            <button type="submit" class="gonderBtn">Destek Talebimi Gönder</button>
+        </form>
+
+        <!-- Teşekkür Mesajı -->
+        <div id="tesekkurMesaji" style="display:none; padding:45px; text-align:center;">
+            <div class="success-icon">✅</div>
+            <h3>Teşekkür Ederiz!</h3>
+            <p>Desteğiniz için çok teşekkür ederiz.<br>En kısa sürede sizinle iletişime geçilecektir.</p>
+            <button onclick="location.reload()">Yeni Destek Talebi</button>
+        </div>
+    </div>
 </div>
 
-<h2>Destek Ol</h2>
-
-<p>
-Derneğimizin eğitim, burs ve sosyal yardım faaliyetlerine destek olarak
-iyiliğin bir parçası olabilirsiniz.
-</p>
-
-</div>
-
-
-<form id="destekForm"
-action="https://formspree.io/f/mgvglwbz"
-method="POST">
-
-<input
-type="text"
-name="adsoyad"
-placeholder="Ad Soyad"
-required>
-
-<input
-type="email"
-name="email"
-placeholder="E-Posta Adresiniz"
-required>
-
-<input
-type="tel"
-name="telefon"
-placeholder="Telefon Numaranız">
-
-
-<select id="destekSecim"
-name="destek_turu"
-required>
-
-<option value="">Destek Türü Seçiniz</option>
-
-<option value="finans">
-💳 Finansal Destek
-</option>
-
-<option value="burs">
-🎓 Burs Desteği
-</option>
-
-<option value="kahvalti">
-🍽 Kahvaltı / Yemek Desteği
-</option>
-
-<option value="malzeme">
-📦 Malzeme Bağışı
-</option>
-
-<option value="gonullu">
-🤝 Zaman / Gönüllülük
-</option>
-
-<option value="ulasim">
-🚗 Ulaşım Desteği
-</option>
-
-<option value="konaklama">
-🏠 Konaklama Desteği
-</option>
-
-<option value="egitim">
-📚 Eğitim Desteği
-</option>
-
-<option value="diger">
-📝 Diğer
-</option>
-
-</select>
-
-
-
-<!-- BURAYA OTOMATİK BİLGİLER GELECEK -->
-
-<div id="bilgiKutusu">
-
-</div>
-
-
-
-<textarea
-name="mesaj"
-rows="5"
-placeholder="Destek vermek istediğiniz konu hakkında kısa açıklama yazabilirsiniz."></textarea>
-
-
-
-<button
-type="submit"
-class="gonderBtn">
-
-Destek Talebimi Gönder
-
-</button>
-
-</form>
-
-
-
-<div
-id="tesekkurMesaji"
-style="display:none;">
-
-<div class="success-icon">
-
-✅
-
-</div>
-
-<h3>
-
-Teşekkür Ederiz
-
-</h3>
-
-<p>
-
-Destek talebiniz başarıyla alınmıştır.
-
-En kısa sürede sizinle iletişime geçilecektir.
-
-</p>
-
-<button onclick="location.reload()">
-
-Yeni Destek Talebi
-
-</button>
-
-</div>
-
-
-</div>
-
-</div>
 <style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:Arial, Helvetica, sans-serif; }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
+.popup {
+    position:fixed; left:0; top:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.65); display:flex; justify-content:center;
+    align-items:center; z-index:99999; padding:20px;
 }
-
-.popup{
-position:fixed;
-left:0;
-top:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.65);
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:99999;
-padding:20px;
+.popup-box {
+    background:#fff; width:100%; max-width:620px; border-radius:22px;
+    overflow:hidden; box-shadow:0 25px 70px rgba(0,0,0,.35);
+    animation:popup .35s ease; position:relative;
 }
-
-.popup-box{
-background:#fff;
-width:100%;
-max-width:620px;
-border-radius:22px;
-overflow:hidden;
-box-shadow:0 25px 70px rgba(0,0,0,.35);
-animation:popup .35s ease;
-position:relative;
+@keyframes popup {
+    from { transform:scale(.85); opacity:0; }
+    to { transform:scale(1); opacity:1; }
 }
-
-@keyframes popup{
-
-from{
-transform:scale(.85);
-opacity:0;
+.close-btn {
+    position:absolute; right:18px; top:15px; border:none; background:none;
+    font-size:34px; cursor:pointer; color:#666;
 }
+.close-btn:hover { color:#d62828; }
 
-to{
-transform:scale(1);
-opacity:1;
+.popup-header {
+    background:linear-gradient(135deg,#006d77,#0096c7);
+    padding:35px; text-align:center; color:#fff;
 }
-
+.icon-box {
+    width:90px; height:90px; margin:auto; border-radius:50%;
+    background:#ffffff22; display:flex; justify-content:center;
+    align-items:center; font-size:45px; margin-bottom:15px;
 }
+.popup-header h2 { font-size:34px; margin-bottom:10px; }
+.popup-header p { font-size:16px; line-height:28px; }
 
-.close-btn{
-
-position:absolute;
-right:18px;
-top:15px;
-border:none;
-background:none;
-font-size:34px;
-cursor:pointer;
-color:#666;
-
+form { padding:30px; }
+input, select, textarea {
+    width:100%; padding:15px; margin-top:12px; border-radius:10px;
+    border:1px solid #ddd; font-size:16px; transition:.3s;
 }
-
-.close-btn:hover{
-
-color:#d62828;
-
+input:focus, select:focus, textarea:focus {
+    outline:none; border-color:#0096c7; box-shadow:0 0 8px rgba(0,150,199,.25);
 }
-
-.popup-header{
-
-background:linear-gradient(135deg,#006d77,#0096c7);
-padding:35px;
-text-align:center;
-color:#fff;
-
+.gonderBtn {
+    margin-top:20px; width:100%; padding:16px; background:#006d77;
+    color:#fff; border:none; border-radius:12px; font-size:18px;
+    font-weight:bold; cursor:pointer;
 }
+.gonderBtn:hover { background:#004d56; }
 
-.icon-box{
-
-width:90px;
-height:90px;
-margin:auto;
-border-radius:50%;
-background:#ffffff22;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:45px;
-margin-bottom:15px;
-
+#bilgiKutusu {
+    display:none; margin-top:20px; padding:18px; border-radius:12px;
+    background:#f4fbfc; border-left:5px solid #0096c7; font-size:15px;
+    line-height:28px;
 }
-
-.popup-header h2{
-
-font-size:34px;
-margin-bottom:10px;
-
+#bilgiKutusu h3 { margin-bottom:12px; color:#006d77; }
+.copyBtn {
+    margin-top:12px; padding:10px 18px; border:none; background:#0096c7;
+    color:#fff; cursor:pointer; border-radius:8px; font-weight:bold;
 }
-
-.popup-header p{
-
-font-size:16px;
-line-height:28px;
-
+.copyBtn:hover { background:#006d77; }
+.onlineBtn {
+    display:inline-block; margin-top:12px; margin-left:8px;
+    padding:10px 18px; background:#28a745; color:#fff; text-decoration:none;
+    border-radius:8px; font-weight:bold;
 }
+.onlineBtn:hover { background:#218838; }
 
-form{
+.success-icon { font-size:80px; margin-bottom:20px; }
+#tesekkurMesaji h3 { font-size:30px; margin-bottom:15px; }
+#tesekkurMesaji p { font-size:18px; line-height:30px; }
 
-padding:30px;
-
+@media(max-width:768px) {
+    .popup { padding:10px; }
+    .popup-header { padding:25px; }
+    .popup-header h2 { font-size:28px; }
 }
-
-input,
-select,
-textarea{
-
-width:100%;
-padding:15px;
-margin-top:12px;
-border-radius:10px;
-border:1px solid #ddd;
-font-size:16px;
-transition:.3s;
-
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-
-outline:none;
-border-color:#0096c7;
-box-shadow:0 0 8px rgba(0,150,199,.25);
-
-}
-
-textarea{
-
-resize:none;
-
-}
-
-.gonderBtn{
-
-margin-top:20px;
-width:100%;
-padding:16px;
-background:#006d77;
-color:#fff;
-border:none;
-border-radius:12px;
-font-size:18px;
-font-weight:bold;
-cursor:pointer;
-transition:.3s;
-
-}
-
-.gonderBtn:hover{
-
-background:#004d56;
-
-}
-
-#bilgiKutusu{
-
-display:none;
-margin-top:20px;
-padding:18px;
-border-radius:12px;
-background:#f4fbfc;
-border-left:5px solid #0096c7;
-font-size:15px;
-line-height:28px;
-
-}
-
-#bilgiKutusu h3{
-
-margin-bottom:10px;
-color:#006d77;
-
-}
-
-#bilgiKutusu p{
-
-margin-bottom:8px;
-
-}
-
-#bilgiKutusu strong{
-
-color:#000;
-
-}
-
-.copyBtn{
-
-margin-top:15px;
-padding:10px 18px;
-border:none;
-background:#0096c7;
-color:#fff;
-cursor:pointer;
-border-radius:8px;
-font-weight:bold;
-transition:.3s;
-
-}
-
-.copyBtn:hover{
-
-background:#006d77;
-
-}
-
-.onlineBtn{
-
-display:inline-block;
-margin-top:15px;
-margin-left:8px;
-padding:10px 18px;
-background:#28a745;
-color:#fff;
-text-decoration:none;
-border-radius:8px;
-font-weight:bold;
-
-}
-
-.onlineBtn:hover{
-
-background:#218838;
-
-}
-
-.success-icon{
-
-font-size:80px;
-margin-bottom:20px;
-
-}
-
-#tesekkurMesaji{
-
-padding:45px;
-text-align:center;
-
-}
-
-#tesekkurMesaji h3{
-
-font-size:30px;
-margin-bottom:15px;
-
-}
-
-#tesekkurMesaji p{
-
-font-size:18px;
-line-height:30px;
-
-}
-
-#tesekkurMesaji button{
-
-margin-top:25px;
-padding:15px 30px;
-background:#006d77;
-border:none;
-color:#fff;
-border-radius:10px;
-cursor:pointer;
-font-size:17px;
-
-}
-
-#tesekkurMesaji button:hover{
-
-background:#004d56;
-
-}
-
-@media(max-width:768px){
-
-.popup{
-
-padding:10px;
-
-}
-
-.popup-box{
-
-max-width:100%;
-
-}
-
-.popup-header{
-
-padding:25px;
-
-}
-
-.popup-header h2{
-
-font-size:28px;
-
-}
-
-.icon-box{
-
-width:70px;
-height:70px;
-font-size:35px;
-
-}
-
-form{
-
-padding:20px;
-
-}
-
-}
-
 </style>
+
 <script>
-
-const destekSecim=document.getElementById("destekSecim");
-const bilgiKutusu=document.getElementById("bilgiKutusu");
-
-destekSecim.addEventListener("change",function(){
-
-let secim=this.value;
-
-bilgiKutusu.style.display="block";
-
-if(secim=="finans"){
-
-bilgiKutusu.innerHTML=`
-
-<h3>💳 Finansal Destek</h3>
-
-<p>
-Derneğimizin faaliyetlerine maddi destek sağlayabilirsiniz.
-</p>
-
-<p><strong>Banka :</strong> Ziraat Bankası</p>
-
-<p><strong>Hesap Sahibi :</strong> Eskişehir Erzurumlular Derneği</p>
-
-<p id="ibanNo"><strong>IBAN :</strong>
-TR00 0000 0000 0000 0000 0000 00
-</p>
-
-<button type="button"
-class="copyBtn"
-onclick="ibanKopyala()">
-
-IBAN Kopyala
-
-</button>
-
-<a href="https://bagis.derneginiz.org"
-target="_blank"
-class="onlineBtn">
-
-Online Bağış
-
-</a>
-
-<br><br>
-
-<img src="images/qr.png"
-style="width:180px;border-radius:10px;">
-
-`;
-
-}
-
-else if(secim=="burs"){
-
-bilgiKutusu.innerHTML=`
-
-<h3>🎓 Burs Desteği</h3>
-
-<p>
-
-Bir öğrencimizin eğitim hayatına destek olabilirsiniz.
-
-</p>
-
-<p>
-
-Burs ödemeleri aşağıdaki IBAN'a yapılmaktadır.
-
-</p>
-
-<p>
-
-<strong>IBAN :</strong>
-
-TR00 0000 0000 0000 0000 0000 00
-
-</p>
-
-`;
-
-}
-
-else if(secim=="kahvalti"){
-
-bilgiKutusu.innerHTML=`
-
-<h3>🍽 Kahvaltı / Yemek Desteği</h3>
-
-<p>
-
-Bir öğrencimizin günlük yemek giderine katkıda bulunabilirsiniz.
-
-</p>
-
-<p>
-
-Destek ödemelerini aşağıdaki IBAN'a gönderebilirsiniz.
-
-</p>
-
-`;
-
-}
-
-else if(secim=="malzeme"){
-
-bilgiKutusu.innerHTML=`
-
-<h3>📦 Malzeme Bağışı</h3>
-
-<p>
-
-Bağışlamak istediğiniz malzemeleri aşağıdaki adrese teslim edebilirsiniz.
-
-</p>
-
-<p>
-
-<strong>Adres :</strong>
-
-....................................
-
-</p>
-
-<p>
-
-<strong>Telefon :</strong>
-
-05xx xxx xx xx
-
-</p>
-
-`;
-
-}
-
-else if(secim=="gonullu"){
-
-bilgiKutusu.innerHTML=`
-
-<h3>🤝 Gönüllülük</h3>
-
-<p>
-
-Lütfen aşağıdaki kutuya;
-
-</p>
-
-<ul>
-
-<li>Mesleğinizi</li>
-
-<li>Hangi günler müsait olduğunuzu</li>
-
-<li>Nasıl katkı sağlayabileceğinizi</li>
-
-</ul>
-
-<p>
-
-Mesaj bölümüne yazınız.
-
-</p>
-
-`;
-
-}
-
-else if(secim=="ulasim"){
-
-bilgiKutusu.innerHTML=`
-
-<h3>🚗 Ulaşım Desteği</h3>
-
-<p>
-
-Araç desteği sağlayabilir veya ulaşım masraflarına katkıda bulunabilirsiniz.
-
-</p>
-
-`;
-
-}
-
-else if(secim=="konaklama"){
-
-bilgiKutusu.innerHTML=`
-
-<h3>🏠 Konaklama Desteği</h3>
-
-<p>
-
-Konaklama desteği vermek istiyorsanız iletişim bilgilerinizle birlikte mesaj bırakınız.
-
-</p>
-
-`;
-
-}
-
-else if(secim=="egitim"){
-
-bilgiKutusu.innerHTML=`
-
-<h3>📚 Eğitim Desteği</h3>
-
-<p>
-
-Kitap, kırtasiye, kurs veya eğitim desteği sağlayabilirsiniz.
-
-</p>
-
-`;
-
-}
-
-else{
-
-bilgiKutusu.innerHTML=`
-
-<h3>📝 Diğer Destek</h3>
-
-<p>
-
-Destek türünüzü mesaj kısmında ayrıntılı olarak yazabilirsiniz.
-
-</p>
-
-`;
-
-}
-
+const destekSecim = document.getElementById("destekSecim");
+const bilgiKutusu = document.getElementById("bilgiKutusu");
+
+destekSecim.addEventListener("change", function() {
+    let secim = this.value;
+    bilgiKutusu.style.display = "block";
+
+    if (secim === "finans") {
+        bilgiKutusu.innerHTML = `
+            <h3>💳 Finansal Destek</h3>
+            <p>Derneğimizin eğitim, burs ve sosyal yardım faaliyetlerine maddi katkıda bulunabilirsiniz.</p>
+            <br>
+            <label><strong>Destek Tutarı</strong></label>
+            <select name="bagis_tutari">
+                <option>250 TL</option>
+                <option>500 TL</option>
+                <option>1000 TL</option>
+                <option>2500 TL</option>
+                <option>5000 TL</option>
+                <option value="diger">Diğer Miktar</option>
+            </select>
+            <br><br>
+            <strong>Banka:</strong> Ziraat Bankası<br><br>
+            <strong>Hesap Sahibi:</strong> Eskişehir Erzurumlular Derneği<br><br>
+            <strong>IBAN:</strong>
+            <div style="background:#eef7fb; padding:14px; border-radius:8px; margin:10px 0; font-size:17px; font-weight:bold;">
+                TR00 0000 0000 0000 0000 0000 00
+            </div>
+            <button type="button" class="copyBtn" onclick="ibanKopyala()">📋 IBAN Kopyala</button>
+            <a href="#" class="onlineBtn">💳 Online Bağış</a>
+            <br><br>
+            <center>
+                <img src="images/qr.png" style="width:180px; border-radius:12px;" alt="QR Kod">
+                <p style="margin-top:8px; color:#555;">QR Kod ile Öde</p>
+            </center>
+        `;
+    } 
+    else if (secim === "burs") {
+        bilgiKutusu.innerHTML = `
+            <h3>🎓 Öğrenci Burs Desteği</h3>
+            <p>Bir öğrencimizin eğitim hayatına katkı sağlayabilirsiniz.</p>
+            <table style="width:100%; margin-top:15px; border-collapse:collapse;">
+                <tr><td>1 Aylık Burs</td><td style="text-align:right;"><b>2.500 TL</b></td></tr>
+                <tr><td>6 Aylık Burs</td><td style="text-align:right;"><b>15.000 TL</b></td></tr>
+                <tr><td>12 Aylık Burs</td><td style="text-align:right;"><b>30.000 TL</b></td></tr>
+            </table>
+            <br>
+            <strong>IBAN:</strong>
+            <div style="background:#eef7fb; padding:12px; border-radius:8px; margin-top:8px;">
+                TR00 0000 0000 0000 0000 0000 00
+            </div>
+        `;
+    } 
+    else if (secim === "kahvalti") {
+        bilgiKutusu.innerHTML = `
+            <h3>🍽 Yemek / Kahvaltı Desteği</h3>
+            <p>Bir öğrencimizin günlük beslenmesine katkıda bulunabilirsiniz.</p>
+            <ul style="margin-top:12px; line-height:2;">
+                <li>☕ Kahvaltı : <b>150 TL</b></li>
+                <li>🍛 Öğle Yemeği : <b>250 TL</b></li>
+                <li>🍲 Akşam Yemeği : <b>250 TL</b></li>
+                <li>❤️ Günlük Tam Destek : <b>650 TL</b></li>
+            </ul>
+        `;
+    } 
+    else if (secim === "malzeme") {
+        bilgiKutusu.innerHTML = `
+            <h3>📦 Malzeme Bağışı</h3>
+            <select name="malzeme_turu" style="margin-bottom:12px;">
+                <option>Kitap</option>
+                <option>Bilgisayar / Tablet</option>
+                <option>Kırtasiye Malzemesi</option>
+                <option>Gıda Paketi</option>
+                <option>Giysi</option>
+                <option>Mobilya</option>
+                <option>Diğer</option>
+            </select>
+            <p><strong>Teslim Adresi:</strong><br>Eskişehir Erzurumlular Derneği</p>
+            <p><strong>Telefon:</strong> 05xx xxx xx xx</p>
+        `;
+    } 
+    else if (secim === "gonullu") {
+        bilgiKutusu.innerHTML = `
+            <h3>🤝 Gönüllülük</h3>
+            <input type="text" name="meslek" placeholder="Mesleğiniz">
+            <input type="text" name="uzmanlik" placeholder="Uzmanlık Alanınız">
+            <select name="musait_gun">
+                <option>Müsait Olduğunuz Günler</option>
+                <option>Pazartesi</option>
+                <option>Salı</option>
+                <option>Çarşamba</option>
+                <option>Perşembe</option>
+                <option>Cuma</option>
+                <option>Cumartesi</option>
+                <option>Pazar</option>
+            </select>
+        `;
+    } 
+    else if (secim === "ulasim") {
+        bilgiKutusu.innerHTML = `
+            <h3>🚗 Ulaşım Desteği</h3>
+            <select name="ulasim_turu">
+                <option>Şehir İçi</option>
+                <option>Şehirler Arası</option>
+                <option>Araç Tahsisi</option>
+                <option>Yakıt Desteği</option>
+            </select>
+        `;
+    } 
+    else if (secim === "konaklama") {
+        bilgiKutusu.innerHTML = `
+            <h3>🏠 Konaklama Desteği</h3>
+            <select name="konaklama_suresi">
+                <option>1 Gün</option>
+                <option>3 Gün</option>
+                <option>1 Hafta</option>
+                <option>1 Ay</option>
+            </select>
+        `;
+    } 
+    else if (secim === "egitim") {
+        bilgiKutusu.innerHTML = `
+            <h3>📚 Eğitim Desteği</h3>
+            <select name="egitim_turu">
+                <option>Kitap</option>
+                <option>Kurs Ücreti</option>
+                <option>Kırtasiye</option>
+                <option>Online Eğitim</option>
+                <option>Yabancı Dil Eğitimi</option>
+            </select>
+        `;
+    } 
+    else {
+        bilgiKutusu.innerHTML = `<h3>📝 Diğer Destek</h3><p>Lütfen mesaj kısmına detaylı bilgi veriniz.</p>`;
+    }
 });
 
-
-
-function ibanKopyala(){
-
-let iban="TR00 0000 0000 0000 0000 0000 00";
-
-navigator.clipboard.writeText(iban);
-
-alert("IBAN panoya kopyalandı.");
-
+function ibanKopyala() {
+    const iban = "TR00 0000 0000 0000 0000 0000 00";
+    navigator.clipboard.writeText(iban);
+    alert("✅ IBAN panoya kopyalandı!");
 }
 
-
-
-function kapatPopup(){
-
-document.getElementById("destekPopup").style.display="none";
-
+function kapatPopup() {
+    document.getElementById("destekPopup").style.display = "none";
 }
-
 </script>
-bilgiKutusu.innerHTML=`
-
-<h3>💳 Finansal Destek</h3>
-
-<p>
-Derneğimizin eğitim, burs ve sosyal yardım faaliyetlerine katkıda bulunabilirsiniz.
-</p>
-
-<hr><br>
-
-<label><strong>Destek Tutarı</strong></label>
-
-<select name="bagis_tutari">
-
-<option>250 TL</option>
-
-<option>500 TL</option>
-
-<option>1000 TL</option>
-
-<option>2500 TL</option>
-
-<option>5000 TL</option>
-
-<option>Diğer</option>
-
-</select>
-
-<br><br>
-
-<strong>Banka</strong><br>
-
-Ziraat Bankası
-
-<br><br>
-
-<strong>Hesap Sahibi</strong><br>
-
-Eskişehir Erzurumlular Derneği
-
-<br><br>
-
-<strong>IBAN</strong>
-
-<div style="background:#eef7fb;padding:12px;border-radius:8px;margin-top:8px;font-size:18px;">
-
-TR00 0000 0000 0000 0000 0000 00
-
-</div>
-
-<br>
-
-<button type="button"
-
-class="copyBtn"
-
-onclick="ibanKopyala()">
-
-📋 IBAN Kopyala
-
-</button>
-
-<a href="#"
-
-class="onlineBtn">
-
-💳 Online Bağış
-
-</a>
-
-<br><br>
-
-<center>
-
-<img src="images/qr.png"
-
-style="width:180px">
-
-<br>
-
-QR Kod ile Öde
-
-</center>
-
-`;
-bilgiKutusu.innerHTML=`
-
-<h3>🎓 Öğrenci Burs Desteği</h3>
-
-<p>
-
-Bir öğrencimizin eğitimine katkı sağlayabilirsiniz.
-
-</p>
-
-<table style="width:100%;margin-top:15px">
-
-<tr>
-
-<td>1 Aylık Burs</td>
-
-<td><b>2.500 TL</b></td>
-
-</tr>
-
-<tr>
-
-<td>6 Aylık Burs</td>
-
-<td><b>15.000 TL</b></td>
-
-</tr>
-
-<tr>
-
-<td>12 Aylık Burs</td>
-
-<td><b>30.000 TL</b></td>
-
-</tr>
-
-</table>
-
-<br>
-
-IBAN
-
-<br>
-
-TR00....
-
-`;
-bilgiKutusu.innerHTML=`
-
-<h3>🍽 Yemek Desteği</h3>
-
-<p>
-
-Bir öğrencimizin günlük beslenmesine katkıda bulunabilirsiniz.
-
-</p>
-
-<ul>
-
-<li>☕ Kahvaltı : 150 TL</li>
-
-<li>🍛 Öğle Yemeği : 250 TL</li>
-
-<li>🍲 Akşam Yemeği : 250 TL</li>
-
-<li>❤️ Günlük Destek : 650 TL</li>
-
-</ul>
-
-<br>
-
-IBAN
-
-<br>
-
-TR00....
-
-`;
-bilgiKutusu.innerHTML=`
-
-<h3>📦 Malzeme Bağışı</h3>
-
-<label>
-
-Bağış Türü
-
-</label>
-
-<select>
-
-<option>Kitap</option>
-
-<option>Bilgisayar</option>
-
-<option>Tablet</option>
-
-<option>Kırtasiye</option>
-
-<option>Gıda</option>
-
-<option>Giysi</option>
-
-<option>Mobilya</option>
-
-<option>Diğer</option>
-
-</select>
-
-<br><br>
-
-<strong>Teslim Adresi</strong>
-
-<br>
-
-Eskişehir Erzurumlular Derneği
-
-<br>
-
-............
-
-<br>
-
-Telefon
-
-<br>
-
-05xx xxx xx xx
-
-`;
-bilgiKutusu.innerHTML=`
-
-<h3>🤝 Gönüllülük</h3>
-
-<input
-
-type="text"
-
-name="meslek"
-
-placeholder="Mesleğiniz">
-
-<input
-
-type="text"
-
-name="uzmanlik"
-
-placeholder="Uzmanlık Alanınız">
-
-<select
-
-name="musait">
-
-<option>Pazartesi</option>
-
-<option>Salı</option>
-
-<option>Çarşamba</option>
-
-<option>Perşembe</option>
-
-<option>Cuma</option>
-
-<option>Cumartesi</option>
-
-<option>Pazar</option>
-
-</select>
-
-`;
-bilgiKutusu.innerHTML=`
-
-<h3>🚗 Ulaşım Desteği</h3>
-
-<select>
-
-<option>Şehir İçi</option>
-
-<option>Şehirler Arası</option>
-
-<option>Araç Tahsisi</option>
-
-<option>Yakıt Desteği</option>
-
-</select>
-
-`;
-bilgiKutusu.innerHTML=`
-
-<h3>🏠 Konaklama Desteği</h3>
-
-<select>
-
-<option>1 Gün</option>
-
-<option>3 Gün</option>
-
-<option>1 Hafta</option>
-
-<option>1 Ay</option>
-
-</select>
-
-`;
-bilgiKutusu.innerHTML=`
-
-<h3>📚 Eğitim Desteği</h3>
-
-<select>
-
-<option>Kitap</option>
-
-<option>Kurs</option>
-
-<option>Kırtasiye</option>
-
-<option>Online Eğitim</option>
-
-<option>Yabancı Dil</option>
-
-</select>
-
-`;
