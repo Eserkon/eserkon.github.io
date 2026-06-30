@@ -1,43 +1,111 @@
-<!-- ====================== BİZE ULAŞIN FORMU ====================== -->
-<div class="flex justify-end py-12 px-4">
+<!-- BİZE ULAŞIN - SAĞ TARAF FORMU -->
+<div class="flex justify-end py-12">
     <div class="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
         
+        <!-- Başlık -->
         <div class="flex items-center gap-4 mb-8">
-            <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-4xl">
+            <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-4xl shadow-inner">
                 ✉️
             </div>
             <div>
                 <h2 class="text-2xl font-bold text-red-700">Bize Ulaşın</h2>
-                <p class="text-gray-600 text-sm">Önerileriniz ve talepleriniz için</p>
+                <p class="text-gray-600 text-sm">Önerileriniz, şikayetleriniz ve talepleriniz için</p>
             </div>
         </div>
 
+        <!-- Form -->
         <form id="bizeUlasinForm" action="https://formspree.io/f/xpqowknj" method="POST" class="space-y-5">
+            
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1.5">Ad Soyad</label>
-                <input type="text" name="name" required class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500">
+                <input type="text" name="name" required
+                       class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 transition">
             </div>
+
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1.5">E-posta</label>
-                <input type="email" name="email" required class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500">
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Telefon Numaranız</label>
+                <input type="tel" name="phone" 
+                       class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 transition">
             </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">E-posta Adresiniz</label>
+                <input type="email" name="email" required
+                       class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 transition">
+            </div>
+
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1.5">Konu</label>
-                <select name="subject" required class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500">
-                    <option value="">Konu Seçin</option>
-                    <option>Öneri</option>
-                    <option>Şikayet</option>
-                    <option>Talep</option>
-                    <option>Yardım</option>
+                <select name="subject" required
+                        class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 transition">
+                    <option value="">Konu Seçin...</option>
+                    <option value="Öneri">Öneri</option>
+                    <option value="Şikayet">Şikayet</option>
+                    <option value="Talep">Talep</option>
+                    <option value="Yardım">Yardım Talebi</option>
+                    <option value="Diğer">Diğer</option>
                 </select>
             </div>
+
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1.5">Mesajınız</label>
-                <textarea name="message" rows="5" required class="w-full px-5 py-3 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-red-500 resize-none"></textarea>
+                <textarea name="message" rows="5" required
+                          class="w-full px-5 py-3 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-red-500 transition resize-none"
+                          placeholder="Mesajınızı buraya yazın..."></textarea>
             </div>
-            <button type="submit" class="w-full bg-red-700 hover:bg-red-800 text-white font-semibold py-4 rounded-2xl text-lg transition">
-                Gönder
+
+            <button type="submit" id="submitBtn"
+                    class="w-full bg-red-700 hover:bg-red-800 text-white font-semibold py-4 rounded-2xl text-lg transition-all duration-300 mt-2">
+                Mesajı Gönder
             </button>
         </form>
+
+        <!-- Başarı Mesajı -->
+        <div id="successMessage" class="hidden mt-6 p-4 bg-green-100 text-green-700 rounded-2xl text-center font-medium">
+            ✅ Mesajınız başarıyla gönderildi. Teşekkür ederiz!
+        </div>
+
+        <p class="text-center text-xs text-gray-500 mt-6">
+            Mesajınız gizlilikle işlenecek ve en kısa sürede değerlendirilecektir.
+        </p>
     </div>
 </div>
+
+<script>
+// Formspree ile entegrasyon
+const form = document.getElementById('bizeUlasinForm');
+const successMsg = document.getElementById('successMessage');
+const submitBtn = document.getElementById('submitBtn');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    submitBtn.innerHTML = 'Gönderiliyor...';
+    submitBtn.disabled = true;
+
+    try {
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            successMsg.classList.remove('hidden');
+            form.reset();
+            
+            // 6 saniye sonra başarı mesajını gizle
+            setTimeout(() => {
+                successMsg.classList.add('hidden');
+            }, 6000);
+        } else {
+            alert("Mesaj gönderilemedi. Lütfen tekrar deneyin.");
+        }
+    } catch (error) {
+        alert("Bağlantı hatası. Lütfen internetinizi kontrol edin.");
+    }
+
+    submitBtn.innerHTML = 'Mesajı Gönder';
+    submitBtn.disabled = false;
+});
+</script>
