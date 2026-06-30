@@ -1,115 +1,94 @@
-<!-- DESTEK OL Formu -->
-<div id="destek-ol">
-  <h3>💳 Destek Ol</h3>
-  
-  <label for="destekSecenek">Destek Türü:</label>
-  <select id="destekSecenek" onchange="gosterOdeme()">
-    <option value="">Seçiniz...</option>
-    <option value="finansal">Finansal Destek</option>
-    <option value="yemek">Yemek Desteği</option>
-    <option value="egitim">Eğitim Desteği</option>
-    <option value="ulasim">Ulaşım Desteği</option>
-    <option value="esya">Eşya Desteği</option>
-  </select>
-
-  <div id="odemePlanlari" style="display:none;">
-  
-
-    <h4>Banka Bilgileri</h4>
-    <p><strong>Banka Adı:</strong> Ziraat Bankası</p>
-    <p><strong>Şube:</strong> Eskişehir Merkez Şubesi</p>
-    <p><strong>Hesap Sahibi:</strong> ESERKON YAŞAM MERKEZİ</p>
-    <p><strong>IBAN:</strong> TR12 0001 0001 2345 6789 0123 45</p>
-    <p><strong>Açıklama:</strong> Bağış - Ad Soyad | Destek | Tutar</p>
-
-    <h4>Ödeme Yöntemleri</h4>
-    <button>💳 Kredi Kartı ile Bağış Yap</button>
-    <button>📱 QR Kod ile Öde</button>
-    <button>🏦 Havale / EFT</button>
-    <button>📋 IBAN Kopyala</button>
-    <button>📲 FAST ile Gönder</button>
-
-    <div class="qr">
-      <img src="ornek-qr.png" alt="QR Kod">
-    </div>
-  </div>
-</div>
-
-<style>
-/* Genel kutu */
-#destek-ol {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 350px;
-  max-width: 90%;
-  border: 1px solid #ccc;
-  padding: 15px;
-  background: #f9f9f9;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
-}
-
-/* Başlık */
-#destek-ol h3 {
-  margin-top: 0;
-  text-align: center;
-}
-
-/* Dropdown */
-#destek-ol select {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-}
-
-/* Liste */
-#destek-ol ul {
-  padding-left: 20px;
-}
-
-/* Butonlar */
-#destek-ol button {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  border: none;
-  background: #007bff;
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-#destek-ol button:hover {
-  background: #0056b3;
-}
-
-/* QR kod */
-#destek-ol .qr {
-  text-align: center;
-  margin-top: 15px;
-}
-
-#destek-ol .qr img {
-  max-width: 150px;
-  width: 100%;
-  height: auto;
-}
-
-/* Mobil uyum */
-@media (max-width: 600px) {
-  #destek-ol {
-    position: static;
-    width: 100%;
-    max-width: 100%;
-    margin: 10px auto;
-  }
-}
-</style>
-
 <script>
-function gosterOdeme() {
-  document.getElementById("odemePlanlari").style.display = "block";
+// Destek Formu Dinamik İşlemleri
+document.getElementById("destekSecimSidebar").addEventListener("change", function() {
+    const content = document.getElementById("dynamicContent");
+    let html = "";
+
+    if (this.value === "finans") {
+        html = `
+            <div class="mb-4">
+                <label class="block text-sm font-semibold mb-2">Destek Tutarı</label>
+                <div class="grid grid-cols-2 gap-3">
+                    <button type="button" onclick="secimYap(this, '500 TL')" class="tutar-btn">500 TL</button>
+                    <button type="button" onclick="secimYap(this, '1000 TL')" class="tutar-btn">1.000 TL</button>
+                    <button type="button" onclick="secimYap(this, '2500 TL')" class="tutar-btn">2.500 TL</button>
+                    <button type="button" onclick="secimYap(this, '5000 TL')" class="tutar-btn">5.000 TL</button>
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-semibold mb-2">Banka Seçin</label>
+                <select id="bankaSecim" class="w-full p-4 border border-gray-300 rounded-xl" onchange="ibanGoster()">
+                    <option value="">Banka Seçiniz</option>
+                    <option value="ziraat">Ziraat Bankası</option>
+                    <option value="vakif">Vakıfbank</option>
+                    <option value="isbank">İş Bankası</option>
+                </select>
+                <div id="ibanAlani" class="mt-4 hidden bg-gray-50 p-4 rounded-xl border"></div>
+            </div>`;
+    } 
+    else if (this.value === "burs") {
+        html = `
+            <label class="block text-sm font-semibold mb-3">Burs Paketleri</label>
+            <div class="space-y-3">
+                <button type="button" onclick="secimYap(this, 'Aylık Burs - 2500 TL')" class="plan-btn">1 Aylık - 2.500 TL</button>
+                <button type="button" onclick="secimYap(this, '6 Aylık Burs - 15000 TL')" class="plan-btn">6 Aylık - 15.000 TL</button>
+                <button type="button" onclick="secimYap(this, '12 Aylık Burs - 30000 TL')" class="plan-btn">12 Aylık - 30.000 TL</button>
+            </div>`;
+    } 
+    else if (this.value === "yemek") {
+        html = `
+            <label class="block text-sm font-semibold mb-3">Yemek Paketleri</label>
+            <div class="space-y-3">
+                <button type="button" onclick="secimYap(this, 'Kahvaltı - 150 TL')" class="plan-btn">Kahvaltı Paketi - 150 TL</button>
+                <button type="button" onclick="secimYap(this, 'Günlük Yemek - 650 TL')" class="plan-btn">Günlük Tam Paket - 650 TL</button>
+            </div>`;
+    } 
+    else if (this.value === "egitim") {
+        html = `
+            <button type="button" onclick="window.open('https://odeme.linkiniz.com/kurs','_blank')" class="w-full bg-green-600 text-white py-4 rounded-2xl font-bold">
+                💳 Kurs Ücretini Online Öde
+            </button>`;
+    }
+
+    content.innerHTML = html;
+});
+
+function secimYap(btn, deger) {
+    document.querySelectorAll('.tutar-btn, .plan-btn').forEach(b => b.classList.remove('!bg-green-600', '!text-white'));
+    btn.classList.add('!bg-green-600', '!text-white');
+    
+    let hidden = document.getElementById("selectedPlan");
+    if (!hidden) {
+        hidden = document.createElement("input");
+        hidden.type = "hidden";
+        hidden.name = "secilen_plan";
+        hidden.id = "selectedPlan";
+        document.getElementById("destekFormSidebar").appendChild(hidden);
+    }
+    hidden.value = deger;
+}
+
+function ibanGoster() {
+    const banka = document.getElementById("bankaSecim").value;
+    const ibanAlani = document.getElementById("ibanAlani");
+    
+    let iban = "";
+    if (banka === "ziraat") iban = "TR12 0000 0000 0000 0000 0000 01";
+    else if (banka === "vakif") iban = "TR45 0000 0000 0000 0000 0000 02";
+    else if (banka === "isbank") iban = "TR78 0000 0000 0000 0000 0000 03";
+
+    if (iban) {
+        ibanAlani.innerHTML = `
+            <strong>IBAN:</strong><br>
+            <span class="font-mono text-lg">${iban}</span><br><br>
+            <button onclick="kopyala('${iban}')" class="bg-blue-600 text-white px-5 py-2 rounded-xl text-sm">📋 IBAN Kopyala</button>
+        `;
+        ibanAlani.classList.remove("hidden");
+    }
+}
+
+function kopyala(iban) {
+    navigator.clipboard.writeText(iban);
+    alert("✅ IBAN kopyalandı!");
 }
 </script>
