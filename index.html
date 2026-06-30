@@ -1,245 +1,719 @@
 <!DOCTYPE html>
+
 <html lang="tr">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>ESERKON - Ana Sayfa</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
  <style>
-        .gallery-img {
-            transition: all 0.3s ease;
+
+       
+
         }
-        .gallery-img:hover {
-            transform: scale(1.05);
+
+        .gallery-img { 
+
+            transition: all 0.3s ease; 
+
         }
+
+        .gallery-img:hover { 
+
+            transform: scale(1.05); 
+
+        }
+
         .ticker {
+
             background: #991b1b;
+
             color: white;
+
             overflow: hidden;
+
             white-space: nowrap;
+
         }
+
         .ticker-content {
+
             display: inline-block;
+
             padding-right: 100%;
+
             animation: ticker 25s linear infinite;
+
         }
+
         @keyframes ticker {
+
             0% { transform: translateX(0); }
+
             100% { transform: translateX(-100%); }
+
         }
-        .tutar-btn, .plan-btn {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        .tutar-btn:hover, .plan-btn:hover {
-            border-color: #10b981;
-        }
+
     </style>
+
 </head>
+
 <body class="bg-gray-50 font-sans">
+
     <!-- HEADER + MENÜ -->
+
     <header class="bg-white shadow-md sticky top-0 z-50">
+
         <div class="max-w-7xl mx-auto">
+
             <!-- Ana Menü -->
+
             <nav class="max-w-7xl mx-auto px-4 py-4 border-b">
+
                 <div class="flex justify-between items-center">
+
                     <div class="flex items-center gap-4">
-                        <div class="text-3xl font-bold">
-                            <span style="color:#E30613;">ES</span><span style="color:#1E4FA3;">ER</span><span style="color:#00843D;">KON</span>
-                        </div>
+
+                        
+
+ <div class="text-3xl font-bold">
+
+  <span style="color:#E30613;">ES</span><span style="color:#1E4FA3;">ER</span><span style="color:#00843D;">KON</span>
+
+</div>                        
+
                     </div>
+
                     <div class="hidden md:flex items-center gap-8 text-lg font-medium">
+
                         <a href="index.html" class="text-red-700 hover:text-red-800">Ana Sayfa</a>
+
                         <a href="basvurular.html" class="hover:text-red-700">Başvurular</a>
+
                         <a href="duyurular.html" class="hover:text-red-700">Duyurular</a>
+
                         <a href="hakkimizda.html" class="hover:text-red-700">Hakkımızda</a>
+
                         <a href="iletisim.html" class="hover:text-red-700">İletişim</a>
+
                         <a href="destek-ol.html" class="hover:text-red-700">Destek Ol</a>
+
                         <a href="bize-ulasin.html" class="hover:text-red-700">Bize Ulaşın</a>
+
                     </div>
+
                 </div>
+
             </nav>
+
             <!-- Kayan Son Dakika Haberler -->
+
             <div class="ticker py-2 text-sm">
+
                 <div class="ticker-content">
-                    🚨 Yaz Dönemi Üye Kayıtları Devam Ediyor! • 📍 Turkcell Kariyer Günü - 5 Temmuz • 🎓 Yeni Eğitim Programları Başladı •
-                    🤝 Şirket Ziyaretleri Devam Ediyor •
+
+                    🚨 Yaz Dönemi Üye Kayıtları Devam Ediyor! • 📍 Turkcell Kariyer Günü - 5 Temmuz • 🎓 Yeni Eğitim Programları Başladı • 
+
+                    🤝 Şirket Ziyaretleri Devam Ediyor • 
+
                 </div>
+
             </div>
+
         </div>
+
     </header>
 
-    <!-- SLIDER -->
+    
+
+    </div>
+
+      <!-- SLIDER -->
+
     <div class="max-w-7xl mx-auto px-4 pt-6 mb-8">
+
         <div class="swiper mySwiper rounded-3xl overflow-hidden shadow-2xl">
+
             <div class="swiper-wrapper">
+
                 <div class="swiper-slide">
+
                     <img src="https://source.unsplash.com/random/1920x600/?students" class="w-full h-[480px] object-cover" alt="">
+
                 </div>
+
                 <div class="swiper-slide">
+
                     <img src="https://picsum.photos/id/1015/1920/600" class="w-full h-[480px] object-cover" alt="">
+
                 </div>
+
                 <div class="swiper-slide">
+
                     <img src="https://source.unsplash.com/random/1920x600/?students,cafe" class="w-full h-[480px] object-cover" alt="">
+
                 </div>
+
             </div>
+
             <div class="swiper-pagination"></div>
+
             <div class="swiper-button-next"></div>
+
             <div class="swiper-button-prev"></div>
+
         </div>
+
     </div>
 
     <!-- HERO -->
-    <section class="hero-bg h-[380px] flex items-center text-white">
-        <img src="images/pankart.jpg" alt="Logo" style="display:block; margin:0 auto; width:700px;">
-    </section>
 
-    <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <section class="hero-bg h-[380px] flex items-center text-white">
+
+<img src="images/pankart.jpg" alt="Logo" style="display:block; margin:0 auto; width:700px;">
+
+    </div>    </section>
+
+   
 
         <!-- SOL İÇERİK -->
+
         <div class="lg:col-span-8 space-y-16">
-            <!-- Mevcut sol içerikleriniz (reklam, ziyaretler, videolar vs.) aynı kaldı -->
-            <!-- ... (Tüm sol içerikleriniz burada aynı şekilde duruyor) ... -->
-        </div>
 
-        <!-- ==================== SAĞ TARAF - DESTEK OL FORMU ==================== -->
-        <div class="lg:col-span-4">
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 sticky top-8">
-                <div class="bg-gradient-to-r from-red-600 to-red-700 text-white p-6 text-center">
-                    <div class="text-5xl mb-3">❤️</div>
-                    <h3 class="text-2xl font-bold">Destek Ol</h3>
-                    <p class="text-red-100 mt-1">Birlikte Daha Güçlü Olalım</p>
+            <!-- REKLAM ALANI -->
+
+            <div class="bg-white border-2 border-dashed border-red-300 rounded-2xl p-8 text-center">
+
+                <p class="text-gray-400 mb-3">— REKLAM / SPONSOR ALANI —</p>
+
+                <div class="h-52 bg-gray-100 rounded-xl flex items-center justify-center text-gray-500 text-xl">
+
+                    728x90 Reklam Alanı
+
                 </div>
 
-                <div class="p-6">
-                    <form id="destekFormSidebar" action="https://formspree.io/f/mgvglwbz" method="POST">
-                        <input type="text" name="adsoyad" placeholder="Ad Soyad" required class="w-full p-4 border border-gray-300 rounded-xl mb-4">
-                        <input type="email" name="email" placeholder="E-Posta Adresiniz" required class="w-full p-4 border border-gray-300 rounded-xl mb-4">
-                        <input type="tel" name="telefon" placeholder="Telefon Numaranız" class="w-full p-4 border border-gray-300 rounded-xl mb-4">
-
-                        <select id="destekSecimSidebar" name="destek_turu" required class="w-full p-4 border border-gray-300 rounded-xl mb-4">
-                            <option value="">Destek Türü Seçiniz</option>
-                            <option value="finans">💳 Finansal Destek</option>
-                            <option value="burs">🎓 Burs Desteği</option>
-                            <option value="kahvalti">🍽 Yemek/Kahvaltı Desteği</option>
-                            <option value="malzeme">📦 Malzeme Bağışı</option>
-                            <option value="gonullu">🤝 Gönüllülük</option>
-                            <option value="ulasim">🚗 Ulaşım Desteği</option>
-                            <option value="konaklama">🏠 Konaklama Desteği</option>
-                            <option value="egitim">📚 Eğitim Desteği</option>
-                            <option value="diger">📝 Diğer</option>
-                        </select>
-
-                        <div id="odemePlanlari" class="mb-6 min-h-[100px]"></div>
-
-                        <textarea name="mesaj" rows="3" placeholder="Destek vermek istediğiniz konu hakkında kısa açıklama..." class="w-full p-4 border border-gray-300 rounded-xl mb-6"></textarea>
-
-                        <button type="submit" class="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-4 rounded-2xl text-lg transition">
-                            Destek Talebimi Gönder
-                        </button>
-                    </form>
-                </div>
             </div>
+
+            
+
+            <!-- YAPTIĞIMIZ ZİYARETLER -->
+
+<section class="py-12 bg-white">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <h2 class="text-4xl font-bold text-center text-red-700 mb-10">
+
+            Yaptığımız Ziyaretler
+
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
+
+            <!-- 1 -->
+
+            <img src="images/ziyaret1.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 2 -->
+
+            <img src="images/ziyaret2.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 3 -->
+
+            <img src="images/ziyaret3.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 4 -->
+
+            <img src="images/ziyaret4.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 5 -->
+
+            <img src="images/ziyaret5.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 6 -->
+
+            <img src="images/ziyaret6.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 7 -->
+
+            <img src="images/ziyaret7.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 8 -->
+
+            <img src="images/ziyaret8.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 9 -->
+
+            <img src="images/ziyaret9.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 10 -->
+
+            <img src="images/ziyaret10.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 11 -->
+
+            <img src="images/ziyaret11.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 12 -->
+
+            <img src="images/ziyaret12.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 13 -->
+
+            <img src="images/ziyaret13.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 14 -->
+
+            <img src="images/ziyaret14.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 15 -->
+
+            <img src="images/ziyaret15.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 16 -->
+
+            <img src="images/ziyaret16.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 17 -->
+
+            <img src="images/ziyaret17.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 18 -->
+
+            <img src="images/ziyaret18.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 19 -->
+
+            <img src="images/ziyaret19.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 20 -->
+
+            <img src="images/ziyaret20.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 21 -->
+
+            <img src="images/ziyaret21.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 22 -->
+
+            <img src="images/ziyaret22.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 23 -->
+
+            <img src="images/ziyaret23.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 24 -->
+
+            <img src="images/ziyaret24.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 25 -->
+
+            <img src="images/ziyaret25.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 26 -->
+
+            <img src="images/ziyaret26.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 27 -->
+
+            <img src="images/ziyaret27.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 28 -->
+
+            <img src="images/ziyaret28.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 29 -->
+
+            <img src="images/ziyaret29.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
+            <!-- 30 -->
+
+            <img src="images/ziyaret30.jpg" class="w-full h-40 object-cover rounded-lg shadow hover:scale-105 duration-300">
+
         </div>
+
+<!-- BAŞKANA DOĞRUDAN MESAJ -->
+
+<div class="flex justify-end py-12">
+
+    <div class="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+
+        
+
+        <!-- Başlık ve Küçük Fotoğraf -->
+
+        <div class="flex items-center gap-4 mb-8">
+
+        <img src="images/ofis.jpg"
+
+                 alt="ESERKON Başkanı" 
+
+                 class="w-16 h-16 rounded-2xl object-cover shadow-md border-2 border-red-100">
+
+            <div>
+
+                <h2 class="text-2xl font-bold text-red-700">Başkana Doğrudan Mesaj</h2>
+
+                <p class="text-gray-600 text-sm">Fikir ve önerilerinizi doğrudan başkanımıza iletin</p>
+
+            </div>
+
+        </div>
+
+        <!-- Form -->
+
+        <form id="baskanForm" class="space-y-5">
+
+            <div>
+
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Ad Soyad</label>
+
+                <input type="text" name="name" required
+
+                       class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 transition">
+
+            </div>
+
+            <div>
+
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">E-posta Adresiniz</label>
+
+                <input type="email" name="email" required
+
+                       class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 transition">
+
+            </div>
+
+            <div>
+
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Konu</label>
+
+                <input type="text" name="subject" required
+
+                       class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 transition">
+
+            </div>
+
+            <div>
+
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Mesajınız</label>
+
+                <textarea name="message" rows="5" required
+
+                          class="w-full px-5 py-3 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-red-500 transition resize-none"></textarea>
+
+            </div>
+
+            <button type="submit"
+
+                    class="w-full bg-red-700 hover:bg-red-800 text-white font-semibold py-4 rounded-2xl text-lg transition-all duration-300 mt-4">
+
+                Mesaj Gönder
+
+            </button>
+
+        </form>
+
+        <p class="text-center text-xs text-gray-500 mt-6">
+
+Bu form,Başkanımıza doğrudan ulaşmanız amacıyla hazırlanmıştır. Gönderdiğiniz mesajlar, gönderdiğiniz anda Başkanımızın cep telefonuna anlık bildirim olarak iletilmektedir.
+
+            Mesaj içerikleri yalnızca Başkanımız tarafından görüntülenebilir; üçüncü kişilerin erişimine kesinlikle kapalıdır.
+
+        </p>
+
+    </div>
+
+</div>
+
+   <!-- REKLAM ALANI -->
+
+            <div class="bg-white border-2 border-dashed border-red-300 rounded-2xl p-8 text-center">
+
+                <p class="text-gray-400 mb-3">— REKLAM / SPONSOR ALANI —</p>
+
+                <div class="h-52 bg-gray-100 rounded-xl flex items-center justify-center text-gray-500 text-xl">
+
+                    728x90 Reklam Alanı
+
+                </div>
+
+            </div>
+
+            <!-- VIDEOLAR -->
+
+            <div>
+
+                    <h2 class="text-3xl font-bold text-red-700 inline-block">
+
+Videolarımız</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <div class="bg-white rounded-xl overflow-hidden shadow">
+
+                        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/dQw4w9wgxcq" allowfullscreen></iframe>
+
+                        
+
+                    </div>
+
+                    <div class="bg-white rounded-xl overflow-hidden shadow">
+
+                        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/3JZ_D3ELwOQ" allowfullscreen></iframe>
+
+                        
+
+                    </div>
+
+                </div>
+
+            </div>
+
+             <div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <div class="bg-white rounded-xl overflow-hidden shadow">
+
+                        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/dQw4w9wgxcq" allowfullscreen></iframe>
+
+                        <div class="p-4">2025 Bahar Etkinlik Özeti</div>
+
+                    </div>
+
+                    <div class="bg-white rounded-xl overflow-hidden shadow">
+
+                        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/3JZ_D3ELwOQ" allowfullscreen></iframe>
+
+                        <div class="p-4">Kariyer Semineri Röportajı</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- SPONSORLAR -->
+
+            <div>
+
+                <h2 class="text-3xl font-bold mb-6 text-red-700">Sponsorlarımız</h2>
+
+                <div class="flex flex-wrap gap-10 justify-center items-center opacity-75">
+
+                    <div class="text-2xl font-bold">Turkcell</div>
+
+                    <div class="text-2xl font-bold">Vodafone</div>
+
+                    <div class="text-2xl font-bold">Koç</div>
+
+                    <div class="text-2xl font-bold">İş Bankası</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- SAĞ SİDEBAR -->
+
+        <div class="lg:col-span-4 space-y-8">
+
+        <!-- BAŞKANIN MESAJI -->
+
+<section id="baskan-mesaji" class="py-16 bg-gray-100">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center mb-12">
+
+            <h2 class="text-4xl font-bold text-blue-900">
+
+                Başkanın Mesajı
+
+            </h2>
+
+            <div class="w-24 h-1 bg-yellow-500 mx-auto mt-3 rounded"></div>
+
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden md:flex">
+
+            <div class="bg-white flex justify-center items-center py-8">
+
+    <div class="w-44 h-44 rounded-full border-4 border-blue-400 overflow-hidden bg-white">
+
+        <img src="images/baskan.jpg"
+
+             alt="Başkan"
+
+             class="w-full h-full object-cover">
+
+    </div>
+
+</div>
+
+            <!-- Mesaj -->
+
+            <div class="md:w-2/3 p-10">
+
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">
+
+                    Saygıdeğer Dostlarım ve kıymetli gençler
+
+                </h3>
+
+                <p class="text-blue-700 font-semibold mb-6">
+
+                    ESERKON  yaşam merkezi Başkanı
+
+                </p>
+
+                <p class="text-gray-700 leading-8 mb-5">
+
+                     ESERKON  yaşam merkezi olarak birlik, beraberlik ve
+
+                    dayanışma kültürümüzü yaşatmak amacıyla çalışmalarımızı
+
+                    büyük bir özveriyle sürdürüyoruz.
+
+                </p>
+
+                <p class="text-gray-700 leading-8 mb-5">
+
+                   Kültürel değerlerimizi gelecek nesillere aktarmak, 
+
+                    gençlerimize ve öğrencilerimize eğitim ile sosyal alanlarda destek olmak, 
+
+                    onların hedeflerine ulaşmalarına katkı sağlamak en önemli amaçlarımız arasında yer almaktadır.
+
+                </p>
+
+                <p class="text-gray-700 leading-8 mb-5">
+
+                   bugüne kadar gerçekleştirdiğimiz tüm faaliyetlerde
+
+                    emeği geçen yönetim kurulu üyelerimize, gönüllülerimize ve
+
+                    bizleri hiçbir zaman yalnız bırakmayan değerli
+
+                    sponsorlarımıza teşekkür ediyorum.
+
+                </p>
+
+                <p class="text-gray-700 leading-8">
+
+                    Sizlerin desteğiyle daha güçlü, daha aktif ve daha faydalı
+
+                    projelere imza atmaya devam edeceğiz.
+
+                </p>
+
+                <div class="mt-10">
+
+                    <h4 class="text-2xl font-bold text-blue-900">
+
+                        Şahin UYMAZ 
+
+                    </h4>
+
+                    <p class="text-gray-600">
+
+                        Yönetim Kurulu Başkanı
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+            <!-- Reklam Alanı 1 -->
+
+            <div class="bg-white border-2 border-dashed border-gray-300 rounded-2xl p-6 text-center">
+
+                <p class="text-xs text-gray-500 mb-2">REKLAM ALANI</p>
+
+                <div class="h-64 bg-gray-100 rounded-xl flex items-center justify-center text-gray-400">
+
+                    300x250
+
+                </div>
+
+            </div>
+
+            <!-- İstatistikler -->
+
+            <div class="bg-white rounded-2xl shadow p-6">
+
+                <h3 class="text-xl font-bold text-center mb-6">ESERKON Rakamlarla</h3>
+
+                <div class="grid grid-cols-2 gap-6 text-center">
+
+                    <div><div class="text-4xl font-bold text-red-600">1.240+</div><div class="text-sm">Üye</div></div>
+
+                    <div><div class="text-4xl font-bold text-amber-600">87</div><div class="text-sm">Etkinlik</div></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
     <!-- FOOTER -->
+
     <footer class="bg-gray-900 text-white py-12">
+
         <div class="max-w-7xl mx-auto px-4 text-center">
+
             <p>&copy; 2026 ESERKON - Eğitim, Sosyal, Etkinlik ve Rehberlik Konseyi • Tüm Hakları Saklıdır.</p>
+
         </div>
+
     </footer>
 
     <script>
+
         new Swiper('.mySwiper', {
+
             loop: true,
+
             autoplay: { delay: 4500 },
+
             pagination: { el: '.swiper-pagination', clickable: true },
+
             navigation: {
+
                 nextEl: '.swiper-button-next',
+
                 prevEl: '.swiper-button-prev',
+
             },
+
         });
 
-        // ==================== DESTEK FORMU SCRIPT ====================
-        document.getElementById("destekSecimSidebar").addEventListener("change", function() {
-            const planAlani = document.getElementById("odemePlanlari");
-            let html = "";
-
-            switch(this.value) {
-                case "finans":
-                    html = `
-                        <label class="block text-sm font-semibold mb-3 text-gray-700">Destek Tutarı</label>
-                        <div class="grid grid-cols-2 gap-3">
-                            <button type="button" onclick="secimYap(this, '500 TL')" class="tutar-btn">500 TL</button>
-                            <button type="button" onclick="secimYap(this, '1000 TL')" class="tutar-btn">1.000 TL</button>
-                            <button type="button" onclick="secimYap(this, '2500 TL')" class="tutar-btn">2.500 TL</button>
-                            <button type="button" onclick="secimYap(this, '5000 TL')" class="tutar-btn">5.000 TL</button>
-                        </div>`;
-                    break;
-
-                case "burs":
-                    html = `
-                        <label class="block text-sm font-semibold mb-3 text-gray-700">Burs Paketleri</label>
-                        <div class="space-y-3">
-                            <button type="button" onclick="secimYap(this, 'Aylık Burs - 2500 TL')" class="plan-btn">1 Aylık - 2.500 TL</button>
-                            <button type="button" onclick="secimYap(this, '6 Aylık Burs - 15000 TL')" class="plan-btn">6 Aylık - 15.000 TL</button>
-                            <button type="button" onclick="secimYap(this, '12 Aylık Burs - 30000 TL')" class="plan-btn">12 Aylık - 30.000 TL</button>
-                        </div>`;
-                    break;
-
-                case "kahvalti":
-                    html = `
-                        <label class="block text-sm font-semibold mb-3 text-gray-700">Yemek Paketleri</label>
-                        <div class="space-y-3">
-                            <button type="button" onclick="secimYap(this, 'Kahvaltı - 150 TL')" class="plan-btn">Kahvaltı - 150 TL</button>
-                            <button type="button" onclick="secimYap(this, 'Günlük Yemek - 650 TL')" class="plan-btn">Günlük Tam Paket - 650 TL</button>
-                        </div>`;
-                    break;
-
-                case "egitim":
-                    html = `
-                        <button type="button" onclick="window.open('https://odeme.linkiniz.com/kurs','_blank')" class="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-2xl font-bold">
-                            💳 Kurs Ücretini Öde
-                        </button>`;
-                    break;
-
-                case "malzeme":
-                    html = `<p class="text-sm text-gray-600">Malzeme bağışı için lütfen mesaj kısmına detay yazınız.</p>`;
-                    break;
-
-                default:
-                    html = `<p class="text-sm text-gray-500">Seçtiğiniz destek türü için planlar burada görünecektir.</p>`;
-            }
-            planAlani.innerHTML = html;
-        });
-
-        function secimYap(btn, deger) {
-            document.querySelectorAll('.tutar-btn, .plan-btn').forEach(b => {
-                b.style.backgroundColor = '';
-                b.style.color = '';
-            });
-            btn.style.backgroundColor = '#10b981';
-            btn.style.color = 'white';
-
-            let hidden = document.getElementById("selectedPlan");
-            if (!hidden) {
-                hidden = document.createElement("input");
-                hidden.type = "hidden";
-                hidden.name = "secilen_plan";
-                hidden.id = "selectedPlan";
-                document.getElementById("destekFormSidebar").appendChild(hidden);
-            }
-            hidden.value = deger;
-        }
     </script>
+
 </body>
-</html>
+
+</html> 
