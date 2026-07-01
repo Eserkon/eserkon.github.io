@@ -30,7 +30,7 @@ h3 {
   font-size: 20px;
   text-align: center;
 }
-select, input, button {
+select, input, button, textarea {
   width: 100%;
   padding: 12px;
   margin: 8px 0;
@@ -38,7 +38,7 @@ select, input, button {
   border-radius: 8px;
   font-size: 14px;
 }
-select:focus, input:focus {
+select:focus, input:focus, textarea:focus {
   outline: none;
   border-color: #0057b7;
 }
@@ -49,7 +49,6 @@ button {
   border: none;
   cursor: pointer;
   transition: background 0.3s;
-  margin-top: 10px;
 }
 button:hover {
   background: #003d82;
@@ -69,7 +68,6 @@ button:hover {
   padding: 10px;
   border-radius: 6px;
   margin: 8px 0;
-  word-break: break-all;
 }
 @media (max-width: 600px) {
   .support-form {
@@ -81,45 +79,50 @@ button:hover {
 </style>
 </head>
 <body>
-
 <div class="support-form">
-  <h3>🎯 Destek Ol</h3>
-  
-  <select id="supportType">
-    <option value="">Destek Türünü Seçin</option>
-    <option value="financial">💳 Finansal Destek</option>
-    <option value="burs">🎓 Burs Desteği</option>
-    <option value="food">🍳 Yemek ve Kahvaltı Desteği</option>
-    <option value="education">📚 Eğitim Desteği</option>
-    <option value="material">📦 Malzeme Bağışı</option>
-  </select>
+<h3>🎯 Destek Ol</h3>
 
-  <div id="planSection" class="section">
-    <strong>📅 Ödeme Planı Seçin:</strong>
-    <div id="plans"></div>
-  </div>
+<!-- Kişisel Bilgiler -->
+<label><strong>👤 Ad Soyad:</strong></label>
+<input type="text" id="fullName" placeholder="Adınızı ve Soyadınızı girin" required />
 
-  <div id="bankSection" class="section">
-    <label><strong>🏦 Banka Seçin:</strong></label>
-    <select id="bankSelect">
-      <option value="">Banka Seçin</option>
-      <option value="ziraat">Ziraat Bankası</option>
-      <option value="isbank">İş Bankası</option>
-      <option value="halk">Halk Bankası</option>
-      <option value="vakif">VakıfBank</option>
-    </select>
-    <div><strong>IBAN:</strong></div>
-    <div id="ibanDisplay" class="iban-display"></div>
-  </div>
+<label><strong>📞 Telefon:</strong></label>
+<input type="tel" id="phoneNumber" placeholder="05xx xxx xx xx" required />
 
-  <div id="amountSection" class="section">
-    <label><strong>₺ Tutar Girin:</strong></label>
-    <input type="number" id="amountInput" placeholder="Örneğin: 500" />
-  </div>
+<select id="supportType">
+  <option value="">Destek Türünü Seçin</option>
+  <option value="financial">💳 Finansal Destek</option>
+  <option value="burs">🎓 Burs Desteği</option>
+  <option value="food">🍳 Yemek ve Kahvaltı Desteği</option>
+  <option value="education">📚 Eğitim Desteği</option>
+  <option value="material">📦 Malzeme Bağışı</option>
+</select>
 
-  <div id="paySection" class="section">
-    <button onclick="confirmPayment()">💳 Ödeme Başlat</button>
-  </div>
+<div id="planSection" class="section">
+  <strong>📅 Ödeme Planı Seçin:</strong>
+  <div id="plans"></div>
+</div>
+
+<div id="bankSection" class="section">
+  <label><strong>🏦 Banka Seçin:</strong></label>
+  <select id="bankSelect"></select>
+  <div><strong>IBAN:</strong></div>
+  <div id="ibanDisplay" class="iban-display"></div>
+</div>
+
+<div id="amountSection" class="section">
+  <label><strong>₺ Tutar Girin:</strong></label>
+  <input type="number" id="amountInput" placeholder="Örneğin: 500" />
+</div>
+
+<div id="descSection" class="section">
+  <label><strong>📝 Açıklama:</strong></label>
+  <textarea id="descInput" readonly>Eserkon Yaşam Merkezine Bağış</textarea>
+</div>
+
+<div id="paySection" class="section">
+  <button onclick="confirmPayment()">💳 Ödeme Başlat</button>
+</div>
 </div>
 
 <script>
@@ -132,13 +135,12 @@ const ibans = {
 
 const plans = {
   financial: ["3 ay × 500₺", "6 ay × 400₺", "12 ay × 300₺"],
-  burs: ["Lise: 1.200₺/ay", "Üniversite: 1.800₺/ay"],
+  burs: ["Lise: 1.200₺/ay", "Üniversite: 1.800₺/ay", "Yüksek Lisans: 2.500₺/ay"],
   food: ["Aile: 300₺/ay", "Bireysel: 150₺/ay"],
   education: ["Kurs: 800₺/ay", "Eğitmen: 2.000₺/ay"],
   material: ["Temel Malzeme: 500₺/ay", "Özel Ekipman: 1.000₺/ay"]
 };
 
-// Destek türü seçimi
 document.getElementById("supportType").addEventListener("change", function () {
   const type = this.value;
   resetForm();
@@ -146,63 +148,64 @@ document.getElementById("supportType").addEventListener("change", function () {
   if (type && plans[type]) {
     const plansDiv = document.getElementById("plans");
     plansDiv.innerHTML = "";
-
     plans[type].forEach(plan => {
       const label = document.createElement("label");
       label.style.display = "block";
-      label.style.margin = "6px 0";
       label.innerHTML = `<input type="radio" name="plan" value="${plan}"> ${plan}`;
       plansDiv.appendChild(label);
     });
-
     document.getElementById("planSection").style.display = "block";
 
-    // Plan seçilince banka bölümünü aç
     document.querySelectorAll('input[name="plan"]').forEach(radio => {
-      radio.addEventListener("change", showBankSection);
+      radio.addEventListener("change", showBank);
     });
   }
 });
 
-function showBankSection() {
+function showBank() {
+  const bankSelect = document.getElementById("bankSelect");
+  bankSelect.innerHTML = "";
+  Object.keys(ibans).forEach(key => {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = 
+      key === "ziraat" ? "Ziraat Bankası" :
+      key === "isbank" ? "İş Bankası" :
+      key === "halk" ? "Halk Bankası" : "VakıfBank";
+    bankSelect.appendChild(option);
+  });
   document.getElementById("bankSection").style.display = "block";
 }
 
-// Banka seçimi
 document.getElementById("bankSelect").addEventListener("change", function () {
   const bank = this.value;
-  if (bank) {
-    document.getElementById("ibanDisplay").textContent = ibans[bank];
-    document.getElementById("amountSection").style.display = "block";
-  }
+  document.getElementById("ibanDisplay").textContent = ibans[bank];
+  document.getElementById("amountSection").style.display = "block";
 });
 
-// Tutar girilince ödeme butonu
 document.getElementById("amountInput").addEventListener("input", function () {
-  document.getElementById("paySection").style.display = (this.value > 0) ? "block" : "none";
+  if (this.value > 0) {
+    document.getElementById("descSection").style.display = "block";
+    document.getElementById("paySection").style.display = "block";
+  } else {
+    document.getElementById("paySection").style.display = "none";
+  }
 });
 
 function confirmPayment() {
+  const fullName = document.getElementById("fullName").value;
+  const phone = document.getElementById("phoneNumber").value;
   const amount = document.getElementById("amountInput").value;
   const plan = document.querySelector('input[name="plan"]:checked')?.value;
-  
+  const bankText = document.getElementById("bankSelect").selectedOptions[0]?.text;
+  const desc = document.getElementById("descInput").value;
+
+  if (!fullName) return alert("Lütfen ad soyad girin.");
+  if (!phone) return alert("Lütfen telefon numarası girin.");
   if (!plan) return alert("Lütfen bir ödeme planı seçin.");
   if (!amount || amount <= 0) return alert("Lütfen geçerli bir tutar girin.");
 
-  const confirmMsg = `Ödeme Başlatılsın mı?\n\nTür: ${document.getElementById("supportType").selectedOptions[0].text}\nPlan: ${plan}\nTutar: ${amount} ₺`;
-  
-  if (confirm(confirmMsg)) {
-    alert("✅ Ödeme işlemi başlatılıyor...\n\n( Gerçek sistemde ödeme sayfasına yönlendirilir )");
-  }
-}
-
-function resetForm() {
-  document.getElementById("planSection").style.display = "none";
-  document.getElementById("bankSection").style.display = "none";
-  document.getElementById("amountSection").style.display = "none";
-  document.getElementById("paySection").style.display = "none";
-}
-</script>
-
-</body>
-</html>
+  const confirm = window.confirm(
+    `Aşağıdaki detaylarla ödeme başlatılsın mı?\n\n` +
+    `Ad Soyad: ${fullName}\n` +
+    `Telefon: ${phone}\n`
