@@ -1,39 +1,178 @@
-<!-- ==================== SAĞ TARAF - GELİŞTİRİLMİŞ DESTEK OL FORMU ==================== -->
-<div class="lg:col-span-4">
-    <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 sticky top-8">
-        <div class="bg-gradient-to-r from-red-600 to-red-700 text-white p-6 text-center">
-            <div class="text-5xl mb-3">❤️</div>
-            <h3 class="text-2xl font-bold">Destek Ol</h3>
-            <p class="text-red-100 mt-1">Birlikte Daha Güçlü Olalım</p>
-        </div>
-
-        <div class="p-6">
-            <form id="destekFormSidebar" action="https://formspree.io/f/mgvglwbz" method="POST">
-                
-                <input type="text" name="adsoyad" placeholder="Ad Soyad" required class="w-full p-4 border border-gray-300 rounded-xl mb-4">
-                <input type="email" name="email" placeholder="E-Posta Adresiniz" required class="w-full p-4 border border-gray-300 rounded-xl mb-4">
-                <input type="tel" name="telefon" placeholder="Telefon Numaranız" class="w-full p-4 border border-gray-300 rounded-xl mb-4">
-
-                <!-- Destek Türü -->
-                <select id="destekSecimSidebar" name="destek_turu" required class="w-full p-4 border border-gray-300 rounded-xl mb-4">
-                    <option value="">Destek Türü Seçiniz</option>
-                    <option value="finans">💳 Finansal Destek</option>
-                    <option value="burs">🎓 Burs Desteği</option>
-                    <option value="yemek">🍽 Yemek/Kahvaltı Desteği</option>
-                    <option value="egitim">📚 Eğitim Desteği</option>
-                    <option value="malzeme">📦 Malzeme Bağışı</option>
-                    <option value="gonullu">🤝 Gönüllülük</option>
-                </select>
-
-                <!-- Dinamik Alan -->
-                <div id="dynamicContent" class="mb-6"></div>
-
-                <textarea name="mesaj" rows="3" placeholder="Ek açıklama yazabilirsiniz..." class="w-full p-4 border border-gray-300 rounded-xl mb-6"></textarea>
-
-                <button type="submit" class="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-4 rounded-2xl text-lg transition">
-                    Talebimi Gönder
-                </button>
-            </form>
-        </div>
-    </div>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Destek Ol</title>
+<style>
+body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .support-form {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ffffff;
+      border: 2px solid #d4af37;
+      border-radius: 14px;
+      width: 340px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+      z-index: 1000;
+      padding: 18px;
+      transition: transform 0.2s;
+    }
+    .support-form:hover {
+      transform: translateY(-2px);
+    }
+    .support-form h3 {
+      margin: 0 0 14px;
+      color: #1a3a6c;
+      font-size: 19px;
+      text-align: center;
+    }
+    .support-option {
+      margin-bottom: 12px;
+      padding: 10px;
+      background: #f8f9ff;
+      border-radius: 8px;
+      border: 1px solid #e0e0ff;
+    }
+    .support-option select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      background: white;
+    }
+    .support-option button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      background: #d4af37;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .support-option button:hover {
+      background: #b8952e;
+    }
+    .payment-plans, .bank-info {
+      margin-top: 12px;
+      padding: 12px;
+      background: #f0fff4;
+      border-radius: 8px;
+      border: 1px dashed #4caf50;
+      display: none;
+    }
+    .payment-plans label {
+      display: block;
+      margin: 6px 0;
+      font-size: 14px;
+    }
+    .bank-info {
+      background: #fff8e1;
+      border-color: #ffb300;
+    }
+    .iban-line {
+      font-size: 13px;
+      margin: 4px 0;
+      color: #2e2e2e;
+      font-family: monospace;
+    }
+    .qr-data {
+      font-size: 12px;
+      color: #555;
+      margin: 8px 0;
+      background: #f1f1f1;
+      padding: 8px;
+      border-radius: 4px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+<div class="support-form">
+<h3>🎯 Destek Ol</h3>
+<div class="support-option">
+<select id="supportType">
+<option value="">Destek Türünü Seçin</option>
+<option value="financial">💳 Finansal Destek</option>
+<option value="burs">🎓 Burs Desteği</option>
+<option value="food">🍳 Yemek ve Kahvaltı Desteği</option>
+<option value="education">📚 Eğitim Desteği</option>
+<option value="material">📦 Malzeme Bağışı</option>
+</select>
+<button onclick="selectSupport()">Seç</button>
 </div>
+<div id="paymentPlans" class="payment-plans"></div>
+<div id="bankInfo" class="bank-info"></div>
+</div>
+<script>
+// Hayali IBAN'lar (Sen gerçekleri ekleyeceksin)
+    const ibans = {
+      ziraat: "TR44 0001 0012 3456 7890 1234 56",
+      isbank: "TR39 0006 4000 0012 3456 7890",
+      halk: "TR14 0001 2000 0012 3456 7890",
+      vakif: "TR27 0001 5000 0012 3456 7890"
+    };
+
+    // QR Kodu Veri Formatı (ISO 20022 uyumlu basitleştirilmiş)
+    function generateQRData(bank, amount) {
+      const iban = ibans[bank];
+      const desc = `Aidat: ${amount} TL`;
+      return `BCD\n002\n1\nSCT\n\n${bank.toUpperCase()}\nDestekçi\n${amount}.00\nEUR\n${iban}\n\n${desc}`;
+    }
+
+    // Finansal Destek için Aylık Planlar
+    const financialPlans = [
+      { months: 3, amount: 500, total: 1500 },
+      { months: 6, amount: 400, total: 2400 },
+      { months: 12, amount: 300, total: 3600 }
+    ];
+
+    function selectSupport() {
+      const type = document.getElementById("supportType").value;
+      const paymentDiv = document.getElementById("paymentPlans");
+      const bankDiv = document.getElementById("bankInfo");
+      paymentDiv.style.display = "none";
+      bankDiv.style.display = "none";
+
+      if (type === "financial") {
+        // Ödeme Planlarını Göster
+        paymentDiv.innerHTML = "<strong>📅 Aylık Ödeme Planları:</strong><br>";
+        financialPlans.forEach(plan => {
+          paymentDiv.innerHTML += `
+            <label>
+              <input type="radio" name="plan" value="${plan.months}"> 
+              ${plan.months} ay × ${plan.amount}₺ = Toplam ${plan.total}₺
+            </label><br>
+          `;
+        });
+        paymentDiv.style.display = "block";
+
+        // Banka Bilgileri ve QR Verileri
+        bankDiv.innerHTML = "<strong>🏦 Ödeme Yapılacak Bankalar:</strong><br>";
+        Object.keys(ibans).forEach(bank => {
+          const bankName = bank === "ziraat" ? "Ziraat Bankası" :
+                          bank === "isbank" ? "İş Bankası" :
+                          bank === "halk" ? "Halk Bankası" : "VakıfBank";
+          bankDiv.innerHTML += `
+            <div class="iban-line">${bankName}: ${ibans[bank]}</div>
+            <div class="qr-data"><strong>QR Kod Verisi (Örnek):</strong><br>${generateQRData(bank, 300)}</div>
+          `;
+        });
+        bankDiv.style.display = "block";
+      } else {
+        alert("Diğer destek türleri için ödeme planı ileride eklenecek.");
+      }
+    }
+  </script>
+</body>
+</html>
