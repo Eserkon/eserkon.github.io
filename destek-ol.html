@@ -166,6 +166,40 @@ const ibans = {
       // Sen burayı: Iyzico, PayTR, Stripe vs. ile değiştirirsin
       // Örnek: window.open("https://odeme.seninadresin.com?amount=" + amount);
     }
-  </script>
+<!-- Bu kısım <script> bloğunun içine eklenecek (startPayment fonksiyonunu değiştir) -->
+function startPayment() {
+ const amount = document.getElementById("amountInput").value;
+ const bank = document.getElementById("bankSelect").value;
+ const plan = document.querySelector('input[name="plan"]:checked')?.value;
+
+ if (!plan) {
+ alert("Lütfen bir ödeme planı seçin.");
+ return;
+ }
+ if (!amount || amount <= 0) {
+ alert("Lütfen geçerli bir tutar girin.");
+ return;
+ }
+
+ const bankName = document.getElementById("bankSelect").selectedOptions[0].text;
+
+ const confirm = window.confirm(
+ `Aşağıdaki detaylarla ödeme başlatılsın mı?\n\n` +
+ `Destek Türü: ${document.getElementById("supportType").selectedOptions[0].text}\n` +
+ `Plan: ${plan}\n` +
+ `Banka: ${bankName}\n` +
+ `Tutar: ${amount}₺`
+ );
+
+ if (confirm) {
+ // Buraya ödeme geçidin entegrasyonunu ekleyeceksin
+ // Örnek: Iyzico, PayTR, Stripe yönlendirme
+ alert("Ödeme işlemi başlatılıyor... Yönlendiriliyorsunuz.");
+ // window.location.href = "https://odeme.seninadresin.com?amount=" + amount;
+ // SEN BURAYA KENDİ ÖDEME SAYFANIN LİNKİNİ KOYACAKSIN
+ }
+}
+
+</script>
 </body>
 </html>
