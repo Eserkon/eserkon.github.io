@@ -2,34 +2,96 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Destek Ol</title>
 <style>
-body { font-family: Arial, sans-serif; }
-    #supportForm {
+body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f7fa;
+    }
+    .support-form {
       position: fixed;
       top: 20px;
       right: 20px;
-      width: 300px;
+      width: 360px;
       background: white;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      padding: 20px;
+      z-index: 1000;
+      border: 1px solid #e0e0e0;
     }
-    select, button { width: 100%; padding: 8px; margin: 8px 0; }
-    .plan, .bank { margin-top: 10px; }
-    .qr-data { font-size: 12px; background: #f0f0f0; padding: 8px; border-radius: 4px; }
+    h3 {
+      margin: 0 0 16px;
+      color: #1a3a6c;
+      font-size: 20px;
+      text-align: center;
+    }
+    select, input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    select:focus, input:focus {
+      outline: none;
+      border-color: #0057b7;
+    }
+    button {
+      background: #0057b7;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #003d82;
+    }
+    .plan, .bank-info, .amount, .pay-section {
+      margin-top: 14px;
+      padding: 12px;
+      background: #f8f9ff;
+      border-radius: 8px;
+      border: 1px dashed #0057b7;
+      display: none;
+    }
+    .iban-display {
+      font-family: monospace;
+      font-size: 14px;
+      background: #eef2ff;
+      padding: 10px;
+      border-radius: 6px;
+      margin: 8px 0;
+    }
   </style>
 </head>
 <body>
-<div id="supportForm">
-<h3>Destek Ol</h3>
-<select id="type">
-<option>Destek Türü Seçin</option>
-<option value="financial">Finansal Destek</option>
+<div class="support-form">
+<h3>🎯 Destek Ol</h3>
+<select id="supportType" onchange="showPlans()">
+<option value="">Destek Türünü Seçin</option>
+<option value="financial">💳 Finansal Destek</option>
+<option value="burs">🎓 Burs Desteği</option>
+<option value="food">🍳 Yemek ve Kahvaltı Desteği</option>
+<option value="education">📚 Eğitim Desteği</option>
+<option value="material">📦 Malzeme Bağışı</option>
 </select>
-<div id="plans" class="plan"></div>
-<div id="banks" class="bank"></div>
+<div id="planSection" class="plan"></div>
+<div id="bankSection" class="bank-info">
+<label>Banka Seçin: <select id="bankSelect" onchange="showIBAN()"></select></label>
+<div id="ibanDisplay" class="iban-display"></div>
+</div>
+<div id="amountSection" class="amount">
+<label>Tutar (₺): <input type="number" id="amountInput" placeholder="Örnek: 500" /></label>
+</div>
+<div id="paySection" class="pay-section">
+<button onclick="startPayment()">💳 Ödeme Yap</button>
+</div>
 </div>
 <script>
 const ibans = {
@@ -39,37 +101,71 @@ const ibans = {
       vakif: "TR27 0001 5000 0012 3456 7890"
     };
 
-    document.getElementById("type").onchange = function () {
-      const selected = this.value;
-      const plansDiv = document.getElementById("plans");
-      const banksDiv = document.getElementById("banks");
-      plansDiv.innerHTML = "";
-      banksDiv.innerHTML = "";
-
-      if (selected === "financial") {
-        // Ödeme Planları
-        plansDiv.innerHTML = `
-          <strong>Ödeme Planları:</strong><br>
-          • 3 ay × 500₺ = 1.500₺<br>
-          • 6 ay × 400₺ = 2.400₺<br>
-          • 12 ay × 300₺ = 3.600₺
-        `;
-
-        // Banka IBAN'ları ve QR Verileri
-        banksDiv.innerHTML = `<strong>IBAN Bilgileri:</strong><br>`;
-        for (const [bank, iban] of Object.entries(ibans)) {
-          const bankName = bank === "ziraat" ? "Ziraat" :
-                           bank === "isbank" ? "İş Bankası" :
-                           bank === "halk" ? "Halk Bankası" : "VakıfBank";
-          banksDiv.innerHTML += `
-            <div><b>${bankName}:</b> ${iban}</div>
-            <div class="qr-data">
-              <b>QR Veri (örnek):</b> BCD\n002\n1\nSCT\n\n${bank.toUpperCase()}\nDestekçi\n300.00\nEUR\n${iban}\n\nAidat: 300 TL
-            </div>
-          `;
-        }
-      }
+    const plans = {
+      financial: ["3 ay × 500₺", "6 ay × 400₺", "12 ay × 300₺"],
+      burs: ["Lise: 1.200₺/ay", "Üniversite: 1.800₺/ay", "Yüksek Lisans: 2.500₺/ay"],
+      food: ["Aile: 300₺/ay", "Bireysel: 150₺/ay"],
+      education: ["Kurs: 800₺/ay", "Eğitmen: 2.000₺/ay"],
+      material: ["Temel Malzeme: 500₺/ay", "Özel Ekipman: 1.000₺/ay"]
     };
+
+    function showPlans() {
+      const type = document.getElementById("supportType").value;
+      const planSection = document.getElementById("planSection");
+      const bankSection = document.getElementById("bankSection");
+      const amountSection = document.getElementById("amountSection");
+      const paySection = document.getElementById("paySection");
+
+      planSection.style.display = "none";
+      bankSection.style.display = "none";
+      amountSection.style.display = "none";
+      paySection.style.display = "none";
+
+      if (type) {
+        planSection.innerHTML = "<strong>📅 Ödeme Planı Seçin:</strong>";
+        plans[type].forEach(plan => {
+          planSection.innerHTML += `<label><input type="radio" name="plan" value="${plan}" onchange="showBank()"> ${plan}</label><br>`;
+        });
+        planSection.style.display = "block";
+      }
+    }
+
+    function showBank() {
+      const bankSelect = document.getElementById("bankSelect");
+      bankSelect.innerHTML = "";
+      Object.keys(ibans).forEach(key => {
+        const name = key === "ziraat" ? "Ziraat Bankası" :
+                     key === "isbank" ? "İş Bankası" :
+                     key === "halk" ? "Halk Bankası" : "VakıfBank";
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = name;
+        bankSelect.appendChild(option);
+      });
+      document.getElementById("bankSection").style.display = "block";
+    }
+
+    function showIBAN() {
+      const bank = document.getElementById("bankSelect").value;
+      document.getElementById("ibanDisplay").textContent = ibans[bank];
+      document.getElementById("amountSection").style.display = "block";
+    }
+
+    function startPayment() {
+      const amount = document.getElementById("amountInput").value;
+      const bank = document.getElementById("bankSelect").selectedOptions[0].text;
+      const plan = document.querySelector('input[name="plan"]:checked')?.value;
+
+      if (!amount || !plan) {
+        alert("Lütfen ödeme planı ve tutar seçin.");
+        return;
+      }
+
+      // Burada gerçek ödeme entegrasyonu olur
+      alert(`Ödeme başlatılıyor:\nTutar: ${amount}₺\nBanka: ${bank}\nPlan: ${plan}`);
+      // Sen burayı: Iyzico, PayTR, Stripe vs. ile değiştirirsin
+      // Örnek: window.open("https://odeme.seninadresin.com?amount=" + amount);
+    }
   </script>
 </body>
 </html>
