@@ -38,10 +38,6 @@ select, input, button, textarea {
   border-radius: 8px;
   font-size: 14px;
 }
-select:focus, input:focus, textarea:focus {
-  outline: none;
-  border-color: #0057b7;
-}
 button {
   background: #0057b7;
   color: white;
@@ -89,6 +85,7 @@ button:hover {
 <label><strong>📞 Telefon:</strong></label>
 <input type="tel" id="phoneNumber" placeholder="05xx xxx xx xx" required />
 
+<!-- Destek Türü -->
 <select id="supportType">
   <option value="">Destek Türünü Seçin</option>
   <option value="financial">💳 Finansal Destek</option>
@@ -98,11 +95,13 @@ button:hover {
   <option value="material">📦 Malzeme Bağışı</option>
 </select>
 
+<!-- Plan -->
 <div id="planSection" class="section">
   <strong>📅 Ödeme Planı Seçin:</strong>
   <div id="plans"></div>
 </div>
 
+<!-- Banka -->
 <div id="bankSection" class="section">
   <label><strong>🏦 Banka Seçin:</strong></label>
   <select id="bankSelect"></select>
@@ -110,16 +109,19 @@ button:hover {
   <div id="ibanDisplay" class="iban-display"></div>
 </div>
 
+<!-- Tutar -->
 <div id="amountSection" class="section">
   <label><strong>₺ Tutar Girin:</strong></label>
   <input type="number" id="amountInput" placeholder="Örneğin: 500" />
 </div>
 
+<!-- Açıklama -->
 <div id="descSection" class="section">
   <label><strong>📝 Açıklama:</strong></label>
   <textarea id="descInput" readonly>Eserkon Yaşam Merkezine Bağış</textarea>
 </div>
 
+<!-- Ödeme -->
 <div id="paySection" class="section">
   <button onclick="confirmPayment()">💳 Ödeme Başlat</button>
 </div>
@@ -141,6 +143,7 @@ const plans = {
   material: ["Temel Malzeme: 500₺/ay", "Özel Ekipman: 1.000₺/ay"]
 };
 
+// Destek türü seçildiğinde planları göster
 document.getElementById("supportType").addEventListener("change", function () {
   const type = this.value;
   resetForm();
@@ -156,6 +159,7 @@ document.getElementById("supportType").addEventListener("change", function () {
     });
     document.getElementById("planSection").style.display = "block";
 
+    // Plan seçildiğinde banka seçim ekranını aç
     document.querySelectorAll('input[name="plan"]').forEach(radio => {
       radio.addEventListener("change", showBank);
     });
@@ -207,5 +211,4 @@ function confirmPayment() {
 
   const confirm = window.confirm(
     `Aşağıdaki detaylarla ödeme başlatılsın mı?\n\n` +
-    `Ad Soyad: ${fullName}\n` +
-    `Telefon: ${phone}\n`
+    `Ad Soyad: ${fullName
