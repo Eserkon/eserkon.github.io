@@ -494,19 +494,6 @@ Videolarımız</h2>
                 </div>
             </div>
 
-<script>
-// Ziyaretçi Sayacı
-fetch("https://api.countapi.xyz/hit/eserkon2026/toplamziyaret")
-    .then(response => response.json())
-    .then(data => {
-        const sayi = 756 +data.value;   // Başlangıç sayısı (istediğin gibi değiştirebilirsin)
-        document.getElementById("toplamSayac").textContent = sayi.toLocaleString('tr-TR');
-    })
-    .catch(error => {
-        console.log("Ziyaretçi sayacı yüklenemedi");
-        document.getElementById("toplamSayac").textContent = "755+";
-    });
-</script>
     <!-- FOOTER -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
