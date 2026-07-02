@@ -528,7 +528,7 @@ Videolarımız</h2>
 fetch("https://api.countapi.xyz/hit/eserkon2026/toplamziyaret")
     .then(response => response.json())
     .then(data => {
-        const sayi = 12480 + data.value;   // Başlangıç sayısı (istediğin gibi değiştirebilirsin)
+        const sayi = 755 + data.value;   // Başlangıç sayısı (istediğin gibi değiştirebilirsin)
         document.getElementById("toplamSayac").textContent = sayi.toLocaleString('tr-TR');
     })
     .catch(error => {
