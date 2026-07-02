@@ -500,19 +500,30 @@ Videolarımız</h2>
                 </div>
             </div>
 
-           <script>
-fetch("https://api.countapi.xyz/hit/eserkon.com.tr/ziyaretci")
-.then(response => response.json())
+          <!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Ziyaretçi Sayacı</title>
+</head>
+<body>
+
+<h2>👥 Ziyaretçi Sayısı: <span id="sayac">Yükleniyor...</span></h2>
+
+<script>
+fetch("https://api.countapi.xyz/hit/eserkon2026/ziyaret")
+.then(res => res.json())
 .then(data => {
-
-    // Başlangıç değeri
-    let baslangic = 18750;
-
-    document.getElementById("visitorCount").innerHTML =
-        (baslangic + data.value).toLocaleString("tr-TR");
-
+    document.getElementById("sayac").innerHTML = 25000 + data.value;
+})
+.catch(err => {
+    console.log(err);
+    document.getElementById("sayac").innerHTML = "Bağlantı Hatası";
 });
 </script>
+
+</body>
+</html>
 
     <!-- FOOTER -->
     <footer class="bg-gray-900 text-white py-12">
