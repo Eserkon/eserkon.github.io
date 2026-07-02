@@ -500,30 +500,11 @@ Videolarımız</h2>
                 </div>
             </div>
 
-          <!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<title>Ziyaretçi Sayacı</title>
-</head>
-<body>
-
-<h2>👥 Ziyaretçi Sayısı: <span id="sayac">Yükleniyor...</span></h2>
-
-<script>
-fetch("https://api.countapi.xyz/hit/eserkon2026/ziyaret")
-.then(res => res.json())
-.then(data => {
-    document.getElementById("sayac").innerHTML = 25000 + data.value;
-})
-.catch(err => {
-    console.log(err);
-    document.getElementById("sayac").innerHTML = "Bağlantı Hatası";
-});
-</script>
-
-</body>
-</html>
+<div class="text-center my-6">
+    <h2>👥 Ziyaretçi Sayısı:
+        <span id="sayac">Yükleniyor...</span>
+    </h2>
+</div>
 
     <!-- FOOTER -->
     <footer class="bg-gray-900 text-white py-12">
@@ -531,7 +512,19 @@ fetch("https://api.countapi.xyz/hit/eserkon2026/ziyaret")
             <p>&copy; 2026 ESERKON - Eğitim, Sosyal, Etkinlik ve Rehberlik Konseyi • Tüm Hakları Saklıdır.</p>
         </div>
     </footer>
-
+<script>
+fetch("https://api.countapi.xyz/hit/eserkon2026/ziyaret")
+.then(res => res.json())
+.then(data => {
+    document.getElementById("sayac").innerHTML =
+        (25000 + data.value).toLocaleString("tr-TR");
+})
+.catch(err => {
+    console.log(err);
+    document.getElementById("sayac").innerHTML = "Bağlantı Hatası";
+});
+</script>
+            
     <script>
         new Swiper('.mySwiper', {
             loop: true,
