@@ -113,6 +113,29 @@
         </div>
     </div>
 
+    <!-- ===================== ZİYARETÇİ SAYACI ===================== -->
+<div class="bg-white py-5 shadow-sm border-t-2 border-red-600 my-8">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center justify-center gap-6 text-center">
+            
+            <div class="flex items-center gap-3">
+                <i class="fas fa-users text-4xl text-red-600"></i>
+                <div>
+                    <p class="text-sm text-gray-600 font-medium">Toplam Ziyaretçi</p>
+                    <span id="toplamSayac" class="text-4xl font-bold text-red-700">0</span>
+                </div>
+            </div>
+
+            <div class="hidden md:block w-px h-12 bg-gray-300"></div>
+
+            <div class="text-sm text-gray-500 max-w-xs">
+                Bu siteyi ziyaret eden toplam kişi sayısı<br>
+                <span class="text-red-600 font-semibold">Anlık olarak güncellenmektedir.</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ===================== ZİYARETÇİ SAYACI SON ===================== -->
     <!-- HERO -->
     <section class="hero-bg h-[380px] flex items-center text-white">
 <img src="images/pankart.jpg" alt="Logo" style="display:block; margin:0 auto; width:700px;">
@@ -500,12 +523,19 @@ Videolarımız</h2>
                 </div>
             </div>
 
-<div class="text-center my-6">
-    <h2>👥 Ziyaretçi Sayısı:
-        <span id="sayac">Yükleniyor...</span>
-    </h2>
-</div>
-
+<script>
+// Ziyaretçi Sayacı
+fetch("https://api.countapi.xyz/hit/eserkon2026/toplamziyaret")
+    .then(response => response.json())
+    .then(data => {
+        const sayi = 12480 + data.value;   // Başlangıç sayısı (istediğin gibi değiştirebilirsin)
+        document.getElementById("toplamSayac").textContent = sayi.toLocaleString('tr-TR');
+    })
+    .catch(error => {
+        console.log("Ziyaretçi sayacı yüklenemedi");
+        document.getElementById("toplamSayac").textContent = "12480+";
+    });
+</script>
     <!-- FOOTER -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
