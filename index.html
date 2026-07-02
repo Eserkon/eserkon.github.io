@@ -113,7 +113,13 @@
         </div>
     </div>
 
- 
+    <!-- HERO -->
+    <section class="hero-bg h-[380px] flex items-center text-white">
+<img src="images/pankart.jpg" alt="Logo" style="display:block; margin:0 auto; width:700px;">
+    </div>    </section>
+
+   
+
         <!-- SOL İÇERİK -->
         <div class="lg:col-span-8 space-y-16">
 
@@ -127,7 +133,7 @@
 
             
 
-            <!-- ZİYARETLER -->
+            <!-- YAPTIĞIMIZ ZİYARETLER -->
 <section class="py-12 bg-white">
 
     <div class="max-w-7xl mx-auto px-6">
@@ -494,25 +500,38 @@ Videolarımız</h2>
                 </div>
             </div>
 
+          <!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Ziyaretçi Sayacı</title>
+</head>
+<body>
+
+<h2>👥 Ziyaretçi Sayısı: <span id="sayac">Yükleniyor...</span></h2>
+
+<script>
+fetch("https://api.countapi.xyz/hit/eserkon2026/ziyaret")
+.then(res => res.json())
+.then(data => {
+    document.getElementById("sayac").innerHTML = 25000 + data.value;
+})
+.catch(err => {
+    console.log(err);
+    document.getElementById("sayac").innerHTML = "Bağlantı Hatası";
+});
+</script>
+
+</body>
+</html>
+
     <!-- FOOTER -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <p>&copy; 2026 ESERKON - Eğitim, Sosyal, Etkinlik ve Rehberlik Konseyi • Tüm Hakları Saklıdır.</p>
         </div>
     </footer>
-<script>
-fetch("https://api.countapi.xyz/hit/eserkon2026/ziyaret")
-.then(res => res.json())
-.then(data => {
-    document.getElementById("sayac").innerHTML =
-        (25000 + data.value).toLocaleString("tr-TR");
-})
-.catch(err => {
-    console.log(err);
-    document.getElementById("sayac").innerHTML = "Bağlantı Hatası";
-});
 
-        
     <script>
         new Swiper('.mySwiper', {
             loop: true,
