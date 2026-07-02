@@ -156,7 +156,7 @@
 
             
 
-            <!-- YAPTIĞIMIZ ZİYARETLER -->
+            <!-- ZİYARETLER -->
 <section class="py-12 bg-white">
 
     <div class="max-w-7xl mx-auto px-6">
@@ -528,7 +528,7 @@ Videolarımız</h2>
 fetch("https://api.countapi.xyz/hit/eserkon2026/toplamziyaret")
     .then(response => response.json())
     .then(data => {
-        const sayi = 755 + data.value;   // Başlangıç sayısı (istediğin gibi değiştirebilirsin)
+        const sayi =755+data.value;   // Başlangıç sayısı (istediğin gibi değiştirebilirsin)
         document.getElementById("toplamSayac").textContent = sayi.toLocaleString('tr-TR');
     })
     .catch(error => {
@@ -554,12 +554,7 @@ fetch("https://api.countapi.xyz/hit/eserkon2026/ziyaret")
     document.getElementById("sayac").innerHTML = "Bağlantı Hatası";
 });
 
-    <!-- Sayaclar.com Code Start  -->
-<div align="center"><script language="Javascript" src="http://sa.sayaclar.com/c/s4.php?a=bm1xnf3&s=1a3"></script></div>
-<!-- Sayaclar.com Code End -->
-
-</script>
-            
+        
     <script>
         new Swiper('.mySwiper', {
             loop: true,
